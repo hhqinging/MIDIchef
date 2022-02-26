@@ -1,10 +1,10 @@
-# AudioChef
+# MIDIchef
 
 Huanqing Hu, Wenhao Xue, Junming Liu, Maihan Wen, Queeny Lin
 
 ## Cook your music and get NFT
 
-AudioChef is a website provide an easy way for users whom may or may not have music knowledge backgroud to produce their own music and earn by selling their music.
+MIDIchef is a website provide an easy way for users whom may or may not have music knowledge backgroud to produce their own music and earn by selling their music.
 :stuck_out_tongue_closed_eyes:
 
 Pro: have fun to make music, protect creator's copyright & make money :money_mouth_face:
