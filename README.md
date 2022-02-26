@@ -31,7 +31,19 @@ Theme of the whole website, I would like to be dark & cool & electronic :space_i
   - - [ ] The design of music making page may need to reorganize.
           Reference page https://musiclab.chromeexperiments.com/Song-Maker/song/6332515798745088
           ![musicgrid](RefUI/musicgrid.jpg)
-          ![gridsetting](RefUI/gridsetting.jpg)
+
+- - Setting (subpage of the music kichen)
+
+- - - Adjustable tempo(120 default)
+- - - length how many bars(columns)
+- - - beats per bar: how many beats per bar
+- - - split beat into: how many small beats per bar
+- - - Scale: major(7, do re mi fa so la ti)
+- - - chromatic(12, do di re ri mi fa fi so si la li ti)
+- - - pentatonic(5, do re mi so la)
+- - - Start on key signature (low/middle/high, major 12 keys )
+- - - Range (octave) how many rows, which depends on the scales
+      ![gridsetting](RefUI/gridsetting.jpg)
 
 * User Profile:
 
@@ -44,7 +56,13 @@ Theme of the whole website, I would like to be dark & cool & electronic :space_i
   - Networks: flowers/following
   - Wallpage: comments from other users
     ![dashboard](RefUI/dashboard.jpg)
-    Or another way to display - Assets: Tracks to sell/Tracks have bought - Networks: flowers/following - Wallpage: comments from other users - [ ] Still planning about the "Assets", and will research other NFT product
+    Or another way to display
+
+    - Assets: Tracks to sell/Tracks have bought
+    - Networks: flowers/following
+    - Wallpage: comments from other users
+    - [ ] Still planning about the "Assets", and will research other NFT product
+
     Reference image (random users on audiotool for reference) https://www.audiotool.com/user/bubblicious/tracks
 
 * Product info Page:
@@ -60,4 +78,5 @@ Theme of the whole website, I would like to be dark & cool & electronic :space_i
 ## Framework
 
 (Not that important at this moment)
+
 MERN, blockchain(Ethereum/Algorand/Smart Contract)
