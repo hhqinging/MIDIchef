@@ -71,7 +71,9 @@ Theme of the whole website, I would like to be dark & cool & electronic :space_i
 
 * Trading page(subpage of Product page)
 
-  connect wallet
+  - connect wallet
+  - sell & resell
+  - all transactions shows on prodution page
 
   - [ ] will do research other NFT product
 
