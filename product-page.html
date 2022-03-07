@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="./product-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+    <div class="nav-bar">
+        <!-- Logo -->
+        <a href = "homepage.html">
+            <img class="logo" src="UI_figma/logo.jpg" style="width: 120px; height: 60px; display: block; float:left; margin: 0 30px 0 0;">
+            <a href style="text-decoration: none; color: white; font-size: 30px; float: left; margin-right: 20px; margin-top: 12px; font-family: Arial; font-weight: lighter;"> MIDIchef </a>
+        </a>
+
+        <!-- Search bar -->
+        <form id="search-bar" action="/search" autocomplete="off" method="get">
+            <input type="text" placeholder="Search tracks, collections, and artists...">
+            <button  id="search-submit" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+        <!-- Profile Logo -->
+        <a href="#" >
+            <img class="profile-logo" src="UI_figma/midigull.jpeg">
+        </a>
+        <!-- Nav bar buttons -->
+        <nav id="navbar-buttons">
+            <ul class="nav-buttons">
+                <li><a href="#" >Kitchen</a></li>
+                <li><a href="#" >Create</a></li>
+                <li><a href="#" >Explore</a></li>
+            </ul>
+            
+        </nav>
+        
+    </div>
+
+    <div class="wrapper">
+        <div class="left-product">
+            <form action="" id="track-image">
+                <!-- <input type="file" id="imageFile" name="imgfile" accept="image/*"> -->
+                <img src="UI_figma/sign.jpeg" style="width: 270px; height: 330px; border-radius: 20px; ">
+                <br><br>
+                <label id="descIntro" style="color: white;"> 
+                    Created by 
+                    <a href="#" class="user">MIDIcat</a>
+                </label>
+                <br>
+                <div class="description" style="margin: 10px 0 0 0;">
+                    <label for="track-description" style="color: #bc6cd4 ; font-family: Arial; font-size: 15px;"><b>Description</b></label>
+                    <br>
+                    <p id="track-description"> 
+                        <b>
+                            This is a song about my pet cat.
+                            <br>
+                            <br>
+                            Detail info in algoexplorer.io
+                        </b>
+                    </p>
+                    <!-- <textarea type="text" id="track-description" name="track-description" cols="40" rows="6"></textarea> -->
+                </div>
+            </form>
+        </div>
+        <div class="right-product" style="float: left;">
+            <div class="title-creator container">
+                <div class="imm-text">
+                    <label id="title"><b>SIGH</b></label>
+                </div>
+                <br>
+                <div class="imm-text">
+                    <label id="owner" style="color: white;"> 
+                        Owned by 
+                        <a href="#" class="user">MIDIduck</a>
+                    </label>
+                </div>
+            </div>
+            <div class="favorites container">
+                <div id="heart-icon" >
+                    <i class="fa fa-heart"></i>
+                </div>
+                <label id="fav-num">387 Favorited</label>
+            </div>
+            <div class="pricing container">
+                <label style="color: white;"> 
+                    <b>Current Price</b>
+                </label>
+                <div class="price-part">
+                    <img src="UI_figma/algo icon.png" style="width: 25px; height: 25px; margin-right: 10px;">
+                    <label id="price"><b>1 Algo</b></label>
+                </div>
+            </div>
+            <div class="play-part container">
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+                <label id="playtime"><b>0:28</b></label>
+                <div class="played-button">
+                    <i class="fa fa-play"></i>
+                </div>
+                <label id="played"><b>3921</b></label>
+            </div>
+            <div class="interact-part container">
+                <div class="button-container">
+                    <input class="buttons" type="submit" value="Favorite" onclick="window.location.href='./#';">
+                    <input class="buttons" type="submit" value="Buy Now" onclick="window.location.href='./#';">
+                </div>
+            </div>
+            <div class="activity-table container">
+                <label style="color: white;"><b>Activity</b>
+                </label>
+                <table class="act-table">
+                    <tr>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Price</th>
+                        <th>Date</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <!-- <script src="./script.js">
+        </script> -->
+</body>
+
+</html>
