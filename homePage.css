@@ -11,7 +11,7 @@ html {
 .pic-back {
   top: 20%;
   opacity: 0.6;
-  background: url("homepageBackground-cut.jpeg");
+  background: url("./UI_figma/homepageBackground-cut.jpeg");
   height: 40%;
   /* transform: rotate(-35.73deg); */
   background-position: center;
@@ -164,7 +164,7 @@ u {
   width: 450px;
   height: 300px;
   border-radius: 10%;
-  background: url("./rainbow cat.png");
+  background: url("./UI_figma/rainbow cat.png");
   background-size: cover;
 }
 .track-2 {
@@ -173,7 +173,7 @@ u {
   width: 450px;
   height: 300px;
   border-radius: 10%;
-  background-image: url("./dog-tr.jpeg");
+  background-image: url("./UI_figma/dog-tr.jpeg");
   background-size: cover;
 }
 
@@ -183,7 +183,7 @@ u {
   width: 450px;
   height: 300px;
   border-radius: 10%;
-  background-image: url("./sign.jpeg");
+  background-image: url("./UI_figma/sign.jpeg");
   background-size: cover;
 }
 
@@ -194,7 +194,7 @@ u {
   width: 450px;
   height: 300px;
   border-radius: 10%;
-  background-image: url("./dog-tr.jpeg");
+  background-image: url("./UI_figma/dog-tr.jpeg");
   background-size: cover;
 }
 .track-5 {
@@ -203,7 +203,7 @@ u {
   width: 450px;
   height: 300px;
   border-radius: 10%;
-  background-image: url("./laptop.png");
+  background-image: url("./UI_figma/laptop.png");
   background-size: cover;
 }
 
@@ -213,7 +213,7 @@ u {
   width: 450px;
   height: 300px;
   border-radius: 10%;
-  background-image: url("./no\ sleep\ tonight.jpeg");
+  background-image: url("./UI_figma/no\ sleep\ tonight.jpeg");
   background-size: cover;
 }
 
