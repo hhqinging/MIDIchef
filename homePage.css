@@ -1,5 +1,5 @@
 body {
-  background: #141414;
+  background: #1f1f1f;
   font-family: Arial, Helvetica, sans-serif;
 }
 body,
@@ -33,19 +33,20 @@ html {
   /* width: 1940px;
     height: 1623px; */
 
-  background: #141414;
+  background: #1f1f1f;
 }
 .nav-bar {
   position: absolute;
-  left: 23px;
-  top: 22px;
+  background-color: #232323;
+  /* left: 23px;
+  top: 22px; */
 }
 .logo {
   position: absolute;
   width: 114px;
   height: 67px;
-  left: 19px;
-  top: 4px;
+  /* left: 19px;
+  top: 4px; */
 }
 .MIDIchef {
   position: absolute;
@@ -125,8 +126,9 @@ html {
   position: absolute;
   width: 146px;
   height: 47px;
+  /* right: 20px; */
   left: 1530px;
-  top: 16px;
+  top: 22px;
   background: #59dfdd;
   border-radius: 20px;
 
