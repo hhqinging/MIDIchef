@@ -1,5 +1,6 @@
 const {MongoClient} = require("mongodb")
 const {mongodb_uri} = require("./config.json")
+const fs = require('fs')
 
 
 const client = new MongoClient(mongodb_uri);
@@ -18,7 +19,7 @@ async function mongo_insert(collection, obj) {
     }
 }
 
-async function mongo_find(collection, query, options) {
+async function mongo_find(collection, query, options, file_path) {
     try {
         await client.connect();
         const database = client.db(db_name);
@@ -27,7 +28,9 @@ async function mongo_find(collection, query, options) {
         if ((await cursor.countDocuments) === 0) {
             console.log("No documents found!");
         }
-        await cursor.forEach(console.dir);
+        // await cursor.forEach(console.dir);
+        let data = await cursor.toArray();
+        fs.writeFileSync(file_path, JSON.stringify(data));
     } finally {
         await client.close();
     }
