@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Network Page</title>
-        <link rel="stylesheet" href="./network-style.css" />
-    </head>
+import React from 'react';
 
-    <body>
+
+export default class Network extends React.Component {
+  render() {
+    return (
         <div class="network-wrapper">
             <div class="user-wrapper">
                 <div id="pfp">
@@ -49,5 +46,6 @@
                 </div>
             </div>
         </div>
-    </body>
-</html>
+    )
+  }
+}
