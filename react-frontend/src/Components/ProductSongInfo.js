@@ -1,19 +1,23 @@
 import React from 'react';
+import algo_logo from "../img/algo icon.png"
+
 
 
 export default class ProductSongInfo extends React.Component {
   render() {
+    // TODO: hard coded values
     return (
-      <div class="right-product" style="float: left">
+      <div class="right-product" id="right-product-wrapper">
           <div class="title-creator container">
           <div class="imm-text">
               <label id="title"><b>SIGH</b></label>
           </div>
           <br />
           <div class="imm-text">
-              <label id="owner" style="color: white">
+              <label id="owner">
               Owned by
-              <a class="user">MIDIduck</a>
+              
+              <a href="/" class="user">MIDIduck</a>
               </label>
           </div>
           </div>
@@ -24,13 +28,13 @@ export default class ProductSongInfo extends React.Component {
           <label id="fav-num">387 Favorited</label>
           </div>
           <div class="pricing container">
-          <label style="color: white">
+          <label id="price-label">
               <b>Current Price</b>
           </label>
           <div class="price-part">
-              <img
-              src="UI_figma/algo icon.png"
-              style="width: 25px; height: 25px; margin-right: 10px"
+              <img id="algo-logo"
+              src={algo_logo}
+              alt='Algo Logo'
               />
               <label id="price"><b>1 Algo</b></label>
           </div>

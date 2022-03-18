@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './product-style.css'
+import './css/product-page.css'
 import ProductActivity from './Components/ProductActivity.js'
-// import ProductSongInfo from './Components/ProductSongInfo.js'
+import ProductSongInfo from './Components/ProductSongInfo.js'
 
-class Main extends React.Component {
+class APP extends React.Component {
     render() {
         return (
-            <div>
+            <div id="APP">
+                <ProductSongInfo />
                 <ProductActivity />
             </div>
         )
@@ -16,6 +17,6 @@ class Main extends React.Component {
 
 
 ReactDOM.render(
-    <Main />,
+    <APP />,
     document.getElementById('root')
 );

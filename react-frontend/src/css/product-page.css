@@ -157,6 +157,11 @@ a.user:hover {
     padding: 20px;
     margin-left: 60px;
 }
+
+#right-product-wrapper {
+    float: left;
+}
+
 .container {
     /* border: solid 1px #ff0000; */
     position: flex;
@@ -196,11 +201,22 @@ a.user:hover {
 .imm-text {
     text-align: left;
 }
+#owner {
+    color: white;
+}
+#price-label {
+    color: white;
+}
 .price-part {
     margin: 10px 0 0 0;
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+#algo-logo {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
 }
 #price {
     color: rgb(59, 204, 204);
