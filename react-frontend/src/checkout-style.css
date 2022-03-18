@@ -26,13 +26,13 @@ body {
     font-size: 25px; 
     padding: 5px;
 }
-.left {
+.co-left {
     float: left; 
     margin-left: 10px;
     float: initial;
     position: relative;
 }
-.right {
+.co-right {
     float: right; 
     margin-right: 10px;
     position: relative;
