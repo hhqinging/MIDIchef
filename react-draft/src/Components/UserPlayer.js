@@ -7,7 +7,7 @@ import heart from "../img/heart.png";
 import play1 from "../img/play1.png";
 import edit from "../img/edit.png";
 
-const musicplayer = (props) => (
+const UserPlayer = (props) => (
   <div>
     <div className="container">
       <div className="table-picture">
@@ -48,4 +48,4 @@ const musicplayer = (props) => (
     </div>
   </div>
 );
-export default musicplayer;
+export default UserPlayer;

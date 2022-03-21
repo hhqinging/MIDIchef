@@ -7,7 +7,7 @@ import heart from "../img/heart.png";
 import play1 from "../img/play1.png";
 import edit from "../img/edit.png";
 
-const Homeplayer = (props) => (
+const HomePlayer = (props) => (
   <div className="main-musicgeneral">
     <img src={picture} className="table_background" alt="" />
     <div className="table_mainplayer">
@@ -48,4 +48,4 @@ const Homeplayer = (props) => (
     </div>
   </div>
 );
-export default Homeplayer;
+export default Homelayer;
