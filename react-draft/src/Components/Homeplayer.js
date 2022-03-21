@@ -1,5 +1,5 @@
 import React from "react";
-import "../../css/musicplayer_user.css";
+import "../css/Homeplayer.css";
 import picture from "../img/sign.jpeg";
 import play from "../img/play.png";
 import algo from "../img/algo.png";
@@ -7,29 +7,29 @@ import heart from "../img/heart.png";
 import play1 from "../img/play1.png";
 import edit from "../img/edit.png";
 
-const musicplayer = (props) => (
-  <div>
-    <div className="container">
-      <div className="table-picture">
-        <img src={picture} className="picture" alt="" />
-      </div>
-      <div className="table-right">
-        <div className="title">
+const Homeplayer = (props) => (
+  <div className="main-musicgeneral">
+    <img src={picture} className="table_background" alt="" />
+    <div className="table_mainplayer">
+      <div className="display_bar">
+        <div className="title_main">
           <strong>SIGN</strong>
         </div>
-        <div className="creater">MIDIcat</div>
-        <div className="playbar">
-          <div>
-            <img src={play} className="play" alt="" />
-          </div>
-          <div className="time">
-            <strong>00:35</strong>
-          </div>
-          <img src={algo} className="algo" alt="" />
-          <div className="price">
-            <strong>1 Algo</strong>
-          </div>
+        <div className="creater_main">MIDIcat</div>
+      </div>
+      <div className="playbar">
+        <div>
+          <img src={play} className="play" alt="" />
         </div>
+        <div className="time">
+          <strong>00:35</strong>
+        </div>
+        <img src={algo} className="algo" alt="" />
+        <div className="price">
+          <strong>1 Algo</strong>
+        </div>
+      </div>
+      <div>
         <div className="music_detail">
           <div>
             <img src={heart} className="heart" alt="" />
@@ -48,4 +48,4 @@ const musicplayer = (props) => (
     </div>
   </div>
 );
-export default musicplayer;
+export default Homeplayer;

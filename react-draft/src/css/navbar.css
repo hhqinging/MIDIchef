@@ -69,6 +69,12 @@ ul {
   text-decoration: none;
 }
 
+.urlbar a:hover,
+.urlbar a:active {
+  color: #59dfdd;
+  text-decoration: none;
+}
+
 .Sign {
   background: #59dfdd;
   border-radius: 10px;
