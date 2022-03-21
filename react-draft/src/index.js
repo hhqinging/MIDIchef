@@ -4,6 +4,8 @@ import ReactDOM from "react-dom";
 // import ProductActivity from "./Components/ProductActivity.js";
 // import ProductSongInfo from "./Components/ProductSongInfo.js";
 import Home from "./pages/Home";
+import Create from "./pages/Create";
+import User from "./pages/User";
 
 // class APP extends React.Component {
 //   render() {
@@ -16,4 +18,4 @@ import Home from "./pages/Home";
 //   }
 // }
 
-ReactDOM.render(<Home />, document.getElementById("root"));
+ReactDOM.render(<User />, document.getElementById("root"));

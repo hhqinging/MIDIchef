@@ -1,74 +1,71 @@
-.table_background{
-    height:260px;
-    border-radius: 5px;
-    width:360px;
-   
-    position:absolute;
+.table_background {
+  height: 260px;
+  border-radius: 5px;
+  width: 360px;
+
+  position: absolute;
 }
-.main-musicgeneral{
-    display:content;
-    
+.main-musicgeneral {
+  display: content;
 }
-.table_mainplayer{
-    height:260px;
-    position:absolute;
-    border-radius: 5px;
-    width:360px;
-    display:table;
-    background:rgba(68,68,68,0.6);
+.table_mainplayer {
+  height: 260px;
+  position: absolute;
+  border-radius: 5px;
+  width: 360px;
+  display: table;
+  background: rgba(68, 68, 68, 0.6);
 }
-.title_main{
-    color: white;
-    font-size: 1.75rem;
-    text-align: left;
-    padding-top:10px;
-    padding-left:20px;
+.title_main {
+  color: white;
+  font-size: 1.75rem;
+  text-align: left;
+  padding-top: 10px;
+  padding-left: 20px;
 }
-.creater_main{
-    color: #59DFDD;
-    font-size: 1rem;
-    text-align: left;
-    padding-top:15px;
-    padding-left:25px;
-    padding-bottom:10px;
+.creater_main {
+  color: #59dfdd;
+  font-size: 1rem;
+  text-align: left;
+  padding-top: 15px;
+  padding-left: 25px;
+  padding-bottom: 10px;
 }
-.display_bar{
-    background:rgba(68,68,68,0.7);
-    margin-left: 40px;
-    margin-top: 20px;
-    margin-right: 40px;
-    border-radius: 10px;
-    padding:0;
+.display_bar {
+  background: rgba(68, 68, 68, 0.7);
+  margin-left: 40px;
+  margin-top: 20px;
+  margin-right: 40px;
+  border-radius: 10px;
+  padding: 0;
 }
-.play{
-    height:50px;
-    width:50px;
-    object-fit:cover;
-    margin-left: 40px;
-    margin-top: 15px;
-    
+.play {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  margin-left: 40px;
+  margin-top: 15px;
 }
 
-.playbar{
-    display: flex;
+.playbar {
+  display: flex;
 }
-.time{
-    color: white;
-    margin-left: 12px;
-    margin-top: 31px;
-    text-align: left;
+.time {
+  color: white;
+  margin-left: 12px;
+  margin-top: 31px;
+  text-align: left;
 }
-.algo{
-    height:30px;
-    width:30px;
-    object-fit:cover;
-    margin-left: 50px;
-    margin-top: 30px;
+.algo {
+  height: 30px;
+  width: 30px;
+  object-fit: cover;
+  margin-left: 50px;
+  margin-top: 30px;
 }
-.price{
-    color: white;
-    margin-left: 12px;
-    margin-top: 31px;   
-    text-align: left;
+.price {
+  color: white;
+  margin-left: 12px;
+  margin-top: 31px;
+  text-align: left;
 }
-

@@ -1,5 +1,5 @@
 import React from "react";
-import Forms from "../Forms";
+import Forms from "./Forms";
 const CreateForm = () => {
   return (
     <div>
