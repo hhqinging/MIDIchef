@@ -2,7 +2,7 @@ import React from "react";
 import "../css/Userbg.css";
 import NavbarUser from "./NavbarUser";
 
-const Homebg = () => {
+const Userbg = () => {
   return <div className="userbg"></div>;
 };
-export default Homebg;
+export default Userbg;
