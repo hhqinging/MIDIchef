@@ -18,4 +18,4 @@ import User from "./pages/User";
 //   }
 // }
 
-ReactDOM.render(<User />, document.getElementById("root"));
+ReactDOM.render(<Home />, document.getElementById("root"));

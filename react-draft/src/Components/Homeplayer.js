@@ -48,4 +48,4 @@ const HomePlayer = (props) => (
     </div>
   </div>
 );
-export default Homelayer;
+export default HomePlayer;
