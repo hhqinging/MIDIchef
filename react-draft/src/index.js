@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Create from "./pages/Create";
 import User from "./pages/User";
 
+
 // class APP extends React.Component {
 //   render() {
 //     return (
@@ -18,4 +19,4 @@ import User from "./pages/User";
 //   }
 // }
 
-ReactDOM.render(<Home />, document.getElementById("root"));
+ReactDOM.render(<User />, document.getElementById("root"));

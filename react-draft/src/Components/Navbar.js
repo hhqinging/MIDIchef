@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../img/logo.jpg";
 // import "../css/Naivebar.css";
-import "../css/navbar.css";
+import "../css/Navbar.css";
 const Navbar = (props) => {
   //   <header className="naivebar">
   return (

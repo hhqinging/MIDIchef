@@ -18,4 +18,6 @@
 .profile{
     margin: auto;
     height: 200px; 
+    /* position:absolute;
+    z-index: -1; */
 }

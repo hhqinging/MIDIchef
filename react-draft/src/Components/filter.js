@@ -7,11 +7,13 @@ import SearchIcon from '@mui/icons-material/Search';
 import Stack from '@mui/material/Stack';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import '../css/Filter.css';
+
 
 export default class Filter extends React.Component {
   render() {
     return (
-      <div>
+      <div className="filter">
         <Paper
           component="form"
           sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: 200 }}
@@ -26,8 +28,8 @@ export default class Filter extends React.Component {
           </IconButton>
         </Paper>
 
-        Sort by
-        <Stack sx={{ width: 300 }}>
+        <p style={{color: 'white'}}>Sort by</p>
+        <Stack sx={{ width: 300 , color: "white"}}>
           <FormControlLabel control={<Checkbox />} label="Recently Added" />
           <FormControlLabel control={<Checkbox />} label="MOst Active" />
           <FormControlLabel control={<Checkbox />} label="Most Favorite" />
