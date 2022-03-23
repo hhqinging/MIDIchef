@@ -9,6 +9,11 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import '../css/Filter.css';
 
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+
 
 export default class Filter extends React.Component {
   render() {
@@ -28,14 +33,28 @@ export default class Filter extends React.Component {
           </IconButton>
         </Paper>
 
-        <p style={{color: 'white'}}>Sort by</p>
-        <Stack sx={{ width: 300 , color: "white"}}>
-          <FormControlLabel control={<Checkbox />} label="Recently Added" />
-          <FormControlLabel control={<Checkbox />} label="MOst Active" />
-          <FormControlLabel control={<Checkbox />} label="Most Favorite" />
-          <FormControlLabel control={<Checkbox />} label="Price: Low -> High" />
-          <FormControlLabel control={<Checkbox />} label="Price: High -> Low" />
-        </Stack>
+        <p style={{ color: 'white' }}>Sort by</p>
+        {/* <Stack sx={{ width: 300 , color: "white"}}>
+          <FormControlLabel control={<Checkbox `sx={{color: "white"}}`/>} label="Recently Added" />
+          <FormControlLabel control={<Checkbox sx={{color: "white"}}/>} label="MOst Active" />
+          <FormControlLabel control={<Checkbox sx={{color: "white"}}/>} label="Most Favorite" />
+          <FormControlLabel control={<Checkbox sx={{color: "white"}}/>} label="Price: Low -> High" />
+          <FormControlLabel control={<Checkbox sx={{color: "white"}}/>} label="Price: High -> Low" />
+        </Stack> */}
+        <FormControl>
+          <RadioGroup
+            aria-labelledby="demo-radio-buttons-group-label"
+            defaultValue="Recently Added"
+            name="radio-buttons-group"
+            sx={{ color: "white" }}
+          >
+            <FormControlLabel value="Recently Added" control={<Radio sx={{ color: "white" }} />} label="Recently Added" />
+            <FormControlLabel value="Most Active" control={<Radio sx={{ color: "white" }} />} label="Most Active" />
+            <FormControlLabel value="Most Favorite" control={<Radio sx={{ color: "white" }} />} label="Most Favorite" />
+            <FormControlLabel value="Price: Low -> High" control={<Radio sx={{ color: "white" }} />} label="Price: Low -> High" />
+            <FormControlLabel value="Price: High -> Low" control={<Radio sx={{ color: "white" }} />} label="Price: High -> Low" />
+          </RadioGroup>
+        </FormControl>
 
       </div>
     );
