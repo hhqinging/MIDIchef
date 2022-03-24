@@ -1,12 +1,12 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 // import "./css/product-page.css";
 // import ProductActivity from "./Components/ProductActivity.js";
 // import ProductSongInfo from "./Components/ProductSongInfo.js";
-import Home from "./pages/Home";
-import Create from "./pages/Create";
-import User from "./pages/User";
-
+import Home from './pages/Home';
+import Create from './pages/Create';
+import User from './pages/User';
+import App from './App';
 
 // class APP extends React.Component {
 //   render() {
@@ -19,4 +19,4 @@ import User from "./pages/User";
 //   }
 // }
 
-ReactDOM.render(<User />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'));
