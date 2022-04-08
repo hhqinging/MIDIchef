@@ -9,7 +9,14 @@ const Home = () => {
     <div>
       {/* <Navbar /> */}
       <Homebg />
-      <PlayerCard />
+      {/* <PlayerCard /> */}
+
+      <div class="ui labeled button" tabindex="0">
+        <div class="ui button">
+          <i class="heart icon"></i> Like
+        </div>
+        <a class="ui basic label">2,048</a>
+      </div>
     </div>
   );
 };
