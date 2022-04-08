@@ -21,13 +21,13 @@ const App = () => {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/track/:assetID" element={<Track />} />
-          <Route path="/create" element={<Create />} />
-          <Route path="/kitchen" element={<Kitchen />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/user" element={<User />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="setting" element={<Setting />} />
+          <Route path="/Track/:assetID" element={<Track />} />
+          <Route path="/Create" element={<Create />} />
+          <Route path="/Kitchen" element={<Kitchen />} />
+          <Route path="/Signin" element={<SignIn />} />
+          <Route path="/User" element={<User />} />
+          <Route path="/Gallery" element={<Gallery />} />
+          <Route path="/Setting" element={<Setting />} />
         </Routes>
       </main>
     </BrowserRouter>
