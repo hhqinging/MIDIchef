@@ -1,7 +1,7 @@
-import React from 'react';
-import logo from '../img/logo.jpg';
+import React from "react";
+import logo from "../img/logo.jpg";
 // import "../css/Naivebar.css";
-import '../css/Navbar.css';
+import "../css/Navbar.css";
 const Navbar = (props) => {
   //   <header className="naivebar">
   return (
@@ -29,7 +29,7 @@ const Navbar = (props) => {
           <a href="/">Explore</a>
         </li>
         <li>
-          <a href="/">Create</a>
+          <a href="/Create">Create</a>
         </li>
         <li>
           <a href="/">Kitchen</a>
