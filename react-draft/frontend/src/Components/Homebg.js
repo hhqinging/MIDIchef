@@ -8,7 +8,7 @@ const Homebg = () => {
       <nav className="homebar">
         <ul>
           <li>
-            <a href="/">TRACKS</a>
+            <a href="/Track">TRACKS</a>
           </li>
           <li>
             <a href="/">ARTISTS</a>
