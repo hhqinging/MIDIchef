@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+    <link rel="stylesheet" href="./demo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="nav-bar">
+        <!-- Logo -->
+        <a href = "demo.html">
+            <img class="logo" src="./logo.jpg" style="width: 120px; height: 60px; display: block; float:left; margin: 0 30px 0 0;">
+            <a href style="text-decoration: none; color: white; font-size: 30px; float: left; margin-right: 20px; margin-top: 12px; font-family: Arial; font-weight: lighter;"> MIDIchef </a>
+        </a>
+
+        <!-- Search bar -->
+        <form id="search-bar" action="/search" autocomplete="off" method="get">
+            <input type="text" placeholder="Search tracks, collections, and artists...">
+            <button  id="search-submit" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+        
+        <!-- Nav bar buttons -->
+        <nav id="navbar-buttons">
+            <ul class="nav-buttons">
+                <li><a onclick="DNE()" >Kitchen</a></li>
+                <li><a onclick="DNE()" >Create</a></li>
+                <li><a onclick="DNE()" >Explore</a></li>
+                <li><a href="/signup"> Sign Up </a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="demo" id="demo-body">
+        Support our project by signing up for free today
+	<p> Check out our growing list of supporters! </p>
+        <div class="demo-supporters">
+	</div>
+    </div>
+    <script src="./demo-client.js"></script>
+</body>
+</html>

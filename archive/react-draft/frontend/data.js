@@ -1,0 +1,32 @@
+const data = {
+  tracks: [
+    {
+      assetID: '0000001',
+      title: 'Artem Uzunov - Melody Of Heartbeat',
+      owner: 'Artem Uzunov',
+      creator: 'Artem Uzunov',
+      description: 'Artem Uzunov - Melody Of Heartbeat',
+      numFavorite: '323',
+      price: '1',
+      duration: '00:35',
+      img_src: '',
+      src: 'https://ipfs.io/ipfs/QmWBokw6dWKaGxcBRoesxLYYv4VjGgqdCwPSowoC1ME8LM',
+      numPlay: '3244',
+      numDay: '14',
+    },
+    {
+      assetID: '31542134',
+      title: 'Artem Uzunov - Melody Of Heartbeat',
+      owner: 'Artem Uzunov',
+      creator: 'Artem Uzunov',
+      description: 'Artem Uzunov - Melody Of Heartbeat',
+      numFavorite: '323',
+      price: '1',
+      duration: '00:35',
+      img_src: '',
+      src: 'https://ipfs.io/ipfs/QmWBokw6dWKaGxcBRoesxLYYv4VjGgqdCwPSowoC1ME8LM',
+      numPlay: '3244',
+      numDay: '14',
+    },
+  ],
+};
