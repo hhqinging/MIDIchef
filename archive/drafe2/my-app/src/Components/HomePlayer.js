@@ -1,7 +1,7 @@
 // import React from "react";
 // import "../css/Homeplayer.css";
-import picture from "../img/sign.jpeg";
-import play from "../img/play.png";
+// import picture from "../img/sign.jpeg";
+// import play from "../img/play.png";
 // import algo from "../img/algo.png";
 // import heart from "../img/heart.png";
 // import play1 from "../img/play1.png";
@@ -53,6 +53,15 @@ import play from "../img/play.png";
 
 
 import * as React from 'react';
+import sign from "../img/sign.jpeg";
+import play from "../img/play.png";
+import frog from "../img/frog.png";
+import bear from "../img/bear.jpeg";
+import fox from "../img/fox.jpeg";
+import fish from "../img/fish.jpeg";
+import duck from "../img/duck.jpeg";
+
+
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -73,8 +82,8 @@ export default function HomePlayer() {
     <div>
 
       <div>
-        <Grid container style={{ gap: 15 , padding: 15 }} >
-          <Card sx={{ display: 'flex' }}>
+        <Grid container style={{ gap: 100 , padding: 25, paddingLeft: 100 }} >
+          <Card sx={{ display: 'flex', width: 360, height: 250  }}>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               <CardContent sx={{ flex: '1 0 auto' }}>
                 <Typography component="div" variant="h5">
@@ -99,11 +108,11 @@ export default function HomePlayer() {
             <CardMedia
               component="img"
               sx={{ width: 151 }}
-              image={picture}
+              image={sign}
             />
           </Card>
 
-          <Card sx={{ display: 'flex' }}>
+          <Card sx={{ display: 'flex', width: 360, height: 250 }}>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               <CardContent sx={{ flex: '1 0 auto' }}>
                 <Typography component="div" variant="h5">
@@ -128,11 +137,11 @@ export default function HomePlayer() {
             <CardMedia
               component="img"
               sx={{ width: 151 }}
-              image={picture}
+              image={frog}
             />
           </Card>
 
-          <Card sx={{ display: 'flex' }}>
+          <Card sx={{ display: 'flex', width: 360, height: 250 }}>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               <CardContent sx={{ flex: '1 0 auto' }}>
                 <Typography component="div" variant="h5">
@@ -157,7 +166,7 @@ export default function HomePlayer() {
             <CardMedia
               component="img"
               sx={{ width: 151 }}
-              image={picture}
+              image={bear}
             />
           </Card>
 
@@ -165,8 +174,8 @@ export default function HomePlayer() {
       </div>
 
       <div>
-        <Grid container style={{ gap: 15 ,padding: 15 }} >
-          <Card sx={{ display: 'flex' }}>
+        <Grid container style={{ gap: 100 , padding: 25, paddingLeft: 100  }} >
+          <Card sx={{ display: 'flex', width: 360, height: 250 }}>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               <CardContent sx={{ flex: '1 0 auto' }}>
                 <Typography component="div" variant="h5">
@@ -191,11 +200,11 @@ export default function HomePlayer() {
             <CardMedia
               component="img"
               sx={{ width: 151 }}
-              image={picture}
+              image={fox}
             />
           </Card>
 
-          <Card sx={{ display: 'flex' }}>
+          <Card sx={{ display: 'flex', width: 360, height: 250 }}>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               <CardContent sx={{ flex: '1 0 auto' }}>
                 <Typography component="div" variant="h5">
@@ -220,11 +229,11 @@ export default function HomePlayer() {
             <CardMedia
               component="img"
               sx={{ width: 151 }}
-              image={picture}
+              image={fish}
             />
           </Card>
 
-          <Card sx={{ display: 'flex' }}>
+          <Card sx={{ display: 'flex', width: 360, height: 250 }}>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               <CardContent sx={{ flex: '1 0 auto' }}>
                 <Typography component="div" variant="h5">
@@ -249,7 +258,7 @@ export default function HomePlayer() {
             <CardMedia
               component="img"
               sx={{ width: 151 }}
-              image={picture}
+              image={duck}
             />
           </Card>
 
