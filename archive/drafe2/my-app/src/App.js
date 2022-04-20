@@ -1,3 +1,9 @@
+
+
+//the frist page to see -->
+// the Home in Pages
+
+
 import logo from './logo.svg';
 import './App.css';
 import { React } from 'react'
@@ -20,9 +26,7 @@ const App = () => {
   return (
     <BrowserRouter>
 
-
       <Link to="/">{<Navbar />}</Link>
-
 
       <main>
         <Routes>

@@ -1,3 +1,9 @@
+
+
+
+
+
+
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -13,8 +19,15 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Forms from './Forms';
+import { styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import Stack from '@mui/material/Stack';
 
 const theme = createTheme();
+const Input = styled('input')({
+  display: 'none',
+});
 
 export default function CreateForm() {
   const handleSubmit = (event) => {
@@ -90,7 +103,7 @@ export default function CreateForm() {
                   id="Track info"
                 />
               </Grid>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
@@ -98,6 +111,16 @@ export default function CreateForm() {
                   label="Royalty"
                   id="Royalty"
                 />
+              </Grid> */}
+
+              <Grid item xs={12}>
+                <label htmlFor="contained-button-file">
+                  <Input id="contained-button-file" multiple type="file" />
+                  <Button variant="contained" component="span">
+                    Upload
+                  </Button>
+                </label>
+
               </Grid>
 
 
