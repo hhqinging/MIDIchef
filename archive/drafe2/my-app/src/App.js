@@ -21,6 +21,8 @@ import Kitchen from './pages/Kitchen';
 import User from './pages/User';
 import Gallery from './pages/Gallery';
 import Setting from './pages/Setting';
+import UserProfile from './pages/UserProfile';
+
 
 const App = () => {
   return (
@@ -40,6 +42,7 @@ const App = () => {
           <Route path="/User" element={<User />} />
           <Route path="/Gallery" element={<Gallery />} />
           <Route path="/Setting" element={<Setting />} />
+          <Route path="/UserProfile" element={<UserProfile />} />
         </Routes>
       </main>
     </BrowserRouter>

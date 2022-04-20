@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import '../css/Profile.css';
 import midicat from '../img/midicat.png'
 import "../css/Userbg.css";
+import { Link } from "react-router-dom";
 
 
 
@@ -20,6 +21,12 @@ export default class Profile extends React.Component {
             0x3fF...6b45<br /><br />
             I’m a MIDIcat.<br />
             Here’s a bref description~
+          </div>
+          <div style={{ color: 'white', left: "50px" }}>
+
+            <Link to="/UserProfile">
+              <Button variant="contained">Edit</Button><br />
+            </Link>
           </div>
           <div className="profile-follow" style={{ color: 'white', right: "10px" }}>
             <Button variant="contained">Follow</Button><br />
