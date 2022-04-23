@@ -1,4 +1,4 @@
-import {SignUp,JWT} from './library.js';
+import {SignUp,JWT} from './auth/library.js';
 import express from 'express';
 import cors from 'cors'
 import * as data from "./data.js";
