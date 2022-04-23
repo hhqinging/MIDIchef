@@ -1,14 +1,14 @@
 .naivebaruser {
-  position: fixed;
+  position: relative;
   width: 100%;
-  top: 35%;
+  top: 20%;
   left: 0;
   background: #292828;
   height: 1px;
 }
 .naivebar_user {
   display: flex;
-  position: absolute;
+  position: relative;
   left: 20%;
   list-style: none;
   margin: 0 0;

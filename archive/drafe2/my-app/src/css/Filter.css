@@ -2,3 +2,11 @@
     background-color: aliceblue;
 } */
 
+.filter {
+    position: fixed;
+    width: 20%;
+    top: 45%;
+    left: 0;
+    background: #292828;
+    height: 1px;
+  }
