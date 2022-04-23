@@ -22,7 +22,7 @@ export function authenticate() {
 
             if (!token) {
                 return rest.status(401).json({
-                    loggedIN: false,
+                    loggedIn: false,
                     user: null,
                     errorMesesage: "Unauthorized",
                     token: req.cookies.token
