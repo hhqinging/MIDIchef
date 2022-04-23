@@ -1,3 +1,9 @@
+
+
+//the frist page to see -->
+// the Home in Pages
+
+
 import logo from './logo.svg';
 import './App.css';
 import { React } from 'react'
@@ -15,14 +21,14 @@ import Kitchen from './pages/Kitchen';
 import User from './pages/User';
 import Gallery from './pages/Gallery';
 import Setting from './pages/Setting';
+import UserProfile from './pages/UserProfile';
+
 
 const App = () => {
   return (
     <BrowserRouter>
 
-
       <Link to="/">{<Navbar />}</Link>
-
 
       <main>
         <Routes>
@@ -36,6 +42,7 @@ const App = () => {
           <Route path="/User" element={<User />} />
           <Route path="/Gallery" element={<Gallery />} />
           <Route path="/Setting" element={<Setting />} />
+          <Route path="/UserProfile" element={<UserProfile />} />
         </Routes>
       </main>
     </BrowserRouter>
