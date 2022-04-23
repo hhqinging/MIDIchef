@@ -7,22 +7,22 @@ const NavbarUser = (props) => {
         <nav className="naivebar_user">
           <ul className="userbar_1">
             <li>
-              <a href="/">
+              <a href="/User">
                 <strong>CREATED</strong>
               </a>
             </li>
             <li>
-              <a href="/">
+              <a href="/User">
                 <strong>COLLECTED</strong>
               </a>
             </li>
             <li>
-              <a href="/">
+              <a href="/User">
                 <strong>FAVORITED</strong>
               </a>
             </li>
             <li>
-              <a href="/">
+              <a href="/User">
                 <strong>NETWORK</strong>
               </a>
             </li>
