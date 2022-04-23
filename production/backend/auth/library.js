@@ -14,8 +14,8 @@ export function JWT(token_payload){
 }
 
 
-const jwt = require("jsonwebtoken")
-function authenticate() {
+
+export function authenticate() {
     verify = function(req, rest, next) {
         try {
             const token = req.cookies.token;
@@ -51,4 +51,3 @@ function authenticate() {
     return this;
 }
 
-module.exports = authenticate();

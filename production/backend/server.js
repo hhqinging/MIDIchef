@@ -40,18 +40,19 @@ app.post('/api/auth', (req,res) => {
     userName:'defult',
     token: token
     }; 
-    return res.status(200).json(response);
+    return res.status(409).json(response);
 }}); 
 //handle post request
 app.post('/api/editProfile',(req,res)=>{
     console.log(req.body)
     let Data = req.body;
-    let WA = data.WA.filter((WA) => {
-        return WA.WA == req.body.WA;
+    let user = data.users.filter((users) => {
+        return users.WalletA == req.body.WalletA;
         });
-    if(WA.length){
+    if(user.length){
     let response = {
         message: 'profile edited!',
+        //update datebase
         }; 
     res.status(200).json(response);}
     else{
