@@ -17,10 +17,10 @@ export default class Profile extends React.Component {
             <img className="profile-logo" src={midicat} />
           </div>
           <div className="profile-description" style={{ color: 'white' }}>
-            MIDIcat <br /><br />
-            0x3fF...6b45<br /><br />
-            I’m a MIDIcat.<br />
-            Here’s a bref description~
+            MIDIcat  {/* Need t change */} <br /><br />   
+            0x3fF...6b45  {/* Need t change */}<br /><br />
+            I’m a MIDIcat.  {/* Need t change */}<br />
+            Here’s a bref description~  {/* Need t change */}
           </div>
           <div style={{ color: 'white', left: "50px" }}>
 
@@ -30,8 +30,8 @@ export default class Profile extends React.Component {
           </div>
           <div className="profile-follow" style={{ color: 'white', right: "10px" }}>
             <Button variant="contained">Follow</Button><br />
-            <div style={{ color: 'white', display: "inline-block", margin: "15px" }}>7473 Followers</div>
-            <div style={{ color: 'white', display: "inline-block" }}>10 Following</div>
+            <div style={{ color: 'white', display: "inline-block", margin: "15px" }}>7473 Followers  {/* Need t change */}</div>
+            <div style={{ color: 'white', display: "inline-block" }}>10 Following {/* Need t change */}</div>
           </div>
         </div >
       </div>

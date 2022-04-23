@@ -34,10 +34,10 @@ export default function HomePlayer() {
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               <CardContent sx={{ flex: '1 0 auto' }}>
                 <Typography component="div" variant="h5">
-                  Live From Space
+                  Live From Space   {/* Need t change */}
                 </Typography>
                 <Typography variant="subtitle1" color="text.secondary" component="div">
-                  Mac Miller
+                  Mac Miller   {/* Need t change */}
                 </Typography>
               </CardContent>
               <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
@@ -55,18 +55,18 @@ export default function HomePlayer() {
             <CardMedia
               component="img"
               sx={{ width: 151 }}
-              image={sign}
-            />
+              image={sign}   
+            />  {/* Need t change */}
           </Card>
 
           <Card sx={{ display: 'flex', width: 300, height: 200 }}>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               <CardContent sx={{ flex: '1 0 auto' }}>
                 <Typography component="div" variant="h5">
-                  Live From Space
+                  Live From Space   {/* Need t change */}
                 </Typography>
                 <Typography variant="subtitle1" color="text.secondary" component="div">
-                  Mac Miller
+                  Mac Miller     {/* Need t change */}
                 </Typography>
               </CardContent>
               <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
@@ -85,17 +85,17 @@ export default function HomePlayer() {
               component="img"
               sx={{ width: 151 }}
               image={frog}
-            />
+            />  {/* Need t change */}
           </Card>
 
           <Card sx={{ display: 'flex', width: 300, height: 200 }}>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               <CardContent sx={{ flex: '1 0 auto' }}>
                 <Typography component="div" variant="h5">
-                  Live From Space
+                  Live From Space  {/* Need t change */}
                 </Typography>
                 <Typography variant="subtitle1" color="text.secondary" component="div">
-                  Mac Miller
+                  Mac Miller  {/* Need t change */}
                 </Typography>
               </CardContent>
               <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
@@ -114,13 +114,13 @@ export default function HomePlayer() {
               component="img"
               sx={{ width: 151 }}
               image={bear}
-            />
+            />  {/* Need t change */}
           </Card>
 
         </Grid>
       </div>
 
-      <div style={{ paddingLeft: 180, paddingTop: 50 }}>
+      {/* <div style={{ paddingLeft: 180, paddingTop: 50 }}>
         <Grid container style={{ gap: 100, padding: 25, paddingLeft: 50 }} >
           <Card sx={{ display: 'flex', width: 300, height: 200 }}>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -210,7 +210,7 @@ export default function HomePlayer() {
           </Card>
 
         </Grid>
-      </div>
+      </div> */}
 
     </div>
 
