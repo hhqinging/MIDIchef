@@ -10,12 +10,20 @@ const NavbarUser = (props) => {
           <ul className="userbar_1">
             <li>
               <a href="/User">
-                <strong>CREATED</strong>
+              {/* (songs selling in the market, including songs bought from others) */}
+                <strong>SALES</strong>
               </a>
             </li>
             <li>
               <a href="/User">
-                <strong>COLLECTED</strong>
+              {/* (all songs create by user) */}
+                <strong>CREATIONS</strong>
+              </a>
+            </li>
+            <li>
+              <a href="/User">
+              {/* (songs hold on hand, including song created &bought, show only[no price], pending for updating price to sell) */}
+                <strong>OWNED</strong>
               </a>
             </li>
             <li>
@@ -23,29 +31,10 @@ const NavbarUser = (props) => {
                 <strong>FAVORITED</strong>
               </a>
             </li>
-            <li>
-              <a href="/User">
-                <strong>NETWORK</strong>
-              </a>
-            </li>
           </ul>
         </nav>
       </div>
-      // {/* <div className="naivebaruser_sub">
-      //   <nav className="naivebar_user_sub">
-      //     <ul className="userbar_sub_1">
-      //       <li>
-      //         <a href="/">POSTED</a>
-      //       </li>
-      //       <li>
-      //         <a href="/">SOLD</a>
-      //       </li>
-      //       <li>
-      //         <a href="/">DRAFT</a>
-      //       </li>
-      //     </ul>
-      //   </nav>
-      // </div> */}
+
   
 
   );
