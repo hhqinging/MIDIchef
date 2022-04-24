@@ -1,219 +1,88 @@
+import * as React from "react";
 
-import * as React from 'react';
-import sign from "../img/sign.jpeg";
-import play from "../img/play.png";
-import frog from "../img/frog.png";
-import bear from "../img/bear.jpeg";
-import fox from "../img/fox.jpeg";
-import fish from "../img/fish.jpeg";
-import duck from "../img/duck.jpeg";
+import data from "../data";
+import { useTheme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
+import algoicon from "../img/algo.png";
+import CardActions from "@mui/material/CardActions";
+import AudioPlayer from "material-ui-audio-player";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import SkipNextIcon from "@mui/icons-material/SkipNext";
+import Grid from "@mui/material/Grid";
 
-
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
-import Grid from '@mui/material/Grid';
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
 
 export default function HomePlayer() {
-  const theme = useTheme();
 
   return (
     <div>
+      {data.tracks.map((track) => (
+        <Card sx={{ maxWidth: 345 }}>
+          <CardContent sx={{ flex: "1 0 auto" }}>
+            <a
+              href={`/track/${track.assetID}`}
+              style={{
+                textDecoration: "none",
+                color: "#007acc",
+                fontSize: "large",
+                fontWeight: "bold",
+              }}
+            >
+              {track.title}
+            </a>
+            <br></br>
+            <a
+              href={`/user/${track.creator}`}
+              style={{
+                textDecoration: "none",
+                color: "#808080",
+                fontWeight: "bold",
+              }}
+            >
+              {track.creator}
+            </a>
+          </CardContent>
+          <a href={`/track/${track.assetID}`}>
+            <img width="100%" src={track.img_src} alt={track.title} />
+          </a>
 
-      <div>
-        <Grid container style={{ gap: 100 , padding: 25, paddingLeft: 100 }} >
-          <Card sx={{ display: 'flex', width: 360, height: 250  }}>
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              <CardContent sx={{ flex: '1 0 auto' }}>
-                <Typography component="div" variant="h5">
-                  Live From Space  {/* Need t change */}
-                  
-                </Typography>
-                <Typography variant="subtitle1" color="text.secondary" component="div">
-                  Mac Miller         {/* Need t change */}
-                </Typography>
-              </CardContent>
-              <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-                <IconButton aria-label="previous">
-                  {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
-                </IconButton>
-                <IconButton aria-label="play/pause">
-                  <PlayArrowIcon sx={{ height: 38, width: 38 }} />
-                </IconButton>
-                <IconButton aria-label="next">
-                  {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
-                </IconButton>
-              </Box>
-            </Box>
-            <CardMedia
-              component="img"
-              sx={{ width: 151 }}
-              image={sign}
+          <CardContent>
+            <AudioPlayer
+              autoplay={false}
+              preload="auto"
+              loop={false}
+              elevation={0}
+              src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+              // useStyle={useStyles}
             />
-          </Card>
+          </CardContent>
 
-          <Card sx={{ display: 'flex', width: 360, height: 250 }}>
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              <CardContent sx={{ flex: '1 0 auto' }}>
-                <Typography component="div" variant="h5">
-                  Live From Space      {/* Need t change */}
-                </Typography>
-                <Typography variant="subtitle1" color="text.secondary" component="div">
-                  Mac Miller            {/* Need t change */}
-                </Typography>
-              </CardContent>
-              <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-                <IconButton aria-label="previous">
-                  {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
-                </IconButton>
-                <IconButton aria-label="play/pause">
-                  <PlayArrowIcon sx={{ height: 38, width: 38 }} />
-                </IconButton>
-                <IconButton aria-label="next">
-                  {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
-                </IconButton>
-              </Box>
-            </Box>
-            <CardMedia
-              component="img"
-              sx={{ width: 151 }}
-              image={frog}
-            />
-          </Card>
-
-          <Card sx={{ display: 'flex', width: 360, height: 250 }}>
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              <CardContent sx={{ flex: '1 0 auto' }}>
-                <Typography component="div" variant="h5">
-                  Live From Space         {/* Need t change */}
-                </Typography>
-                <Typography variant="subtitle1" color="text.secondary" component="div">
-                  Mac Miller             {/* Need t change */}
-                </Typography>
-              </CardContent>
-              <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-                <IconButton aria-label="previous">
-                  {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
-                </IconButton>
-                <IconButton aria-label="play/pause">
-                  <PlayArrowIcon sx={{ height: 38, width: 38 }} />
-                </IconButton>
-                <IconButton aria-label="next">
-                  {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
-                </IconButton>
-              </Box>
-            </Box>
-            <CardMedia
-              component="img"
-              sx={{ width: 151 }}
-              image={bear}
-            />
-          </Card>
-
-        </Grid>
-      </div>
-
-      <div>
-        <Grid container style={{ gap: 100 , padding: 25, paddingLeft: 100  }} >
-          <Card sx={{ display: 'flex', width: 360, height: 250 }}>
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              <CardContent sx={{ flex: '1 0 auto' }}>
-                <Typography component="div" variant="h5">
-                  Live From Space       {/* Need t change */}
-                </Typography>
-                <Typography variant="subtitle1" color="text.secondary" component="div">
-                  Mac Miller       {/* Need t change */}
-                </Typography>
-              </CardContent>
-              <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-                <IconButton aria-label="previous">
-                  {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
-                </IconButton>
-                <IconButton aria-label="play/pause">
-                  <PlayArrowIcon sx={{ height: 38, width: 38 }} />
-                </IconButton>
-                <IconButton aria-label="next">
-                  {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
-                </IconButton>
-              </Box>
-            </Box>
-            <CardMedia
-              component="img"
-              sx={{ width: 151 }}
-              image={fox}
-            />
-          </Card>
-
-          <Card sx={{ display: 'flex', width: 360, height: 250 }}>
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              <CardContent sx={{ flex: '1 0 auto' }}>
-                <Typography component="div" variant="h5">
-                  Live From Space    {/* Need t change */}
-                </Typography>
-                <Typography variant="subtitle1" color="text.secondary" component="div">
-                  Mac Miller          {/* Need t change */}
-                </Typography>
-              </CardContent>
-              <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-                <IconButton aria-label="previous">
-                  {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
-                </IconButton>
-                <IconButton aria-label="play/pause">
-                  <PlayArrowIcon sx={{ height: 38, width: 38 }} />
-                </IconButton>
-                <IconButton aria-label="next">
-                  {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
-                </IconButton>
-              </Box>
-            </Box>
-            <CardMedia
-              component="img"
-              sx={{ width: 151 }}
-              image={fish}
-            />
-          </Card>
-
-          <Card sx={{ display: 'flex', width: 360, height: 250 }}>
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              <CardContent sx={{ flex: '1 0 auto' }}>
-                <Typography component="div" variant="h5">
-                  Live From Space        {/* Need t change */}
-                </Typography>
-                <Typography variant="subtitle1" color="text.secondary" component="div">
-                  Mac Miller            {/* Need t change */}
-                </Typography>
-              </CardContent>
-              <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-                <IconButton aria-label="previous">
-                  {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
-                </IconButton>
-                <IconButton aria-label="play/pause">
-                  <PlayArrowIcon sx={{ height: 38, width: 38 }} />
-                </IconButton>
-                <IconButton aria-label="next">
-                  {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
-                </IconButton>
-              </Box>
-            </Box>
-            <CardMedia
-              component="img"
-              sx={{ width: 151 }}
-              image={duck}
-            />
-          </Card>
-
-        </Grid>
-      </div>
-
+          <CardActions disableSpacing>
+            <img src={algoicon} style={{ width: "20px", padding: 5 }} alt="algo logo"/>
+            <p style={{ fontWeight: "bold" }}>{track.price}</p>
+            <IconButton aria-label="add to favorites">
+              <FavoriteIcon fontSize="small" />
+            </IconButton>
+            {track.numFavorite}
+            <IconButton aria-label="num of play">
+              <PlayArrowIcon fontSize="medium" />
+            </IconButton>
+            {track.numPlay}
+            <IconButton aria-label="when to release">
+              <CalendarMonthIcon fontSize="small" />
+            </IconButton>
+            {track.numDay} days ago
+          </CardActions>
+        </Card>
+      ))}
     </div>
-
   );
 }

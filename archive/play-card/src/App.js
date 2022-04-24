@@ -39,9 +39,8 @@ export default function App() {
 
   return (
     <Card sx={{ maxWidth: 345 }} style={{ backgroundColor: "pink" }}>
-
       <CardContent sx={{ flex: "1 0 auto" }}>
-        <Link href="#" component="div" variant="h5" underline="none">
+        <Link href="/track" component="div" variant="h5" underline="none">
           Song title
         </Link>
         <Link
@@ -60,15 +59,14 @@ export default function App() {
         image="https://images.unsplash.com/photo-1649044750195-c5d73df24521?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
       />
       <CardContent>
-
         <AudioPlayer
           autoplay={false}
           preload="auto"
           loop={false}
+          elevation={0}
           src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
           // useStyle={useStyles}
         />
-
       </CardContent>
 
       <CardActions disableSpacing>
