@@ -1,3 +1,4 @@
+import { fontWeight } from "@mui/system";
 import React from "react";
 import "../css/Homebg.css";
 import NavbarUser from "./NavbarUser";
@@ -8,13 +9,19 @@ const Homebg = () => {
       <nav className="homebar">
         <ul>
           <li>
-            <a href="/Track">TRACKS</a>
+            <a href="/Track" style={{ fontWeight: "bold" }}>
+              TRACKS
+            </a>
           </li>
           <li>
-            <a href="/Artists">ARTISTS</a>
+            <a href="/Artists" style={{ fontWeight: "bold" }}>
+              ARTISTS
+            </a>
           </li>
           <li>
-            <a href="/Trending">TRENDING</a>
+            <a href="/Trending" style={{ fontWeight: "bold" }}>
+              TRENDING
+            </a>
           </li>
         </ul>
       </nav>
