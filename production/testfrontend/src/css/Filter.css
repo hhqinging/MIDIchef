@@ -1,0 +1,12 @@
+/* .filter{
+    background-color: aliceblue;
+} */
+
+.filter {
+    position: fixed;
+    width: 15%;
+    top: 45%;
+    left: 0;
+    background: #292828;
+    height: 1px;
+  }
