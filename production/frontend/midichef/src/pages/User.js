@@ -9,17 +9,11 @@ import UserPlayer from "../Components/UserPlayer";
 
 
 const User = () => {
-
   return (
     <div>
       <Filter />
-
-
-      {/* <Navbar /> */}
       <Profile />
       <NavbarUser />
-      {/* <Userbg /> */}
-
       <UserPlayer />
 
     </div>
