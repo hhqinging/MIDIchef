@@ -3,7 +3,7 @@ import HomeScreen from "./screens/HomeScreen";
 import TrackScreen from "./screens/TrackScreen";
 import UserScreen from "./screens/UserScreen";
 
-export default function App() {
+export default function App2() {
   return (
     <BrowserRouter>
       <div className="App">
