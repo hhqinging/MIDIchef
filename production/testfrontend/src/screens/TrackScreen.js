@@ -1,4 +1,6 @@
 import { useParams } from "react-router-dom";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+// import { makeStyles } from "@mui/styles";
 import { useEffect, useReducer } from "react";
 import axios from "axios";
 import Grid from "@mui/material/Grid";
@@ -7,6 +9,10 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import algoicon from "../img/algoicon.png";
 import AudioPlayer from "material-ui-audio-player";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import { color } from "@mui/system";
+import { fontWeight } from "@mui/system";
 
 //taking two paras: current state & the action that changed current state and create the new state
 const reducer = (state, action) => {
@@ -30,6 +36,19 @@ const reducer = (state, action) => {
       return state;
   }
 };
+
+const theme = createTheme({
+  palette: {
+    blue: {
+      main: "#59DFDD",
+      contrastText: "#000000",
+    },
+    pink: {
+      main: "#FB9DDB",
+      contrastText: "#000000",
+    },
+  },
+});
 
 function TrackScreen() {
   const params = useParams();
@@ -63,25 +82,33 @@ function TrackScreen() {
   ) : error ? (
     <div>{error}</div>
   ) : (
-    <div>
+    <div style={{ backgroundColor: "#E5E5E5" }}>
       <br></br>
-
-      <Grid container style={{ gap: 20, padding: 25, paddingLeft: 150 }}>
-        <Grid container direction="row" spacing={3}>
+      <Grid container style={{ gap: 20, padding: 25, paddingLeft: 100 }}>
+        {/* <Grid container sx={{ p: 10, margin: "auto", flexGrow: 1 }}> */}
+        <Grid container direction="row" spacing={5}>
           <Grid item xs={5}>
             <img
-              style={{ width: "300px", height: "300px" }}
+              style={{
+                margin: "auto",
+                display: "block",
+                maxWidth: "100%",
+                maxHeight: "100%",
+              }}
+              // style={{ width: "300px", height: "300px" }}
               src={track.img_src}
               alt={track.title}
             />
           </Grid>
-          <Grid item>
-            <p>{track.title}</p>
-            <p>
+          <Grid item xs={7}>
+            <p style={{ color: "red", fontSize: "25px", fontWeight: "bold" }}>
+              {track.title}
+            </p>
+            <p style={{ color: "red", fontWeight: "bold" }}>
               Owned by{" "}
               <Link
                 to={`/user/${track.owner}`}
-                style={{ textDecoration: "none" }}
+                style={{ textDecoration: "none", color: "#59DFDD" }}
               >
                 {track.owner}
               </Link>
@@ -91,6 +118,8 @@ function TrackScreen() {
                 display: "flex",
                 alignItems: "center",
                 flexWrap: "wrap",
+                color: "red",
+                fontWeight: "bold",
               }}
             >
               <FavoriteIcon
@@ -104,6 +133,8 @@ function TrackScreen() {
                 display: "flex",
                 alignItems: "center",
                 flexWrap: "wrap",
+                color: "red",
+                fontWeight: "bold",
               }}
             >
               <PlayArrowIcon style={{ width: "24px" }} />
@@ -115,6 +146,8 @@ function TrackScreen() {
                 display: "flex",
                 alignItems: "center",
                 flexWrap: "wrap",
+                color: "red",
+                fontWeight: "bold",
               }}
             >
               <img
@@ -124,21 +157,85 @@ function TrackScreen() {
               />
               {track.price} Algo
             </p>
-            <AudioPlayer
-              volume={false}
-              preload="auto"
-              loop={false}
-              elevation={0}
-              src={track.src}
-            />
+            <br></br>
+            <ThemeProvider theme={theme}>
+              <AudioPlayer
+                // volume={false}
+                preload="auto"
+                loop={false}
+                elevation={0}
+                src={track.src}
+                width="80%"
+              />
+            </ThemeProvider>
+            <br></br>
+            <br></br>
+            <Stack direction="row" spacing={2}>
+              <ThemeProvider theme={theme}>
+                <Button variant="contained" color="blue">
+                  Buy Now
+                </Button>
+                <Button variant="contained" color="blue">
+                  Add to Favorite
+                </Button>
+              </ThemeProvider>
+            </Stack>
           </Grid>
         </Grid>
         <Grid container direction="row" spacing={3}>
           <Grid item xs={5}>
-            <p>creator info</p>
+            <p style={{ color: "red", fontSize: "13px", fontWeight: "bold" }}>
+              Owned by{" "}
+              <Link
+                to={`/user/${track.creator}`}
+                style={{
+                  textDecoration: "none",
+                  fontWeight: "bold",
+                  color: "#59DFDD",
+                }}
+              >
+                {track.creator}
+              </Link>
+            </p>
+            <p
+              style={{
+                color: "#FB9DDB",
+                fontSize: "13px",
+                fontWeight: "bold",
+                margin: "0px 0px 0px 0px",
+              }}
+            >
+              Description
+            </p>
+            <p
+              style={{
+                color: "red",
+                fontSize: "13px",
+                fontWeight: "bold",
+                margin: "0px 0px 0px 0px",
+              }}
+            >
+              {track.description}
+            </p>
+
+            <p
+              style={{
+                color: "red",
+                fontSize: "13px",
+                fontWeight: "bold",
+              }}
+            >
+              Detail info in{" "}
+              <a
+                href={`https://algoexplorer.io/asset/${track.assetID}`}
+                style={{ textDecoration: "none" }}
+              >
+                algoexplorer.io
+              </a>
+            </p>
           </Grid>
-          <Grid item>
-            <p>transaction table</p>
+          <Grid item xs={7}>
+            <p>Activity info pending</p>
           </Grid>
         </Grid>
       </Grid>
