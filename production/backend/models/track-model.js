@@ -30,4 +30,15 @@ const tracks = new Schema({
         }
     }]
 })
+
+//get track info by id
+tracks.statics.findById = function(id) {
+    return this.where({ _id : new RegExp(id, 'i')})
+}
+
+//get track info by name
+tracks.statics.findByName = function(name) {
+    return this.where({ name : new RegExp(name, 'i')})
+}
+
 module.exports = mongoose.model('Track', tracks);

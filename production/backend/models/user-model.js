@@ -14,7 +14,7 @@ const ObjectId = Schema.Types.ObjectId
 
 const users = new Schema(
     { 
-        username:   { type: String, require: false },
+        username:   { type: String, require: false, default: "GUEST"},
         description: { type: String, require: false },
         pfp:        { type: String, require: false },
         walletAddr: { type: ObjectId, require: true },
@@ -26,5 +26,35 @@ const users = new Schema(
     },
     { timestamps: true },
 );
+
+//get user info by walletAddr
+users.statics.findbyWallet = function(wa) {
+    return this.where({ walletAddr : new RegExp(wa, 'i')})
+}
+
+//get user created tracks by wallet
+users.statics.getCreatedTracks = function(wa) {
+    return `${this.created}`.where({ walletAddr : new RegExp(wa, 'i')})
+}
+
+//get user collected tracks
+users.statics.getCollectedTracks = function(wa) {
+    return `${this.collected}`.where({ walletAddr : new RegExp(wa, 'i')})
+}
+
+//get user favorites
+users.statics.getFavoritedTracks = function(wa) {
+    return `${this.favorites}`.where({ walletAddr : new RegExp(wa, 'i')})
+}
+
+//get user followers
+users.statics.getFollowers = function(wa) {
+    return `${this.followers}`.where({ walletAddr : new RegExp(wa, 'i')})
+}
+
+//get user following
+users.statics.getFollowing = function(wa) {
+    return `${this.following}`.where({ walletAddr : new RegExp(wa, 'i')})
+}
 
 module.exports = mongoose.model('User', users);

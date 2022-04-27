@@ -13,6 +13,8 @@ const corsOptions ={
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+
+//user created
 app.post('/api/auth', (req,res) => {
     console.log(req.body)
     let user = data.users.filter((users) => {
@@ -42,10 +44,10 @@ app.post('/api/auth', (req,res) => {
     }; 
     return res.status(409).json(response);
 }}); 
-//handle post request
+//handle post request - update user profile
 app.post('/api/editProfile',(req,res)=>{
     console.log(req.body)
-    let Data = req.body;
+    // let Data = req.body;
     let user = data.users.filter((users) => {
         return users.WalletA == req.body.WalletA;
         });
@@ -57,11 +59,12 @@ app.post('/api/editProfile',(req,res)=>{
     res.status(200).json(response);}
     else{
         let response = {
-            message: 'Wrong WA!',
+            message: 'Wrong Wallet Address!',
             }; 
         return res.status(409).json(response)
     }
 });
+//get track
 app.get('/api/track',(req,res)=>{
     console.log(req.query)
     let song = data.songs.filter((songs) => {
@@ -88,6 +91,7 @@ app.get('/api/track',(req,res)=>{
         return res.status(409).json(response)
     }
 })
+//get user
 app.get('/api/GetUser',(req,res)=>{
     let user = data.users.filter((users) => {
         return users.user == req.query.user;
@@ -108,7 +112,7 @@ app.get('/api/GetUser',(req,res)=>{
         message: 'User Not found',
         }; 
         return res.status(404).json(response);
-    }}); 
+}}); 
 
 // app.get('/api/search',(req,res)=>{
 //     let song = data.songs.filter((songs) => {
