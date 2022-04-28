@@ -3,16 +3,18 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 // import { makeStyles } from "@mui/styles";
 import { useEffect, useReducer } from "react";
 import axios from "axios";
-import Grid from "@mui/material/Grid";
+import { CircularProgress, Grid, Stack, Button } from "@mui/material";
+// import CircularProgress from "@mui/material/CircularProgress";
+import MessageBox from "../screens-compo/MessageBox";
+// import Grid from "@mui/material/Grid";
 import { Link } from "react-router-dom";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import algoicon from "../img/algoicon.png";
 import AudioPlayer from "material-ui-audio-player";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
-import { color } from "@mui/system";
-import { fontWeight } from "@mui/system";
+import { getError } from "../utils";
+// import Stack from "@mui/material/Stack";
+// import Button from "@mui/material/Button";
 
 //taking two paras: current state & the action that changed current state and create the new state
 const reducer = (state, action) => {
@@ -71,16 +73,21 @@ function TrackScreen() {
         const result = await axios.get(`/api/tracks/assetID/${assetID}`);
         dispatch({ type: "FETCH_SUCCESS", payload: result.data });
       } catch (err) {
-        dispatch({ type: "FETCH_FAIL", payload: err.message });
+        dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+        // dispatch({ type: "FETCH_FAIL", payload: err.message });
       }
     };
     fetchData();
   }, [assetID]);
 
   return loading ? (
-    <div>Loading...</div>
+    <CircularProgress
+      style={{
+        padding: "2% 45% 2% 45%",
+      }}
+    />
   ) : error ? (
-    <div>{error}</div>
+    <MessageBox severity="error">{error}</MessageBox>
   ) : (
     <div style={{ backgroundColor: "#E5E5E5" }}>
       <br></br>
@@ -171,14 +178,22 @@ function TrackScreen() {
             <br></br>
             <br></br>
             <Stack direction="row" spacing={2}>
-              <ThemeProvider theme={theme}>
-                <Button variant="contained" color="blue">
-                  Buy Now
-                </Button>
-                <Button variant="contained" color="blue">
-                  Add to Favorite
-                </Button>
-              </ThemeProvider>
+              {track.marketStatus == "onSale" ? (
+                <ThemeProvider theme={theme}>
+                  <Button variant="contained" color="blue">
+                    Buy Now
+                  </Button>
+                  <Button variant="contained" color="blue">
+                    Add to Favorite
+                  </Button>
+                </ThemeProvider>
+              ) : (
+                <ThemeProvider theme={theme}>
+                  <Button variant="contained" color="blue">
+                    Add to Favorite
+                  </Button>
+                </ThemeProvider>
+              )}
             </Stack>
           </Grid>
         </Grid>

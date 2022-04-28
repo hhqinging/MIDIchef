@@ -8,9 +8,7 @@ export default function App() {
     <BrowserRouter>
       <div className="App">
         <header>
-          <Link to="/">
-            Test-player /Users/hhq/Documents/test/test-player/frontend
-          </Link>
+          <Link to="/">Test-MIDIchef</Link>
         </header>
         <main>
           <Routes>

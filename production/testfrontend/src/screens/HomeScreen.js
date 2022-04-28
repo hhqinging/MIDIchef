@@ -1,4 +1,4 @@
-import { useEffect, useReducer} from "react";
+import { useEffect, useReducer } from "react";
 import axios from "axios";
 import logger from "use-reducer-logger";
 import TrackPlayer from "../screens-compo/TrackPlayer";
@@ -6,6 +6,7 @@ import TrackPlayer from "../screens-compo/TrackPlayer";
 import CircularProgress from "@mui/material/CircularProgress";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
+import MessageBox from "../screens-compo/MessageBox";
 
 //taking two paras: current state & the action that changed current state and create the new state
 const reducer = (state, action) => {
@@ -62,9 +63,13 @@ function HomeScreen() {
         <Grid container style={{ gap: 100, padding: 25, paddingLeft: 150 }}>
           {/* if loading is true, show the loading message, if err, show err, otherwise, show tracks info */}
           {loading ? (
-            <CircularProgress />
+            <CircularProgress
+              style={{
+                padding: "2% 45% 2% 45%",
+              }}
+            />
           ) : error ? (
-            <div>{error}</div>
+            <MessageBox severity="error">{error}</MessageBox>
           ) : (
             tracks.map((track) => (
               <Card sx={{ maxWidth: 345 }} key={track.assetID}>
