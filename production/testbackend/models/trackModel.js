@@ -1,4 +1,3 @@
-import { integerPropType } from "@mui/utils";
 import mongoose from "mongoose";
 
 const trackSchema = new mongoose.Schema(
@@ -18,9 +17,18 @@ const trackSchema = new mongoose.Schema(
     numDay: { type: String, required: true },
   },
   {
+    toJSON: {
+      virtuals: true,
+    },
+    toObject: {
+      virtuals: true,
+    },
     timestamps: true,
   }
 );
 
 const Track = mongoose.model("Track", trackSchema);
+
 export default Track;
+
+// module.exports = Track;

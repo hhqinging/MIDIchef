@@ -27,3 +27,5 @@ trackRouter.get("/assetID/:assetID", async (req, res) => {
 });
 
 export default trackRouter;
+
+// module.exports = trackRouter;
