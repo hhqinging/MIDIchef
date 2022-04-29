@@ -41,4 +41,4 @@ tracks.statics.findById = function(id) {
 tracks.statics.findByName = function(name) {
     return this.where({ name : new RegExp(name, 'i')})
 }
-export const Track = mongoose.model('Track', tracks);
+export default mongoose.model('Track', tracks);

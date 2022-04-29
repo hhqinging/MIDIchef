@@ -1,5 +1,5 @@
 // const { ObjectId } = require('mongodb');
-const mongoose = require('mongoose')
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 
@@ -57,4 +57,4 @@ users.statics.getFollowing = function(wa) {
     return `${this.following}`.where({ walletAddr : new RegExp(wa, 'i')})
 }
 
-module.exports  = mongoose.model('User', users);
+export default mongoose.model('User', users);

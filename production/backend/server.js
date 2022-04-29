@@ -3,7 +3,8 @@ import express from 'express';
 import cors from 'cors'
 import * as data from "./data.js";
 import mongoose from 'mongoose';
-import * as Track from "./models/track-model.js";
+import Track  from "./models/track-model.js";
+import User from "./models/user-model.js";
 const { Schema } = mongoose;
 const url = "mongodb://localhost:27017/cse416";
 
@@ -17,7 +18,8 @@ const app=express()
 const port=8000;
 //const signIn=require("../routes/signIn")
 
-const A=new Track();
+const A=new Track({name:3000});
+
 const corsOptions ={
    origin:'*', 
    credentials:true,            
