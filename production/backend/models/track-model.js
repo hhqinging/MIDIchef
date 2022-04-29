@@ -1,5 +1,6 @@
 // const { ObjectId } = require('mongodb');
-const mongoose = require('mongoose')
+//const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
 // const url = "mongodb://localhost:27017/tracks";
@@ -40,5 +41,4 @@ tracks.statics.findById = function(id) {
 tracks.statics.findByName = function(name) {
     return this.where({ name : new RegExp(name, 'i')})
 }
-
-module.exports = mongoose.model('Track', tracks);
+export const Track = mongoose.model('Track', tracks);

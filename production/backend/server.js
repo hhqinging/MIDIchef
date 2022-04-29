@@ -2,9 +2,22 @@ import {SignUp,JWT} from './auth/library.js';
 import express from 'express';
 import cors from 'cors'
 import * as data from "./data.js";
+import mongoose from 'mongoose';
+import * as Track from "./models/track-model.js";
+const { Schema } = mongoose;
+const url = "mongodb://localhost:27017/cse416";
+
+mongoose.connect(url).then((ans) => {
+     console.log("connect Success");
+        }).catch((err) => {
+     console.log("Error");
+    });
+
 const app=express()
 const port=8000;
 //const signIn=require("../routes/signIn")
+
+const A=new Track();
 const corsOptions ={
    origin:'*', 
    credentials:true,            
@@ -114,11 +127,11 @@ app.get('/api/GetUser',(req,res)=>{
         return res.status(404).json(response);
 }}); 
 
-// app.get('/api/search',(req,res)=>{
-//     let song = data.songs.filter((songs) => {
-//         return songs.name == req.query.song||songs.creater == req.query.creater
-//         });
-//     if (song.length){
+//  app.get('/api/search',(req,res)=>{
+//      let song = data.songs.filter((songs) => {
+//             return songs.name == req.query.song||songs.creater == req.query.creater
+//          });
+//      if (song.length){
 //         // create a token using user name and password vaild for 2 hours
 //         let response = {
 //          message: 'song found!',

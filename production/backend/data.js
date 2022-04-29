@@ -6,7 +6,6 @@
       'description':'My name is test',
       'Followers': 0,
       'Followering':0,
-      
    },
    {  
       'user': 'test2',

@@ -57,4 +57,4 @@ users.statics.getFollowing = function(wa) {
     return `${this.following}`.where({ walletAddr : new RegExp(wa, 'i')})
 }
 
-module.exports = mongoose.model('User', users);
+module.exports  = mongoose.model('User', users);
