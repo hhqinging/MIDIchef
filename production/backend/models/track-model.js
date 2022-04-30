@@ -34,11 +34,11 @@ const tracks = new Schema({
 
 //get track info by id
 tracks.statics.findById = function(id) {
-    return this.where({ _id : new RegExp(id, 'i')})
+    return (this.where({ _id : new RegExp(id, 'i')})).cast()
 }
 
 //get track info by name
 tracks.statics.findByName = function(name) {
-    return this.where({ name : new RegExp(name, 'i')})
+    return (this.where({ name : new RegExp(name, 'i')})).cast()
 }
 export default mongoose.model('Track', tracks);
