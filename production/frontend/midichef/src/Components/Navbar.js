@@ -8,6 +8,8 @@ import User from '../pages/User';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import * as MyAlgo from 'MyAlgo';
+import * as MetaMask from 'MetaMask'
 
 import {
   BrowserRouter as Router,
@@ -96,7 +98,9 @@ const Navbar = (props) => {
                 }}
               >
                 <MenuItem onClick={handleClose}>Algo</MenuItem>
+                {/* <MyAlgoLogin myAlgoWallet={this.state.myAlgoWallet} setAddress={this.setMyAlgoAddress} /> */}
                 <MenuItem onClick={handleClose}>Eth</MenuItem>
+                {/* <MetaMaskLogin provider={this.state.ethersProvider} setAddress={this.setMetaMaskAddress} /> */}
               </Menu>
           </li>
         </ul>
