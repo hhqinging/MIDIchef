@@ -4,8 +4,10 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import seedRouter from "./routes/seedRoutes.js";
 import trackRouter from "./routes/trackRoutes.js";
+import { userSignUpCtrl } from "./controllers/userCtrl.js";
 
 const app = express();
+
 //config the .env, MONGODB_URI in it
 dotenv.config();
 
@@ -19,9 +21,11 @@ mongoose
     console.log(err.message);
   });
 
-app.post("/api/user/register", (req, res) => {
-  res.json({ user: "User Registered" });
-});
+
+//middleware
+app.use(express.json());
+
+app.post("/api/user/register", userSignUpCtrl);
 
 app.post("/api/user/login", (req, res) => {
   res.json({ user: "User Login" });
