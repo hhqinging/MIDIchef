@@ -8,9 +8,8 @@ import User from '../pages/User';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import * as MyAlgo from 'MyAlgo';
-import * as MetaMask from 'MetaMask'
-
+import * as MyAlgo from './MyAlgo';
+import * as MetaMask from './MetaMask'
 import {
   BrowserRouter as Router,
   Switch,

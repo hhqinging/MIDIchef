@@ -194,7 +194,7 @@ export class MyAlgoCreateNFT extends React.Component{
 
   async createNFT() {
     let from = this.props.from;
-    let defaultFrozen = False;
+    let defaultFrozen = false;
     let decimals = 0;
     let totalInssance = this.props.copies;
     let assetName = "Asset1";
@@ -213,7 +213,7 @@ export class MyAlgoCreateNFT extends React.Component{
       assetName: assetName,
       assetMetadataHash: assetMetadataHash,
       manager: manager,
-      suggestedParams: suggestedParams
+      suggestedParams: params
     })
 
     let signedTxn = await this.props.myAlgoWallet.signTransaction(txn.toByte());
