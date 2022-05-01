@@ -20,6 +20,11 @@ algodClient
     console.error(e);
   });
 
+
+
+
+
+
 //---------------------------------------
 //user sign up
 //---------------------------------------
@@ -45,6 +50,10 @@ export const userSignUpCtrl = asyncHandler(async (req, res) => {
   }
 });
 
+
+
+
+
 //---------------------------------------
 //user sign in
 //---------------------------------------
@@ -61,3 +70,6 @@ export const userSignInCtrl = asyncHandler(async (req, res) => {
     throw new Error("Password is incorrect");
   }
 });
+
+
+
