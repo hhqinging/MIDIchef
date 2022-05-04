@@ -60,7 +60,23 @@ function HomeScreen() {
   return (
     <div>
       <div className="tracks">
-        <Grid container style={{ gap: 100, padding: 25, paddingLeft: 150 }}>
+        <Grid
+          container
+          style={{
+            display: "flex",
+            // position: "relative",
+            // alignContent: "start",
+            
+            justifyContent: "space-evenly",
+            alignItems: "flex-start",
+            spacing:"2"
+            // alignContent: "left",
+            // gap: "5%",
+            // gap: 20, padding: "5% 5% 0 5% ",
+            // paddingLeft: 100
+          }}
+        
+        >
           {/* if loading is true, show the loading message, if err, show err, otherwise, show tracks info */}
           {loading ? (
             <CircularProgress

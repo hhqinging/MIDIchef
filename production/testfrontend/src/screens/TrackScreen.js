@@ -81,6 +81,7 @@ function TrackScreen() {
   }, [assetID]);
 
   return loading ? (
+    
     <CircularProgress
       style={{
         padding: "2% 45% 2% 45%",
@@ -91,7 +92,7 @@ function TrackScreen() {
   ) : (
     <div style={{ backgroundColor: "#E5E5E5" }}>
       <br></br>
-      <Grid container style={{ gap: 20, padding: 25, paddingLeft: 100 }}>
+      <Grid container style={{ paddingLeft: "10%" }}>
         {/* <Grid container sx={{ p: 10, margin: "auto", flexGrow: 1 }}> */}
         <Grid container direction="row" spacing={5}>
           <Grid item xs={5}>
@@ -178,7 +179,7 @@ function TrackScreen() {
             <br></br>
             <br></br>
             <Stack direction="row" spacing={2}>
-              {track.marketStatus == "onSale" ? (
+              {track.marketStatus === "onSale" ? (
                 <ThemeProvider theme={theme}>
                   <Button variant="contained" color="blue">
                     Buy Now
