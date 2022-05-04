@@ -1,15 +1,19 @@
-import { styled, alpha } from "@mui/material/styles";
+import {
+  createTheme,
+  ThemeProvider,
+  styled,
+  alpha,
+} from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import {
-  Button,
   makeStyles,
   useTheme,
   Popover,
   MenuList,
-  Menu,
   MenuItem,
 } from "@material-ui/core";
 import {
+  Button,
   InputBase,
   AppBar,
   Toolbar,
@@ -17,6 +21,7 @@ import {
   Box,
   Stack,
 } from "@mui/material";
+// import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { textAlign } from "@mui/system";
 import { border } from "@mui/system";
 import React, { useState } from "react";
@@ -33,17 +38,36 @@ const useStyles = makeStyles({
   },
 });
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      // Purple and green play nicely together.
+      main: "#59DFDD",
+    },
+    secondary: {
+      // This is green.A700 as hex.
+      main: "#59DFDD",
+    },
+  },
+});
+
 function Popover1() {
   return (
     <div>
       <Link to="/tracks" style={{ textDecoration: "none" }}>
-        <Typography sx={{ p: 2 }}>Tracks</Typography>
+        <Typography sx={{ p: 1, fontWeight: "bold", color: "#292828" }}>
+          Tracks
+        </Typography>
       </Link>
       <Link to="/artists" style={{ textDecoration: "none" }}>
-        <Typography sx={{ p: 2 }}>Artists</Typography>
+        <Typography sx={{ p: 1, fontWeight: "bold", color: "#292828" }}>
+          Artists
+        </Typography>
       </Link>
       <Link to="/trending" style={{ textDecoration: "none" }}>
-        <Typography sx={{ p: 2 }}>Trending</Typography>
+        <Typography sx={{ p: 1, fontWeight: "bold", color: "#292828" }}>
+          Trending
+        </Typography>
       </Link>
     </div>
   );
@@ -51,18 +75,22 @@ function Popover1() {
 
 function Popover2() {
   return (
-    <MenuList>
-      <MenuItem>Algo</MenuItem>
+    <div>
+      <Typography sx={{ p: 1, fontWeight: "bold", color: "#292828" }}>
+        Algo
+      </Typography>
       {/* <MyAlgoLogin
         myAlgoWallet={this.state.myAlgoWallet}
         setAddress={this.setMyAlgoAddress}
       /> */}
-      <MenuItem>Eth</MenuItem>
+      <Typography sx={{ p: 1, fontWeight: "bold", color: "#292828" }}>
+        Eth
+      </Typography>
       {/* <MetaMaskLogin
         provider={this.state.ethersProvider}
         setAddress={this.setMetaMaskAddress}
       /> */}
-    </MenuList>
+    </div>
   );
 }
 
@@ -75,20 +103,7 @@ const NarBar = () => {
 
   const classes = useStyles();
 
-  const theme = useTheme(); //Get a copy of our default theme in our component so that we can access the breakpoints and pass the useMediaQuery
-
-  //Functions
-  //  const handleClickTab = (e, newValue) => {
-  //    //The second value contains the current index
-  //    setValue(newValue);
-  //  };
-
-  // const handleOpenMenu = (e) => {
-  //   setAnchorEl(e.currentTarget);
-  // };
-  // const handleCloseMenu = () => {
-  //   setAnchorEl(null);
-  // };
+  // const theme = useTheme(); //Get a copy of our default theme in our component so that we can access the breakpoints and pass the useMediaQuery
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -153,8 +168,8 @@ const NarBar = () => {
   return (
     <>
       <AppBar
+        sx={{ bgcolor: "#292828" }}
         position="sticky"
-        // width="100%"
         style={{
           padding: "0 0 0 0",
         }}
@@ -162,15 +177,12 @@ const NarBar = () => {
         <Toolbar>
           <Link to="/">
             <img
-              // className={classes.logo}
               alt="logo"
               src={logo}
               style={{
                 display: "flex",
                 height: "50px",
                 padding: "0 0 0 0",
-                // border: "0 0 0 0",
-                // margin: "0 0 0 0",
               }}
             />
           </Link>
@@ -197,10 +209,12 @@ const NarBar = () => {
             />
           </Search>
 
-          <section className={classes.rightToolbar}>
-            {/* <Stack direction="row"> */}
+          <ThemeProvider theme={theme}>
+            <section className={classes.rightToolbar}>
+              {/* <Stack direction="row"> */}
               <Button
-                style={{ fontSize: "18px", fontWeight:"bold" }}
+                color="secondary"
+                style={{ fontSize: "18px", fontWeight: "bold" }}
                 onClick={(event) =>
                   setPopover1({ ...popover1, anchorEl: event.currentTarget })
                 }
@@ -209,11 +223,16 @@ const NarBar = () => {
               >
                 Explore
               </Button>
-              <Button style={{ fontSize: "18px", fontWeight:"bold" }} href="/create">
+              <Button
+                color="secondary"
+                style={{ fontSize: "18px", fontWeight: "bold" }}
+                href="/create"
+              >
                 Create
               </Button>
               <Button
-                style={{ fontSize: "18px" , fontWeight:"bold"}}
+                color="secondary"
+                style={{ fontSize: "18px", fontWeight: "bold" }}
                 onClick={(event) =>
                   setPopover2({ ...popover2, anchorEl: event.currentTarget })
                 }
@@ -222,37 +241,38 @@ const NarBar = () => {
               >
                 Sign In
               </Button>
-            {/* </Stack> */}
-          </section>
+              {/* </Stack> */}
+            </section>
+          </ThemeProvider>
 
           <Popover
-            id="menu2Popover"
+            // id="menu2Popover"
             open={Boolean(popover1.anchorEl)}
             onClose={() => setPopover1({ ...popover1, anchorEl: null })}
             anchorEl={popover1.anchorEl}
             anchorOrigin={{
               vertical: "bottom",
-              horizontal: "left",
+              horizontal: "center",
             }}
             transformOrigin={{
               vertical: "top",
-              horizontal: "left",
+              horizontal: "center",
             }}
           >
             {popover1.child}
           </Popover>
           <Popover
-            id="menu4Popover"
+            // id="menu4Popover"
             open={Boolean(popover2.anchorEl)}
             onClose={() => setPopover2({ ...popover2, anchorEl: null })}
             anchorEl={popover2.anchorEl}
             anchorOrigin={{
               vertical: "bottom",
-              horizontal: "left",
+              horizontal: "center",
             }}
             transformOrigin={{
               vertical: "top",
-              horizontal: "left",
+              horizontal: "center",
             }}
           >
             {popover2.child}
