@@ -1,20 +1,15 @@
 import { useParams } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-// import { makeStyles } from "@mui/styles";
 import { useEffect, useReducer } from "react";
 import axios from "axios";
 import { CircularProgress, Grid, Stack, Button } from "@mui/material";
-// import CircularProgress from "@mui/material/CircularProgress";
 import MessageBox from "../screens-compo/MessageBox";
-// import Grid from "@mui/material/Grid";
 import { Link } from "react-router-dom";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import algoicon from "../img/algoicon.png";
 import AudioPlayer from "material-ui-audio-player";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { getError } from "../utils";
-// import Stack from "@mui/material/Stack";
-// import Button from "@mui/material/Button";
 
 //taking two paras: current state & the action that changed current state and create the new state
 const reducer = (state, action) => {
@@ -81,7 +76,6 @@ function TrackScreen() {
   }, [assetID]);
 
   return loading ? (
-    
     <CircularProgress
       style={{
         padding: "2% 45% 2% 45%",
@@ -90,7 +84,7 @@ function TrackScreen() {
   ) : error ? (
     <MessageBox severity="error">{error}</MessageBox>
   ) : (
-    <div style={{ backgroundColor: "#E5E5E5" }}>
+    <div>
       <br></br>
       <Grid container style={{ paddingLeft: "10%" }}>
         {/* <Grid container sx={{ p: 10, margin: "auto", flexGrow: 1 }}> */}
@@ -109,10 +103,10 @@ function TrackScreen() {
             />
           </Grid>
           <Grid item xs={7}>
-            <p style={{ color: "red", fontSize: "25px", fontWeight: "bold" }}>
+            <p style={{ color: "white", fontSize: "25px", fontWeight: "bold" }}>
               {track.title}
             </p>
-            <p style={{ color: "red", fontWeight: "bold" }}>
+            <p style={{ color: "white", fontWeight: "bold" }}>
               Owned by{" "}
               <Link
                 to={`/user/${track.owner}`}
@@ -126,7 +120,7 @@ function TrackScreen() {
                 display: "flex",
                 alignItems: "center",
                 flexWrap: "wrap",
-                color: "red",
+                color: "white",
                 fontWeight: "bold",
               }}
             >
@@ -141,7 +135,7 @@ function TrackScreen() {
                 display: "flex",
                 alignItems: "center",
                 flexWrap: "wrap",
-                color: "red",
+                color: "white",
                 fontWeight: "bold",
               }}
             >
@@ -154,7 +148,7 @@ function TrackScreen() {
                 display: "flex",
                 alignItems: "center",
                 flexWrap: "wrap",
-                color: "red",
+                color: "white",
                 fontWeight: "bold",
               }}
             >
@@ -200,7 +194,7 @@ function TrackScreen() {
         </Grid>
         <Grid container direction="row" spacing={3}>
           <Grid item xs={5}>
-            <p style={{ color: "red", fontSize: "13px", fontWeight: "bold" }}>
+            <p style={{ color: "white", fontSize: "13px", fontWeight: "bold" }}>
               Owned by{" "}
               <Link
                 to={`/user/${track.creator}`}
@@ -225,7 +219,7 @@ function TrackScreen() {
             </p>
             <p
               style={{
-                color: "red",
+                color: "white",
                 fontSize: "13px",
                 fontWeight: "bold",
                 margin: "0px 0px 0px 0px",
@@ -236,7 +230,7 @@ function TrackScreen() {
 
             <p
               style={{
-                color: "red",
+                color: "white",
                 fontSize: "13px",
                 fontWeight: "bold",
               }}
@@ -251,7 +245,15 @@ function TrackScreen() {
             </p>
           </Grid>
           <Grid item xs={7}>
-            <p>Activity info pending</p>
+            <p
+              style={{
+                color: "white",
+                fontSize: "13px",
+                fontWeight: "bold",
+              }}
+            >
+              Activity info pending
+            </p>
           </Grid>
         </Grid>
       </Grid>

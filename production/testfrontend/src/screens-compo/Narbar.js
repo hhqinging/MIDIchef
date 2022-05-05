@@ -5,25 +5,8 @@ import {
   alpha,
 } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
-import {
-  makeStyles,
-  useTheme,
-  Popover,
-  MenuList,
-  MenuItem,
-} from "@material-ui/core";
-import {
-  Button,
-  InputBase,
-  AppBar,
-  Toolbar,
-  Typography,
-  Box,
-  Stack,
-} from "@mui/material";
-// import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { textAlign } from "@mui/system";
-import { border } from "@mui/system";
+import { makeStyles, Popover } from "@material-ui/core";
+import { Button, InputBase, AppBar, Toolbar, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../img/logo.jpg";
@@ -223,24 +206,27 @@ const NarBar = () => {
               >
                 Explore
               </Button>
-              <Button
-                color="secondary"
-                style={{ fontSize: "18px", fontWeight: "bold" }}
-                href="/create"
-              >
-                Create
-              </Button>
-              <Button
-                color="secondary"
-                style={{ fontSize: "18px", fontWeight: "bold" }}
-                onClick={(event) =>
-                  setPopover2({ ...popover2, anchorEl: event.currentTarget })
-                }
-                aria-describedby="signinPopover"
-                // aria-haspopup="true"
-              >
-                Sign In
-              </Button>
+              <Link to="/create">
+                <Button
+                  color="secondary"
+                  style={{ fontSize: "18px", fontWeight: "bold" }}
+                >
+                  Create
+                </Button>
+              </Link>
+              <Link to="/authentication">
+                <Button
+                  color="secondary"
+                  style={{ fontSize: "18px", fontWeight: "bold" }}
+                  onClick={(event) =>
+                    setPopover2({ ...popover2, anchorEl: event.currentTarget })
+                  }
+                  aria-describedby="signinPopover"
+                  // aria-haspopup="true"
+                >
+                  Sign In
+                </Button>
+              </Link>
               {/* </Stack> */}
             </section>
           </ThemeProvider>

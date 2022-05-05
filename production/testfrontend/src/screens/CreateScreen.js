@@ -4,7 +4,7 @@ function CreateScreen() {
   //   const params = useParams();
   return (
     <div>
-      <h1>Create Your NFT Track</h1>
+      <h1 style={{  color: "white",}} >Create Your NFT Track</h1>
     </div>
   );
 }

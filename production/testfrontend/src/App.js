@@ -4,11 +4,14 @@ import CreateScreen from "./screens/CreateScreen";
 import HomeScreen from "./screens/HomeScreen";
 import TrackScreen from "./screens/TrackScreen";
 import UserScreen from "./screens/UserScreen";
+import AuthScreen from "./screens/AuthScreen";
+import "./App.css"
 
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="App">
+      {/* <div className="App" > */}
+      <div>
         {/* <header> */}
         {/* <Link to="/">Test-MIDIchef</Link> */}
         <NarBar />
@@ -16,6 +19,7 @@ export default function App() {
         <main>
           <Routes>
             <Route path="/create" element={<CreateScreen />} />
+            <Route path="/authentication" element={<AuthScreen />} />
             <Route path="/track/:assetID" element={<TrackScreen />} />
             <Route path="/user/:creator" element={<UserScreen />} />
             <Route path="/" element={<HomeScreen />} />
