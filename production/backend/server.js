@@ -3,23 +3,28 @@ import express from 'express';
 import cors from 'cors'
 import * as data from "./data.js";
 import mongoose from 'mongoose';
-import Track  from "./models/track-model.js";
+import Track from "./models/track-model.js";
 import User from "./models/user-model.js";
+import song from './routers/songs_op.js'
+import user from './routers/user_op.js'
 const { Schema } = mongoose;
 const url = "mongodb://localhost:27017/cse416";
-
 mongoose.connect(url).then((ans) => {
      console.log("connect Success");
         }).catch((err) => {
      console.log("Error");
     });
-
 const app=express()
 const port=8000;
 //const signIn=require("../routes/signIn")
+//const A=new Track({name:2300, walletAddr:320000});
+//A.save()
 
-const A=new Track({name:3000});
-
+//console.log(A.find({ walletAddr:320000 }).where('A'))
+//const B=new User();
+//B.save()
+app.use('/api/song',song)
+app.use('/api/user',user)
 const corsOptions ={
    origin:'*', 
    credentials:true,            
@@ -29,133 +34,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-//user created
-app.post('/api/auth', (req,res) => {
-    console.log(req.body)
-    let user = data.users.filter((users) => {
-    return users.WalletA == req.body.WalletA;
-    });
-    console.log(data.users)
-    let token_payload = {
-        wallet: req.body.WalletA
-        };
-    console.log(token_payload)
-    let token=JWT(token_payload)
-    if (user.length){
-    // create a token using user name and password vaild for 2 hours
-    let response = {
-    message: 'Token Created, Authentication Successful!',
-    userName:user[0].user,
-    token: token
-    }; 
-    // return the information including token as JSON
-    return res.status(200).json(response);
-   } else {
-    SignUp();
-    let response = {
-    message: 'New User, Token Created, Authentication Successful!',
-    userName:'defult',
-    token: token
-    }; 
-    return res.status(409).json(response);
-}}); 
-//handle post request - update user profile
-app.post('/api/editProfile',(req,res)=>{
-    console.log(req.body)
-    // let Data = req.body;
-    let user = data.users.filter((users) => {
-        return users.WalletA == req.body.WalletA;
-        });
-    if(user.length){
-    let response = {
-        message: 'profile edited!',
-        //update datebase
-        }; 
-    res.status(200).json(response);}
-    else{
-        let response = {
-            message: 'Wrong Wallet Address!',
-            }; 
-        return res.status(409).json(response)
-    }
-});
-//get track
-app.get('/api/track',(req,res)=>{
-    console.log(req.query)
-    let song = data.songs.filter((songs) => {
-        return songs.name == req.query.name;
-        });
-    console.log(song)
-    if(song.length){
-    let response = {
-        message: 'song found!',
-        name: song[0].name,
-        creater:song[0].creater,
-        length:song[0].length,
-        likes:song[0].like,
-        price:song[0].price,
-        owner:song[0].owner,
-        trans:song[0].trans,
-        description:song[0].description
-        }; 
-    res.status(200).json(response);}
-    else{
-        let response = {
-            message: 'Wrong song!',
-            }; 
-        return res.status(409).json(response)
-    }
-})
-//get user
-app.get('/api/GetUser',(req,res)=>{
-    let user = data.users.filter((users) => {
-        return users.user == req.query.user;
-        });
-    if (user.length){
-        // create a token using user name and password vaild for 2 hours
-        let response = {
-        message: 'User found!',
-        userName:user[0].user,
-        Followers:user[0].Followers,
-        description:user[0].description
-        }; 
-        // return the information including token as JSON
-        return res.status(200).json(response);
-        } else {
-        SignUp();
-        let response = {
-        message: 'User Not found',
-        }; 
-        return res.status(404).json(response);
-}}); 
-
-//  app.get('/api/search',(req,res)=>{
-//      let song = data.songs.filter((songs) => {
-//             return songs.name == req.query.song||songs.creater == req.query.creater
-//          });
-//      if (song.length){
-//         // create a token using user name and password vaild for 2 hours
-//         let response = {
-//          message: 'song found!',
-//          name: song[0].name,
-//          creater:song[0].creater,
-//          length:song[0].length,
-//          likes:song[0].like,
-//          price:song[0].price,
-//          owner:song[0].owner,
-//          trans:song[0].trans,
-//          description:song[0].description
-//          }; 
-//         // return the information including token as JSON
-//         return res.status(200).json(response);
-//         } else {
-//         SignUp();
-//         let response = {
-//         message: 'User Not found',
-//         }; 
-//         return res.status(404).json(response);
-//     }}); 
-    
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

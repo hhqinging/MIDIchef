@@ -1,0 +1,52 @@
+//import field
+import express from 'express'
+import mongoose from 'mongoose';
+import Track from "../models/track-model.js";
+import {Create_song,Update_song} from './database_ops.js'
+//const and var
+var router=express.Router()
+const { Schema } = mongoose;
+const url = "mongodb://localhost:27017/cse416";
+//mongoose connection
+router.use(express.json());
+router.use(express.urlencoded({ extended: true }));
+// mongoose.connect(url).then((ans) => {
+//     console.log("connect Success");
+//        }).catch((err) => {
+//     console.log("Error");
+//    });
+//song_info
+router.get('/get_song',function(req,res){
+    var data
+    for (var key in req.query) {
+       data= req.query[key];
+    }
+    Track.find().where(Object.keys(req.query)[0]).equals(data).then(test=>{
+        console.log(test)
+        if(test.length==0){
+            res.status(404).json({
+                Info: "result not founded"
+            })
+        }
+        else{
+        res.status(200).json({
+            Info: "result founded",
+            data: test
+        })}
+})
+})
+router.post('/update_song',function(req,res){
+    Update_song(req.body)
+    console.log(req.body)
+    res.send({
+        note:"update success!"
+    })
+})
+router.post('/save_song',function(req,res){
+    Create_song(req.body)
+    res.send({
+        note:"save success!"
+    })
+})
+export default router;
+

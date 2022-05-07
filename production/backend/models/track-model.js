@@ -12,25 +12,30 @@ const ObjectId = Schema.Types.ObjectId
 // });
 
 const tracks = new Schema({
-    name:       { type: String, require: true },
+    assetID: {type: Number,require: true},
+    title:          { type: String, require: true },
+    owner:          { type: String, require: true },
+    creater:        { type: String, require: true },
     description: { type: String, require: false },
-    createdBy:  { type: ObjectId, ref: 'User', require: true },
-    ownedBy:    { type: ObjectId, ref: 'User', require: true },
-    favorited:  { type: Number, require: true },
+    numFavorite: { type: Number, require: true },
     popularity: { type: Number, require: true },
     price:      { type: Number, require: true },
-    views:      { type: Number, require: true },
-    filepath:   { type: String, require: true },
-    length:     { type: Number, require: true },
+    duration:    { type: String, require: true },
+    img_src:    { type: String, require: true },
+    src:        { type: String, require: true },
+    numPlay:    { type: Number, require: true },
+    numDay:     { type: Number, require: true },
     transactions: [{
         data: {
-            from:   { type: ObjectId, ref: 'User', require: true },
-            to:     { type: ObjectId, ref: 'User', require: true }, 
+            from:   { type: String, require: true },
+            to:     { type: String, require: true },
             price:  { type: Number, require: true },
             date:   { type: Date, require: true }
         }
     }]
-})
+    
+},{timestamps: true },
+)
 
 //get track info by id
 tracks.statics.findById = function(id) {

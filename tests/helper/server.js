@@ -1,22 +1,35 @@
-const express = require('express')
+import express from 'express'
+import mongoose from 'mongoose'
 const app=express()
 const port=8000;
-const mongoose=require('mongoose')
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-
 const { Schema } = mongoose;
+import Tester from './tester.js'
 mongoose.connect('mongodb://localhost:27017/');
-const blogSchema = new Schema({
-  title:  String, // String is shorthand for {type: String}
-  author: String,
-});
-const Blog = mongoose.model('Blog', blogSchema);
-const small = new Blog({ title:'Hello',author:'tester'});
-small.save(function (err) {
-    console.log(err)
-    // saved!
-  });
+
+
+app.post('/test',function(req,res){
+  Tester.where('username').equals('tester').then(test=>{
+    console.log(test)
+    res.json({
+        hello: 1,
+        data: test
+    })
+  })
+  
+  
+})
+app.get('/save',function(req,res){
+  const t1=new Tester({
+    username:'tester',
+    description: 'this is not a test'
+  })
+  t1.save()
+  res.json({
+    note: 'success'
+  })
+})
 app.post('/api',function(req,res){
     console.log(req.body)
     //content is a json file contain all information you sent from postman 
