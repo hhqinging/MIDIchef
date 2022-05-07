@@ -10,12 +10,6 @@ const url = "mongodb://localhost:27017/cse416";
 //mongoose connection
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
-// mongoose.connect(url).then((ans) => {
-//     console.log("connect Success");
-//        }).catch((err) => {
-//     console.log("Error");
-//    });
-//song_info
 router.get('/get_song',function(req,res){
     var data
     for (var key in req.query) {
