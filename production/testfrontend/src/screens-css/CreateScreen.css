@@ -1,29 +1,30 @@
-.create{
-    max-width:400px;
-    margin: 0 auto;
-    text-align: center;
+.create {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
 }
-.create label{
-    text-decoration-color: white;
-    text-align: left;
-    display: block;
+.create label {
+  color: white;
+  font-weight: bold;
+  text-align: left;
+  display: block;
 }
 
-/* .create h1{
-    
-} */
-
-.create input, .create textarea {
-
-    width: 100%;
-    padding: 6px 10px;
-    margin: 10px 0;
-    border: 1px soild #ddd;
-    box-sizing: border-box;
-    display: block;
+.create input,
+.create textarea {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px soild #ddd;
+  box-sizing: border-box;
+  display: block;
 }
 
 .create button {
-    background: #59DFDD;
-    color: ;
+  background: #59dfdd;
+  color: black;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
 }

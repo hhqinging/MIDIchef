@@ -2,15 +2,7 @@
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Button,
-  Checkbox,
-  Form,
-  Input,
-  Radio,
-  Select,
-  TextArea,
-} from "semantic-ui-react";
+import "../screens-css/CreateScreen.css";
 
 const formSchema = Yup.object({
   title: Yup.string().required("Title is required"),
@@ -56,7 +48,7 @@ function CreateScreen() {
   return (
     <div className="create">
       <h1 style={{ color: "white" }}>Create Your NFT Track</h1>
-      <form>
+      <form style={{}}>
         <label>Title</label>
         <input placeholder="Title" />
         <label>Description</label>
@@ -64,9 +56,9 @@ function CreateScreen() {
         <label>Price</label>
         <input placeholder="price" />
         <label>Image cover</label>
-        <input placeholder="image" />
+        <input type="file" placeholder="image" />
         <label>Track audio</label>
-        <input placeholder="Track audio" />
+        <input type="file" placeholder="Track audio" />
         <label>Royalty</label>
         <input placeholder="Royalty" />
         <button>Cancel</button>
