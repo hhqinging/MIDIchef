@@ -6,20 +6,19 @@ import {
 } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import { makeStyles, Popover } from "@material-ui/core";
-import { Menu, Button, InputBase, AppBar, Toolbar, Typography } from "@mui/material";
+import { Button, InputBase, AppBar, Toolbar, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../img/logo.jpg";
 import { MyAlgoLogin } from "./MyAlgo";
 import { MetaMaskLogin } from "./MetaMask";
-
+import { fontWeight } from "@mui/system";
 const useStyles = makeStyles({
   rightToolbar: {
     marginLeft: "auto",
     marginRight: -12,
   },
 });
-
 const theme = createTheme({
   palette: {
     primary: {
@@ -32,7 +31,6 @@ const theme = createTheme({
     },
   },
 });
-
 function Popover1() {
   return (
     <div>
@@ -54,67 +52,42 @@ function Popover1() {
     </div>
   );
 }
-
 function Popover2() {
   return (
     <div>
       {/* <Typography sx={{ p: 1, fontWeight: "bold", color: "#292828" }}>
         Algo
-      </Typography>
-      {/* <MyAlgoLogin
-        myAlgoWallet={this.state.myAlgoWallet}
-        setAddress={this.setMyAlgoAddress}
-      /> */}
-      <Typography sx={{ p: 1, fontWeight: "bold", color: "#292828" }}>
+      </Typography> */}
+      <MyAlgoLogin
+        // myAlgoWallet={this.state.myAlgoWallet}
+        // setAddress={this.setMyAlgoAddress}
+      />
+      {/* <Typography sx={{ p: 1, fontWeight: "bold", color: "#292828" }}>
         Eth
-      </Typography>
+      </Typography> */}
       {/* <MetaMaskLogin
         provider={this.state.ethersProvider}
         setAddress={this.setMetaMaskAddress}
-      /> */} */}
-
-
-<Menu
-                id="basic-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                MenuListProps={{
-                  'aria-labelledby': 'basic-button',
-                }}
-              >
-                <MenuItem onClick={handleClose}>Algo</MenuItem>
-                {/* <MyAlgoLogin myAlgoWallet={this.state.myAlgoWallet} setAddress={this.setMyAlgoAddress} /> */}
-                <MenuItem onClick={handleClose}>Eth</MenuItem>
-                {/* <MetaMaskLogin provider={this.state.ethersProvider} setAddress={this.setMetaMaskAddress} /> */}
-              </Menu>
-
+      /> */}
     </div>
   );
 }
-
 const NarBar = () => {
   //Hooks
   const [value, setValue] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   //Boolean(anchorEl) This is use to convert a null value in to a boolean
   //anchorEl Is us to set the position of the menu
-
   const classes = useStyles();
-
   // const theme = useTheme(); //Get a copy of our default theme in our component so that we can access the breakpoints and pass the useMediaQuery
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleClose = () => {
     setAnchorEl(null);
   };
-
   // const open = Boolean(anchorEl);
   // const id = open ? "simple-popover" : undefined;
-
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
@@ -130,7 +103,6 @@ const NarBar = () => {
       width: "auto",
     },
   }));
-
   const SearchIconWrapper = styled("div")(({ theme }) => ({
     padding: theme.spacing(0, 2),
     height: "100%",
@@ -140,7 +112,6 @@ const NarBar = () => {
     alignItems: "center",
     justifyContent: "center",
   }));
-
   const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: "inherit",
     "& .MuiInputBase-input": {
@@ -154,7 +125,6 @@ const NarBar = () => {
       },
     },
   }));
-
   const [popover1, setPopover1] = React.useState({
     anchorEl: null,
     child: <Popover1 />,
@@ -163,7 +133,6 @@ const NarBar = () => {
     anchorEl: null,
     child: <Popover2 />,
   });
-
   return (
     <>
       <AppBar
@@ -207,7 +176,6 @@ const NarBar = () => {
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
-
           <ThemeProvider theme={theme}>
             <section className={classes.rightToolbar}>
               {/* <Stack direction="row"> */}
@@ -234,7 +202,6 @@ const NarBar = () => {
                 <Button
                   color="secondary"
                   style={{ fontSize: "18px", fontWeight: "bold" }}
-                  
                   onClick={(event) =>
                     setPopover2({ ...popover2, anchorEl: event.currentTarget })
                   }
@@ -242,19 +209,12 @@ const NarBar = () => {
                   // aria-haspopup="true"
                 >
                   Sign In
-                        {/* <MyAlgoLogin
-        myAlgoWallet={this.state.myAlgoWallet}
-        setAddress={this.setMyAlgoAddress}
-      /> */}
                 </Button>
               </Link>
               {/* </Stack> */}
             </section>
-          </ThemeProvider>  
-
-
-
-          {/* <Popover
+          </ThemeProvider>
+          <Popover
             // id="menu2Popover"
             open={Boolean(popover1.anchorEl)}
             onClose={() => setPopover1({ ...popover1, anchorEl: null })}
@@ -285,7 +245,7 @@ const NarBar = () => {
             }}
           >
             {popover2.child}
-          </Popover> */}
+          </Popover>
         </Toolbar>
       </AppBar>
     </>

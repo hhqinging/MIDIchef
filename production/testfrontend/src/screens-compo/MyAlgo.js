@@ -10,10 +10,14 @@ export class MyAlgoLogin extends React.Component {
     }
 
     async connect() {
+
       try{
-        const accounts = await this.props.myAlgoWallet.connect();
+
+        const myalgo = new MyAlgoConnect();
+        const accounts = await myalgo.connect()
+        // const accounts = await this.props.myAlgoWallet.connect();
         const addresses = accounts.map(account => account.address);
-        this.props.setAddress(addresses[0])
+        // this.props.setAddress(addresses[0])
         console.log(accounts);
         console.log(addresses);
       } catch(err) {
