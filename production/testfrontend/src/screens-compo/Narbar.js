@@ -6,13 +6,12 @@ import {
 } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import { makeStyles, Popover } from "@material-ui/core";
-import { Button, InputBase, AppBar, Toolbar, Typography } from "@mui/material";
+import { Menu, Button, InputBase, AppBar, Toolbar, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../img/logo.jpg";
 import { MyAlgoLogin } from "./MyAlgo";
 import { MetaMaskLogin } from "./MetaMask";
-import { fontWeight } from "@mui/system";
 
 const useStyles = makeStyles({
   rightToolbar: {
@@ -59,7 +58,7 @@ function Popover1() {
 function Popover2() {
   return (
     <div>
-      <Typography sx={{ p: 1, fontWeight: "bold", color: "#292828" }}>
+      {/* <Typography sx={{ p: 1, fontWeight: "bold", color: "#292828" }}>
         Algo
       </Typography>
       {/* <MyAlgoLogin
@@ -72,7 +71,24 @@ function Popover2() {
       {/* <MetaMaskLogin
         provider={this.state.ethersProvider}
         setAddress={this.setMetaMaskAddress}
-      /> */}
+      /> */} */}
+
+
+<Menu
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                MenuListProps={{
+                  'aria-labelledby': 'basic-button',
+                }}
+              >
+                <MenuItem onClick={handleClose}>Algo</MenuItem>
+                {/* <MyAlgoLogin myAlgoWallet={this.state.myAlgoWallet} setAddress={this.setMyAlgoAddress} /> */}
+                <MenuItem onClick={handleClose}>Eth</MenuItem>
+                {/* <MetaMaskLogin provider={this.state.ethersProvider} setAddress={this.setMetaMaskAddress} /> */}
+              </Menu>
+
     </div>
   );
 }
@@ -218,6 +234,7 @@ const NarBar = () => {
                 <Button
                   color="secondary"
                   style={{ fontSize: "18px", fontWeight: "bold" }}
+                  
                   onClick={(event) =>
                     setPopover2({ ...popover2, anchorEl: event.currentTarget })
                   }
@@ -225,13 +242,19 @@ const NarBar = () => {
                   // aria-haspopup="true"
                 >
                   Sign In
+                        {/* <MyAlgoLogin
+        myAlgoWallet={this.state.myAlgoWallet}
+        setAddress={this.setMyAlgoAddress}
+      /> */}
                 </Button>
               </Link>
               {/* </Stack> */}
             </section>
-          </ThemeProvider>
+          </ThemeProvider>  
 
-          <Popover
+
+
+          {/* <Popover
             // id="menu2Popover"
             open={Boolean(popover1.anchorEl)}
             onClose={() => setPopover1({ ...popover1, anchorEl: null })}
@@ -262,7 +285,7 @@ const NarBar = () => {
             }}
           >
             {popover2.child}
-          </Popover>
+          </Popover> */}
         </Toolbar>
       </AppBar>
     </>

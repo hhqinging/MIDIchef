@@ -7,10 +7,11 @@ const trackSchema = new mongoose.Schema(
     owner: { type: String, required: true },
     creator: { type: String, required: true },
     description: { type: String, required: true },
+
+    //on Sale, or list only
     marketStatus: { type: String, required: true },
     numFavorite: { type: String, required: true },
     price: { type: String, required: true },
-    duration: { type: String, required: true },
     img_src: { type: String, required: true },
     src: { type: String, required: true },
     numPlay: { type: String, required: true },
