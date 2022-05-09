@@ -9,7 +9,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import algoicon from "../img/algoicon.png";
 import AudioPlayer from "material-ui-audio-player";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import { getError } from "../utils";
+import { getError } from "../utils/utils";
 
 //taking two paras: current state & the action that changed current state and create the new state
 const reducer = (state, action) => {

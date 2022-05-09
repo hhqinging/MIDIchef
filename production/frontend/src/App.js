@@ -1,41 +1,44 @@
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import NarBar from "./screens-compo/Narbar";
+import CreateScreen from "./screens/CreateScreen";
+import HomeScreen from "./screens/HomeScreen";
+import TrackScreen from "./screens/TrackScreen";
+import UserScreen from "./screens/UserScreen";
+import AuthScreen from "./screens/AuthScreen";
+import "./App.css"
 
-
-import logo from './logo.svg';
-import './App.css';
-import { React } from 'react'
-// import { BrowserRouter as Router, Route, Switch , Link} from 'react-router-dom'
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import Navbar from './Components/Navbar';
-
-import Home from './pages/Home';
-import Track from './pages/Track';
-import Artists from './pages/Artists';
-import Trending from './pages/Trending';
-import Create from './pages/Create';
-import User from './pages/User';
-import UserProfile from './pages/UserProfile';
-
-
-const App = () => {
+export default function App() {
   return (
     <BrowserRouter>
-
-      <Link to="/">{<Navbar />}</Link>
-
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Track" element={<Track />} />
-          <Route path="/Artists" element={<Artists />} />
-          <Route path="/Trending" element={<Trending />} />
-          <Route path="/Create" element={<Create />} />
-          <Route path="/User" element={<User />} />
-          <Route path="/UserProfile" element={<UserProfile />} />
-        </Routes>
-      </main>
+      {/* <div className="App" > */}
+      <div>
+        {/* <header> */}
+        {/* <Link to="/">Test-MIDIchef</Link> */}
+        <NarBar />
+        {/* </header> */}
+        <main>
+          <Routes>
+            <Route path="/create" element={<CreateScreen />} />
+            <Route path="/auth" element={<AuthScreen />} />
+            <Route path="/track/:assetID" element={<TrackScreen />} />
+            <Route path="/user/:creator" element={<UserScreen />} />
+            <Route path="/" element={<HomeScreen />} />
+            {/* <Route path="user/edit" element={<UserEdit/>} */}
+          </Routes>
+        </main>
+        {/* <footer
+          style={{
+            position: "fixed",
+            padding: "5px 5px 5px 5px",
+            bottom: "0",
+            width: "100%",
+            height: "16px",
+            background: "grey",
+          }}
+        >
+          <div style={{ textAlign: "center" }}>All rights reserved</div>
+        </footer> */}
+      </div>
     </BrowserRouter>
   );
-};
-
-export default App;
-
+}
