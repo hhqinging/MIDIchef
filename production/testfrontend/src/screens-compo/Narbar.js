@@ -198,7 +198,7 @@ const NarBar = () => {
                   Create
                 </Button>
               </Link>
-              <Link to="/authentication">
+              <Link to="/auth">
                 <Button
                   color="secondary"
                   style={{ fontSize: "18px", fontWeight: "bold" }}
