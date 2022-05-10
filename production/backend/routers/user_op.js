@@ -17,7 +17,7 @@ router.get('/get_user',function(req,res){
        data= req.query[key];
     }
     Users.find().where(Object.keys(req.query)[0]).equals(data).then(test=>{
-        if(test.length()==0){
+        if(test.length==0){
             res.status(404).json({
                 Info: "user not founded"
             })

@@ -54,6 +54,7 @@ export async function Create_new_user(user){
         description:    user.description,
         pfp:            user.pfp,
         walletAddr:     user.walletAddr,
+
     });
      A.save()
 }
