@@ -33,7 +33,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 const port = 8000;
-app.use("/api/song", song);
+app.use("/api/tracks", song);
 app.use("/api/user", user);
 app.post("/api/auth", (req, res) => {
   console.log("wwwwwww:", req.body);
@@ -63,7 +63,9 @@ const corsOptions = {
   credentials: true,
   optionSuccessStatus: 200,
 };
-
+app.get("/api",(req,res) => {
+  res.send("Hello")
+});
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

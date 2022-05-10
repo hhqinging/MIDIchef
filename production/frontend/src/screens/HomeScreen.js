@@ -48,7 +48,7 @@ function HomeScreen() {
       //before send the axios, use dispatch to update the state, set loading to true
       dispatch({ type: "FETCH_REQUEST" });
       try {
-        const result = await axios.get("/api/tracks");
+        const result = await axios.get("/api/tracks/get_song?assetID=669464415");
         dispatch({ type: "FETCH_SUCCESS", payload: result.data });
       } catch (err) {
         dispatch({ type: "FETCH_FAIL", payload: err.message });

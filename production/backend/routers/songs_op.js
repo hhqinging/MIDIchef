@@ -16,17 +16,16 @@ router.get('/get_song',function(req,res){
        data= req.query[key];
     }
     Track.find().where(Object.keys(req.query)[0]).equals(data).then(test=>{
-        console.log(test)
+        console.log(req)
         if(test.length==0){
-            res.status(404).json({
+            res.status(200).json({
                 Info: "result not founded"
             })
         }
         else{
-        res.status(200).json({
-            Info: "result founded",
-            data: test
-        })}
+        res.status(200).json(
+            test
+        )}
 })
 })
 router.post('/update_song',function(req,res){

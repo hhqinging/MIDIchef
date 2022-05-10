@@ -15,6 +15,7 @@ const tracks = new Schema({
     src:        { type: String, require: true },
     numPlay:    { type: Number, require: true },
     numDay:     { type: Number, require: true },
+    marketStatus: { type: String, required: true },
     transactions: [{
         data: {
             from:   { type: String, require: true },
