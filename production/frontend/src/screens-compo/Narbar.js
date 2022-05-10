@@ -11,8 +11,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../img/logo.jpg";
 import { MyAlgoLogin } from "./MyAlgo";
-import { MetaMaskLogin } from "./MetaMask";
-import { fontWeight } from "@mui/system";
 
 //style of navbar menu "explore", "create", "sign in"
 const useStyles = makeStyles({
@@ -22,56 +20,36 @@ const useStyles = makeStyles({
   },
 });
 
+//color theme for button
 const theme = createTheme({
   palette: {
-    primary: {
+    blue: {
       // Purple and green play nicely together.
       main: "#59DFDD",
     },
     secondary: {
-      // 
+      //
       main: "#59DFDD",
     },
   },
 });
-function Popover1() {
-  return (
-    <div>
-      <Link to="/tracks" style={{ textDecoration: "none" }}>
-        <Typography sx={{ p: 1, fontWeight: "bold", color: "#292828" }}>
-          Tracks
-        </Typography>
-      </Link>
-      <Link to="/artists" style={{ textDecoration: "none" }}>
-        <Typography sx={{ p: 1, fontWeight: "bold", color: "#292828" }}>
-          Artists
-        </Typography>
-      </Link>
-      <Link to="/trending" style={{ textDecoration: "none" }}>
-        <Typography sx={{ p: 1, fontWeight: "bold", color: "#292828" }}>
-          Trending
-        </Typography>
-      </Link>
-    </div>
-  );
-}
 
 const NarBar = () => {
-  //Hooks
-  const [value, setValue] = useState(0);
-  const [anchorEl, setAnchorEl] = useState(null);
-  //Boolean(anchorEl) This is use to convert a null value in to a boolean
-  //anchorEl Is us to set the position of the menu
+  //use the style for menu bar
   const classes = useStyles();
-  // const theme = useTheme(); //Get a copy of our default theme in our component so that we can access the breakpoints and pass the useMediaQuery
+
+  //mui button setup
+  const [anchorEl, setAnchorEl] = useState(null);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
-  // const open = Boolean(anchorEl);
-  // const id = open ? "simple-popover" : undefined;
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
+
+  //mui search bar setup style
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
@@ -109,10 +87,6 @@ const NarBar = () => {
       },
     },
   }));
-  const [popover1, setPopover1] = React.useState({
-    anchorEl: null,
-    child: <Popover1 />,
-  });
 
   return (
     <>
@@ -124,6 +98,7 @@ const NarBar = () => {
         }}
       >
         <Toolbar>
+          {/* logo */}
           <Link to="/">
             <img
               alt="logo"
@@ -135,6 +110,8 @@ const NarBar = () => {
               }}
             />
           </Link>
+
+          {/* title */}
           <Link to="/">
             <Typography
               variant="h4"
@@ -148,6 +125,8 @@ const NarBar = () => {
               MIDIchef
             </Typography>
           </Link>
+
+          {/* search bar */}
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -157,23 +136,21 @@ const NarBar = () => {
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
+
+          {/* menu bar */}
           <ThemeProvider theme={theme}>
             <section className={classes.rightToolbar}>
-              {/* <Stack direction="row"> */}
               <Button
-                color="secondary"
+                color="blue"
                 style={{ fontSize: "18px", fontWeight: "bold" }}
-                onClick={(event) =>
-                  setPopover1({ ...popover1, anchorEl: event.currentTarget })
-                }
+                onClick={handleClick}
                 aria-describedby="explorePopover"
-                // aria-haspopup="true"
               >
                 Explore
               </Button>
               <Link to="/create">
                 <Button
-                  color="secondary"
+                  color="blue"
                   style={{ fontSize: "18px", fontWeight: "bold" }}
                 >
                   Create
@@ -181,25 +158,20 @@ const NarBar = () => {
               </Link>
               <Link to="/auth">
                 <Button
-                  color="secondary"
+                  color="blue"
                   style={{ fontSize: "18px", fontWeight: "bold" }}
-                  // onClick={(event) =>
-                  //   setPopover2({ ...popover2, anchorEl: event.currentTarget })
-                  // }
-                  aria-describedby="signinPopover"
-                  // aria-haspopup="true"
                 >
                   <MyAlgoLogin /> n
                 </Button>
               </Link>
-              {/* </Stack> */}
             </section>
           </ThemeProvider>
+
           <Popover
-            // id="menu2Popover"
-            open={Boolean(popover1.anchorEl)}
-            onClose={() => setPopover1({ ...popover1, anchorEl: null })}
-            anchorEl={popover1.anchorEl}
+            id={id}
+            open={open}
+            anchorEl={anchorEl}
+            onClose={handleClose}
             anchorOrigin={{
               vertical: "bottom",
               horizontal: "center",
@@ -209,24 +181,22 @@ const NarBar = () => {
               horizontal: "center",
             }}
           >
-            {popover1.child}
+            <Link to="/tracks" style={{ textDecoration: "none" }}>
+              <Typography sx={{ p: 1, fontWeight: "bold", color: "#292828" }}>
+                Tracks
+              </Typography>
+            </Link>
+            <Link to="/artists" style={{ textDecoration: "none" }}>
+              <Typography sx={{ p: 1, fontWeight: "bold", color: "#292828" }}>
+                Artists
+              </Typography>
+            </Link>
+            <Link to="/trending" style={{ textDecoration: "none" }}>
+              <Typography sx={{ p: 1, fontWeight: "bold", color: "#292828" }}>
+                Trending
+              </Typography>
+            </Link>
           </Popover>
-          {/* <Popover
-            // id="menu4Popover"
-            open={Boolean(popover2.anchorEl)}
-            onClose={() => setPopover2({ ...popover2, anchorEl: null })}
-            anchorEl={popover2.anchorEl}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "center",
-            }}
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "center",
-            }}
-          >
-            {popover2.child}
-          </Popover> */}
         </Toolbar>
       </AppBar>
     </>
