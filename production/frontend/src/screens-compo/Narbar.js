@@ -13,12 +13,15 @@ import logo from "../img/logo.jpg";
 import { MyAlgoLogin } from "./MyAlgo";
 import { MetaMaskLogin } from "./MetaMask";
 import { fontWeight } from "@mui/system";
+
+//style of navbar menu "explore", "create", "sign in"
 const useStyles = makeStyles({
   rightToolbar: {
     marginLeft: "auto",
     marginRight: -12,
   },
 });
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -26,7 +29,7 @@ const theme = createTheme({
       main: "#59DFDD",
     },
     secondary: {
-      // This is green.A700 as hex.
+      // 
       main: "#59DFDD",
     },
   },
@@ -52,26 +55,7 @@ function Popover1() {
     </div>
   );
 }
-function Popover2() {
-  return (
-    <div>
-      {/* <Typography sx={{ p: 1, fontWeight: "bold", color: "#292828" }}>
-        Algo
-      </Typography> */}
-      <MyAlgoLogin
-        // myAlgoWallet={this.state.myAlgoWallet}
-        // setAddress={this.setMyAlgoAddress}
-      />
-      {/* <Typography sx={{ p: 1, fontWeight: "bold", color: "#292828" }}>
-        Eth
-      </Typography> */}
-      {/* <MetaMaskLogin
-        provider={this.state.ethersProvider}
-        setAddress={this.setMetaMaskAddress}
-      /> */}
-    </div>
-  );
-}
+
 const NarBar = () => {
   //Hooks
   const [value, setValue] = useState(0);
@@ -129,10 +113,7 @@ const NarBar = () => {
     anchorEl: null,
     child: <Popover1 />,
   });
-  const [popover2, setPopover2] = React.useState({
-    anchorEl: null,
-    child: <Popover2 />,
-  });
+
   return (
     <>
       <AppBar
@@ -202,13 +183,13 @@ const NarBar = () => {
                 <Button
                   color="secondary"
                   style={{ fontSize: "18px", fontWeight: "bold" }}
-                  onClick={(event) =>
-                    setPopover2({ ...popover2, anchorEl: event.currentTarget })
-                  }
+                  // onClick={(event) =>
+                  //   setPopover2({ ...popover2, anchorEl: event.currentTarget })
+                  // }
                   aria-describedby="signinPopover"
                   // aria-haspopup="true"
                 >
-                  Sign In
+                  <MyAlgoLogin /> n
                 </Button>
               </Link>
               {/* </Stack> */}
@@ -230,7 +211,7 @@ const NarBar = () => {
           >
             {popover1.child}
           </Popover>
-          <Popover
+          {/* <Popover
             // id="menu4Popover"
             open={Boolean(popover2.anchorEl)}
             onClose={() => setPopover2({ ...popover2, anchorEl: null })}
@@ -245,7 +226,7 @@ const NarBar = () => {
             }}
           >
             {popover2.child}
-          </Popover>
+          </Popover> */}
         </Toolbar>
       </AppBar>
     </>

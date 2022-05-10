@@ -2,6 +2,7 @@ import React from "react";
 import MyAlgoConnect from "@randlabs/myalgo-connect";
 import algosdk from "algosdk";
 import axios from "axios";
+import { Typography } from "@mui/material";
 // import baseUrl from './utils/baseURL.js';
 
 export class MyAlgoLogin extends React.Component {
@@ -48,13 +49,21 @@ export class MyAlgoLogin extends React.Component {
 
   render() {
     return (
-      <button
+      // <button
+      //   class="login-buttons"
+      //   id="myalgo-login-buttons"
+      //   onClick={this.connect}
+      // >
+      //   MyAlgo
+      // </button>
+      <Typography
         class="login-buttons"
         id="myalgo-login-buttons"
         onClick={this.connect}
+        sx={{ p: 1, fontWeight: "bold", color: "#292828" }}
       >
-        MyAlgo
-      </button>
+        Sign i
+      </Typography>
     );
   }
 }
@@ -109,4 +118,3 @@ export class MyAlgoPurchase extends React.Component {
     );
   }
 }
-
