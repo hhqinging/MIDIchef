@@ -4,7 +4,7 @@ import Track from "../models/track-model.js";
 import users from "../models/user-model.js";
 mongoose.set('debug', true);
 export async function Create_song(song){
-    console.log(song)
+    console.log(song.creator)
     const A=new Track({
         assetID:        song.assetID,
         title:          song.title,
@@ -16,6 +16,7 @@ export async function Create_song(song){
         marketStatus:   song.marketStatus,
         duration:       song.duration,
         img_src:        song.img_src,
+        src:            song.src,
         numPlay:        song.numPlay,
         numDay:         song.numDay,
 

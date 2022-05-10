@@ -23,8 +23,30 @@ router.get('/get_song',function(req,res){
             })
         }
         else{
+        console.log(test)
         res.status(200).json(
+            
             test
+        )}
+})
+})
+router.get('/get_song1',function(req,res){
+    var data
+    for (var key in req.query) {
+       data= req.query[key];
+    }
+    Track.find().where(Object.keys(req.query)[0]).equals(data).then(test=>{
+        console.log(req)
+        if(test.length==0){
+            res.status(200).json({
+                Info: "result not founded"
+            })
+        }
+        else{
+        console.log(test)
+        res.status(200).json(
+            
+            test[0]
         )}
 })
 })

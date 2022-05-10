@@ -28,8 +28,6 @@ const User = new mongoose.Schema(
       walletAddr:      { type: String },
       isFollowing:     { type: Boolean, default: false },
       isUnFollowing:   { type: Boolean, default: false },
-    //   jwtToken:        { type: String },
-    //   jwtTokenExpires: { type: String },
       viewedBy:        { 
           type: [{
             type: ObjectId,

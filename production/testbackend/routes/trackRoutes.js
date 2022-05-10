@@ -17,14 +17,6 @@ trackRouter.get("/assetID/:assetID", async (req, res) => {
   }
 });
 
-trackRouter.get("/assetID/:assetID", async (req, res) => {
-  const track = await Track.findOne({ assetID: req.params.assetID });
-  if (track) {
-    res.send(track);
-  } else {
-    res.status(404).send({ message: "Track NFT Not Found" });
-  }
-});
 
 export default trackRouter;
 
