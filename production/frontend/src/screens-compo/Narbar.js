@@ -157,12 +157,7 @@ const NarBar = () => {
                 </Button>
               </Link>
               <Link to="/auth">
-                <Button
-                  color="blue"
-                  style={{ fontSize: "18px", fontWeight: "bold" }}
-                >
-                  <MyAlgoLogin /> n
-                </Button>
+                <MyAlgoLogin />
               </Link>
             </section>
           </ThemeProvider>
