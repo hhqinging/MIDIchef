@@ -33,7 +33,7 @@ router.post('/upload', async (req, res) => {
     }
 });
 
-router.post('/upload-photos', async (req, res) => {
+router.post('/upload-files', async (req, res) => {
     try {
         if (!req.files) {
             res.send({
@@ -44,17 +44,17 @@ router.post('/upload-photos', async (req, res) => {
             let data = [];
 
             //loop all files
-            _.forEach(_.keysIn(req.files.photos), (key) => {
-                let photo = req.files.photos[key];
+            _.forEach(_.keysIn(req.files.files), (key) => {
+                let file = req.files.files[key];
 
                 //move photo to uploads directory
-                photo.mv('./uploads/' + photo.name);
+                file.mv('./uploads/' + file.name);
 
                 //push file details
                 data.push({
-                    name: photo.name,
-                    mimetype: photo.mimetype,
-                    size: photo.size
+                    name: file.name,
+                    mimetype: file.mimetype,
+                    size: file.size
                 });
             });
 
