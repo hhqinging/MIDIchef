@@ -104,8 +104,8 @@ const CreateScreen = () => {
           placeholder="price"
         />
         <label>Image cover</label>
-        {/* <input type="file" placeholder="image" /> */}
-        <Container>
+        <input type="file" placeholder="image" />
+        {/* <Container>
           <Dropzone
             onBlur={formik.handleBlur("image")}
             accept="image/jpeg, image/png"
@@ -127,7 +127,7 @@ const CreateScreen = () => {
               </div>
             )}
           </Dropzone>
-        </Container>
+        </Container> */}
         <label>Track audio</label>
         <input type="file" placeholder="Track audio" />
         <label>Royalty</label>

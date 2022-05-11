@@ -38,6 +38,11 @@ const NarBar = () => {
   //use the style for menu bar
   const classes = useStyles();
 
+
+  const handleFailure = (result) => {
+    alert(result);
+  };
+
   //mui button setup
   const [anchorEl, setAnchorEl] = useState(null);
   const handleClick = (event) => {

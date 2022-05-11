@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import MyAlgoConnect from "@randlabs/myalgo-connect";
 import algosdk from "algosdk";
 import axios from "axios";
 import { Button, Typography } from "@mui/material";
+
 // import baseUrl from './utils/baseURL.js';
+// const [signinData, setSigninData] = useState(
+//   JSON.getItem("signinData")
+//     ? JSON.parse(localStorage.getItem("signinData"))
+//     : null
+// );
 
 export class MyAlgoLogin extends React.Component {
+
+  // dispatch = useDispatch();
+  
+
   constructor(props) {
     super(props);
     this.state = {
@@ -46,6 +56,7 @@ export class MyAlgoLogin extends React.Component {
       console.log(err);
     }
   }
+
 
   render() {
     return (
