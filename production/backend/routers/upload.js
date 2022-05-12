@@ -22,7 +22,7 @@ router.post("/upload", async (req, res) => {
     // console.log("req.files:", req.files)
     // console.log("all:", req.body)
     try {
-        if (!req.files) {
+        if (!req.files.music || !req.files.imageCover || !req.body.title || !req.body.royalty || !req.body.royalty) {
             res.send({
                 status: false,
                 message: "No file uploaded",
