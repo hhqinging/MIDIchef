@@ -22,11 +22,8 @@ router.post("/upload", async (req, res) => {
     // console.log("req.files:", req.files)
     // console.log("all:", req.body)
     try {
-        if (!req.files.music || !req.files.imageCover || !req.body.title || !req.body.royalty || !req.body.royalty) {
-            res.send({
-                status: false,
-                message: "No file uploaded",
-            });
+        if (!req.files.music || !req.files.imageCover || req.body.title == '' || req.body.price == 0 || req.body.royalty == 0) {
+            res.status(500).send("No complete info!");
         } else {
             let music = req.files.music;
             let imageCover = req.files.imageCover;

@@ -8,6 +8,7 @@ import Dropzone from "react-dropzone";
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useDropzone } from "react-dropzone"
+import Alert from '@mui/material/Alert';
 
 const Container = styled.div`
   flex: 1;
@@ -119,8 +120,19 @@ const CreateScreen = () => {
     formData.append('imageCover', imageCover[0])
     axios.post("http://localhost:8000/api/upload", formData, {
     }).then(res => {
-      console.log(res)
+      console.log(res.status)
+      if (res.status == 200) {
+        alert("create success!")
+      } else {
+        console.log(res.status)
+        alert("can not success to create!")
+      }
+
     })
+      .catch(err => {
+        console.log(err)
+        alert("can not success to create!")
+      })
   }
 
   const { getRootProps, getInputProps } = useDropzone({
