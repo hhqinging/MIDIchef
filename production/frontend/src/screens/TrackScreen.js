@@ -65,7 +65,7 @@ function TrackScreen() {
       //before send the axios, use dispatch to update the state, set loading to true
       dispatch({ type: "FETCH_REQUEST" });
       try {
-        const result = await axios.get(`/api/tracks/get_song1?assetID=${assetID}`);
+        const result = await axios.get(`/api/tracks/single_song?assetID=${assetID}`);
         dispatch({ type: "FETCH_SUCCESS", payload: result.data });
       } catch (err) {
         dispatch({ type: "FETCH_FAIL", payload: getError(err) });
