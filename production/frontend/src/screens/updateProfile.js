@@ -1,92 +1,52 @@
 // import { useParams } from "react-router-dom";
-import * as Yup from "yup";
-import { useFormik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
-import "../screens-css/CreateScreen.css";
-import styled from "styled-components";
-import Dropzone from "react-dropzone";
+// import * as Yup from "yup";
+// import { useFormik } from "formik";
+// import { useDispatch, useSelector } from "react-redux";
+import "../screens-css/updateProfile.css";
+// import styled from "styled-components";
+// import Dropzone from "react-dropzone";
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useDropzone } from "react-dropzone"
-import Alert from '@mui/material/Alert';
+// import Alert from '@mui/material/Alert';
 
-const Container = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  // padding: 20px;
-  border-width: 2px;
-  border-radius: 2px;
-  border-style: dashed;
-  background-color: #fafafa;
-  color: #bdbdbd;
-border-color:'red'
-  transition: border 0.24s ease-in-out;
-`;
+// const Container = styled.div`
+//   flex: 1;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   // padding: 20px;
+//   border-width: 2px;
+//   border-radius: 2px;
+//   border-style: dashed;
+//   background-color: #fafafa;
+//   color: #bdbdbd;
+// border-color:'red'
+//   transition: border 0.24s ease-in-out;
+// `;
 
-const formSchema = Yup.object({
-  title: Yup.string().required("Title is required"),
-  description: Yup.string().required("Description is required"),
-  price: Yup.number().required("Price is required"),
-  image: Yup.string().required("Track cover is required"),
-  track: Yup.string().required("Track audio is required"),
-  royalty: Yup.number().required("royalty is required"),
-});
+// const formSchema = Yup.object({
+//   userName:     Yup.string().required("Username is required"),
+//   description:  Yup.string().required("Description is required"),
+//   image:        Yup.string().required("Track cover is required"),
+// });
 
-const CreateScreen = () => {
-  // //   const params = useParams();
-  // const dispatch = useDispatch();
-
-  // //select store data
-  // const create = useSelector(state => state?.create);
-  // const { isCreated, loading, appErr, serverErr } = create;
-
-  const formik = useFormik({
-    initialValues: {
-      title: "",
-      description: "",
-      price: "",
-      image: "",
-      track: "",
-      royalty: "",
-    },
-    onSubmit: (values) => {
-      console.log(values);
-    },
-    validationSchema: formSchema,
-  });
-
-  // const formik = useFormik({
-  //   initialValues: {
-  //     title: "",
-  //     description: "",
-  //     price:"",
-  //     image: "",
-  //     track:"",
-  //     royalty:""
-  //   },
-  //   onSubmit: values => {
-  //     //dispath the action
-  //     const data = {
-  //       title: values?.title,
-  //       description: values?.description,
-  //       price: values?.price,
-  //       image: values?.image,
-  //       track:values?.track,
-  //       royalty:values?.royalty
-  //     };
-  //     // dispatch(createpostAction(data));
-  //   },
-  //   validationSchema: formSchema,
-  // });
+const UpdateProfile = () => {
+//   const formik = useFormik({
+//     initialValues: {
+//       userName: "",
+//       description: "",
+//       image: "",
+//     },
+//     onSubmit: (values) => {
+//       console.log(values);
+//     },
+//     validationSchema: formSchema,
+//   });
 
   const initialValues = {
-    title: '',
-    description: '',
-    price: 0,
-    music: null,
-    royalty: 0
+    userName: '',
+    description: ''
   };
 
   let [nft, setNft] = useState(initialValues);
@@ -108,24 +68,16 @@ const CreateScreen = () => {
     });
   }
   let onSubmit = (e) => {
-    e.preventDefault()
-    // console.log("nft:", nft)
-    // console.log("cover:", imageCover)
-    const formData = new FormData()
-    formData.append('music', nft.music)
-    formData.append('title', nft.title)
-    formData.append('description', nft.description)
-    formData.append('price', nft.price)
-    formData.append('royalty', nft.royalty)
-    formData.append('imageCover', imageCover[0])
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('userName', nft.title);
+    formData.append('description', nft.description);
+    formData.append('imageCover', imageCover[0]);
     axios.post("http://localhost:8000/api/upload", formData, {
     }).then(res => {
       console.log(res.status)
       if (res.status == 200) {
         alert("create success!")
-        console.log(res)
-        console.log(res.data.assetID)
-        alert(res.data.assetID)
       } else {
         console.log(res.status)
         alert("can not success to create!")
@@ -138,6 +90,7 @@ const CreateScreen = () => {
       })
   }
 
+  //URL for image
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     onDrop: (acceptedFiles) => {
@@ -151,6 +104,7 @@ const CreateScreen = () => {
     }
   })
 
+  //embedding image file, set width 
   const images = imageCover.map((file) => (
     <div key={file.name}>
       <div>
@@ -160,8 +114,8 @@ const CreateScreen = () => {
   ))
 
   return (
-    <div className="create">
-      <h1 style={{ color: "white" }}>Create Your NFT Track</h1>
+    <div className="update-container">
+      <h1 style={{ color: "white" }}>Update User Profile</h1>
       <form onSubmit={onSubmit}>
         <label>Title</label>
         <input
@@ -219,6 +173,4 @@ const CreateScreen = () => {
   );
 };
 
-
-
-export default CreateScreen;
+export default UpdateProfile;
