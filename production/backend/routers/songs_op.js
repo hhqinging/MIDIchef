@@ -27,6 +27,7 @@ router.get('/songlist', function (req, res) {
             test
         )}
 })
+})
 router.get('/single_song', function (req, res) {
     var data
     for (var key in req.query) {
@@ -112,4 +113,3 @@ router.post('/create_song', function (req, res) {
     })
 })
 export default router;
-
