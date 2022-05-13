@@ -56,11 +56,10 @@ const NarBar = () => {
     if (event.key === 'Enter') {
       console.log("handleKeyPress", event.target.value)
       axios
-        .post(`http://localhost:8000/api/auth`, {
-          searchKey: event.target.value,
+        .get(`http://localhost:8000/api/tracks/search?searchKey=${event.target.value}`, {
         })
         .then((res) => {
-          console.log("kkkkkkkkk:", res.searchKey)
+          console.log("kkkkkkkkk:")
         })
     }
   }
