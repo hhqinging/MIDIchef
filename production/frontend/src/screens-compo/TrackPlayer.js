@@ -55,24 +55,37 @@ function TrackPlayer(props) {
         </CardContent>
 
         <CardActions disableSpacing>
-          <img
-            src={algoicon}
-            style={{ width: "20px", padding: 5 }}
-            alt={track.title}
-          />
-          <p style={{ fontWeight: "bold" }}>{track.price}</p>
+          {/* Algo Icon and Price */}
+          <div style={{ fontWeight: "bold", display: "flex"}}>
+            <img
+              src={algoicon}
+              style={{ width: "35px", padding: "0px 10px 0px 10px" }}
+              alt={track.title}
+            />
+            <div style={{paddingTop: "5px", }}>
+              {track.price}
+            </div>
+          </div>
+          
+          {/* Favorites Icon and Num */}
+          <div style={{
+              textDecoration: "none",
+              color: "#808080",
+              fontWeight: "bold",
+              margin: "auto",
+            }}>
           <IconButton aria-label="add to favorites">
-            <FavoriteIcon fontSize="small" />
+            <FavoriteIcon fontSize="large" fontWeight="bold"/>
           </IconButton>
-          {track.numFavorite}
-          <IconButton aria-label="num of play">
+          {track.numFavorite}</div>
+          {/* <IconButton aria-label="num of play">
             <PlayArrowIcon fontSize="medium" />
           </IconButton>
           {track.numPlay}
           <IconButton aria-label="when to release">
             <CalendarMonthIcon fontSize="small" />
           </IconButton>
-          {track.numDay} days ago
+          {track.numDay} days ago */}
         </CardActions>
       </Card>
     </div>

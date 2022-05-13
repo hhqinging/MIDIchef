@@ -57,29 +57,6 @@ const CreateScreen = () => {
     validationSchema: formSchema,
   });
 
-  // const formik = useFormik({
-  //   initialValues: {
-  //     title: "",
-  //     description: "",
-  //     price:"",
-  //     image: "",
-  //     track:"",
-  //     royalty:""
-  //   },
-  //   onSubmit: values => {
-  //     //dispath the action
-  //     const data = {
-  //       title: values?.title,
-  //       description: values?.description,
-  //       price: values?.price,
-  //       image: values?.image,
-  //       track:values?.track,
-  //       royalty:values?.royalty
-  //     };
-  //     // dispatch(createpostAction(data));
-  //   },
-  //   validationSchema: formSchema,
-  // });
 
   const initialValues = {
     title: '',
