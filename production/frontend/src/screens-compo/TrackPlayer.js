@@ -57,22 +57,22 @@ function TrackPlayer(props) {
         <CardActions disableSpacing>
           <img
             src={algoicon}
-            style={{ width: "20px", padding: 5 }}
+            style={{ width: "35px", padding: "0px 10px 0px 10px" }}
             alt={track.title}
           />
           <p style={{ fontWeight: "bold" }}>{track.price}</p>
           <IconButton aria-label="add to favorites">
-            <FavoriteIcon fontSize="small" />
+            <FavoriteIcon fontSize="large" fontWeight="bold"/>
           </IconButton>
           {track.numFavorite}
-          <IconButton aria-label="num of play">
+          {/* <IconButton aria-label="num of play">
             <PlayArrowIcon fontSize="medium" />
           </IconButton>
           {track.numPlay}
           <IconButton aria-label="when to release">
             <CalendarMonthIcon fontSize="small" />
           </IconButton>
-          {track.numDay} days ago
+          {track.numDay} days ago */}
         </CardActions>
       </Card>
     </div>
