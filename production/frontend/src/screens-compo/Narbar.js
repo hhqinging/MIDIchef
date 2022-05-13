@@ -11,6 +11,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../img/logo.jpg";
 import { MyAlgoLogin } from "./MyAlgo";
+import { useDispatch, useSelector } from "react-redux";
+import { isLogin } from "./MyAlgo";
+// import { connectAction } from "../features/walletConnectSlices";
 
 //style of navbar menu "explore", "create", "sign in"
 const useStyles = makeStyles({
@@ -36,7 +39,16 @@ const theme = createTheme({
 
 const NarBar = () => {
   //use the style for menu bar
+
+  const user = null;
+
   const classes = useStyles();
+
+  const dispatch = useDispatch();
+
+  const handleFailure = (result) => {
+    alert(result);
+  };
 
   //mui button setup
   const [anchorEl, setAnchorEl] = useState(null);
@@ -88,6 +100,13 @@ const NarBar = () => {
     },
   }));
 
+  const signout = () => {
+    localStorage.removeItem("x-access-token");
+  };
+
+  // const storeDate = useSelector((store) => store);
+  // console.log(storeDate);
+
   return (
     <>
       <AppBar
@@ -138,29 +157,71 @@ const NarBar = () => {
           </Search>
 
           {/* menu bar */}
-          <ThemeProvider theme={theme}>
-            <section className={classes.rightToolbar}>
-              <Button
-                color="blue"
-                style={{ fontSize: "18px", fontWeight: "bold" }}
-                onClick={handleClick}
-                aria-describedby="explorePopover"
-              >
-                Explore
-              </Button>
-              <Link to="/create">
+
+          {user ? (
+            <ThemeProvider theme={theme}>
+              <section className={classes.rightToolbar}>
                 <Button
                   color="blue"
                   style={{ fontSize: "18px", fontWeight: "bold" }}
+                  onClick={handleClick}
+                  aria-describedby="explorePopover"
                 >
-                  Create
+                  Explore
                 </Button>
-              </Link>
-              <Link to="/auth">
-                <MyAlgoLogin />
-              </Link>
-            </section>
-          </ThemeProvider>
+                <Link to="/auth">
+                  <MyAlgoLogin />
+                </Link>
+              </section>
+            </ThemeProvider>
+          ) : (
+            <ThemeProvider theme={theme}>
+              <section className={classes.rightToolbar}>
+                <Button
+                  color="blue"
+                  style={{ fontSize: "18px", fontWeight: "bold" }}
+                  onClick={handleClick}
+                  aria-describedby="explorePopover"
+                >
+                  Explore
+                </Button>
+                <Link to="/create">
+                  <Button
+                    color="blue"
+                    style={{ fontSize: "18px", fontWeight: "bold" }}
+                  >
+                    Create
+                  </Button>
+                </Link>
+                <Link to="/user/">
+                  <Button
+                    color="blue"
+                    style={{ fontSize: "18px", fontWeight: "bold" }}
+                  >
+                    Profile
+                  </Button>
+                </Link>
+                <Link to="/user/setting">
+                  <Button
+                    color="blue"
+                    style={{ fontSize: "18px", fontWeight: "bold" }}
+                  >
+                    Setting
+                  </Button>
+                </Link>
+
+                <Button
+                  color="blue"
+                  className="login-buttons"
+                  id="myalgo-login-buttons"
+                  onClick={signout}
+                  style={{ fontSize: "18px", fontWeight: "bold" }}
+                >
+                  Sign out
+                </Button>
+              </section>
+            </ThemeProvider>
+          )}
 
           <Popover
             id={id}

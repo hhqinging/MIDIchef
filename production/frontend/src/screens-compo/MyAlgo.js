@@ -159,8 +159,8 @@ export class MyAlgoCreateNFT extends React.Component {
       .sendRawTransaction(signedTxn.blob)
       .do();
     }
-    // TODO: add backend call to createNFT
-    // let assetID = 
+    //TODO: add backend call to createNFT
+    let assetID = 
     transferAsset(creator, creator, assetID, 0); // Opt in to asset transfer
     // TODO: add backend call to transfer NFT from midichef to creator
   }
