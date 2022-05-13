@@ -53,6 +53,7 @@ router.get('/single_song', function (req, res) {
     })
 })
 router.get('/search', function (req, res) {
+    // console.log("req.query:",req.query.searchKey)
     console.log("req.query:",req.query)
     var data
     for (var key in req.query) {
