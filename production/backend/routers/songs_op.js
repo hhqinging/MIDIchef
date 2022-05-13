@@ -3,10 +3,10 @@ import express from 'express'
 import mongoose from 'mongoose';
 import Track from "../models/track-model.js";
 import {Create_song,Update_song} from './database_ops.js'
+import path from 'path'
 //const and var
 var router=express.Router()
 const { Schema } = mongoose;
-const url = "mongodb://localhost:27017/cse416";
 //mongoose connection
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
@@ -16,7 +16,6 @@ router.get('/songlist',function(req,res){
     }
     Track.find()
     .limit(10).then(test=>{
-        console.log(req)
         if(test.length==0){
             res.status(200).json({
                 Info: "result not founded"
@@ -24,8 +23,7 @@ router.get('/songlist',function(req,res){
         }
         else{
         console.log(test)
-        res.status(200).json(
-            
+        res.status(200).json(    
             test
         )}
 })
@@ -70,7 +68,33 @@ router.get('/search',function(req,res){
         )}
 })
 })
-
+router.get('/song_file',function(req,res){
+    let fileName=req.query.song
+    const __dirname = path.resolve();
+    let options={ root: path.join(__dirname, './uploads/music') }
+    res.set('Content-Type', 'audio/mpeg');
+    res.sendFile(fileName, options, function (err) {
+        if (err) {
+            console.log("err");
+            console.log(err);
+        } else {
+            console.log('Sent:', fileName);
+        }
+    });
+})
+router.get('/photo_file',function(req,res){
+    let fileName=req.query.photo
+    const __dirname = path.resolve();
+    let options={ root: path.join(__dirname, './uploads/imageCover') }
+    res.sendFile(fileName, options, function (err) {
+        if (err) {
+            console.log("err");
+            console.log(err);
+        } else {
+            console.log('Sent:', fileName);
+        }
+    });
+})
 router.post('/update_song',function(req,res){
     Update_song(req.body)
     console.log(req.body)

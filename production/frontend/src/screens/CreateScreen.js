@@ -100,6 +100,9 @@ const CreateScreen = () => {
       console.log(res.status)
       if (res.status == 200) {
         alert("create success!")
+        console.log(res)
+        console.log(res.data.assetID)
+        alert(res.data.assetID)
       } else {
         console.log(res.status)
         alert("can not success to create!")

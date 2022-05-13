@@ -3,12 +3,6 @@ import {createAsset, transferAsset, destroyAsset} from '../cryptography/midichef
 
 var router = express.Router();
 
-router.get("/createNFT", async (req, res) => {
-    let name = req.name;
-    let assetID = await createAsset(name);
-    res.send(assetID);
-})
-
 router.post("/transferNFT", async (req, res) => {
     let sender = req.sender;
     let recipient = req.recipient;

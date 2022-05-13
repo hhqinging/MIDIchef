@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 import song from "./routers/songs_op.js";
 import user from "./routers/user_op.js";
 import upload from "./routers/upload.js";
-
+import http from 'http';
 import jwt from "jsonwebtoken";
 
 const { Schema } = mongoose;
@@ -40,6 +40,7 @@ app.use("/api/user", user);
 app.use("/api", upload);
 
 
+
 app.post("/api/auth", (req, res) => {
   // if (user.length) {
   // create a token using user name and password vaild for 2 hours
@@ -61,8 +62,6 @@ app.post("/api/auth", (req, res) => {
   // }
 });
 
-
-
 const corsOptions = {
   origin: "*",
   credentials: true,
@@ -71,6 +70,9 @@ const corsOptions = {
 app.get("/api", (req, res) => {
   res.send("Hello")
 });
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+//app.listen(port, () => {
+ // console.log(`Example app listening on port ${port}`);
+//});
+var httpServer = http.createServer(app);
+
+httpServer.listen(8000);

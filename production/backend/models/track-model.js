@@ -7,15 +7,13 @@ const tracks = new Schema({
     owner:          { type: String, require: true },
     creator:        { type: String, require: true },
     description:    { type: String, require: false },
-    numFavorite:    { type: Number, require: true },
+    numFavorite:    { type: Number, require: true , default: 0},
     popularity:     { type: Number, require: true },
     price:          { type: Number, require: true },
     duration:       { type: String, require: true },
     img_src:        { type: String, require: true },
     src:            { type: String, require: true },
-    numPlay:        { type: Number, require: true },
-    numDay:         { type: Number, require: true },
-    marketStatus:   { type: String, required: true },
+    marketStatus:   { type: Boolean, required: false, default: true  },
     transactions: [{
         data: {
             from:   { type: String, require: true },

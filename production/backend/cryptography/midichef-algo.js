@@ -1,19 +1,18 @@
 import algosdk from 'algosdk';
 import dotenv from "dotenv";
+import mongoose from "mongoose";
 
 dotenv.config();
 
 // purestake info, store in dotenv
-const ps_testnet = PS_TESTNET;
-const port = PORT;
+const ps_testnet = "https://testnet-algorand.api.purestake.io/ps2";
+const port = process.env.PORT;
 const token = {
-    'X-API-Key': XAPITOKEN
+    'X-API-Key': process.env.APITOKEN
 };
-
 // account mnemonic, store in dotenv
-const midichef_addr = MIDICHEF_ADDR;
-const mnemonic = MNEMONIC;
-
+const midichef_addr = process.env.MIDICHEF_ADDR;
+const mnemonic = process.env.MNEMONIC;
 /* Creates an Algorand Standard Asset(ASA) in testnet
  * params: 
  *   assetName: Asset name
