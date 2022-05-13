@@ -11,6 +11,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../img/logo.jpg";
 import { MyAlgoLogin } from "./MyAlgo";
+import axios from "axios";
+
 
 //style of navbar menu "explore", "create", "sign in"
 const useStyles = makeStyles({
@@ -42,6 +44,20 @@ const NarBar = () => {
   const handleFailure = (result) => {
     alert(result);
   };
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      console.log("handleKeyPress", event.target.value)
+      axios
+        .post(`http://localhost:8000/api/auth`, {
+          searchKey: event.target.value,
+        })
+        .then((res) => {
+          console.log("kkkkkkkkk:", res.searchKey)
+        })
+    }
+  }
+
 
   //mui button setup
   const [anchorEl, setAnchorEl] = useState(null);
@@ -139,6 +155,7 @@ const NarBar = () => {
             <StyledInputBase
               placeholder="Tracks, artists..."
               inputProps={{ "aria-label": "search" }}
+              onKeyPress={handleKeyPress}
             />
           </Search>
 
