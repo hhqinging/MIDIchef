@@ -5,7 +5,6 @@ import dotenv from "dotenv";
 import song from "./routers/songs_op.js";
 import user from "./routers/user_op.js";
 import upload from "./routers/upload.js";
-import transferNFT from "./routers/algorand_op.js"
 import http from 'http';
 import jwt from "jsonwebtoken";
 
@@ -39,30 +38,8 @@ const port = 8000;
 app.use("/api/tracks", song);
 app.use("/api/user", user);
 app.use("/api", upload);
-app.use("/api/nft", transferNFT);
 
 
-
-app.post("/api/auth", (req, res) => {
-  // if (user.length) {
-  // create a token using user name and password vaild for 2 hours
-  let token_payload = {
-    accounts: req.body.accounts,
-    addresses: req.body.addresses,
-  };
-  let token = jwt.sign(token_payload, "jwt_secret_password", {
-    expiresIn: "2h",
-  });
-  let response = {
-    message: "Token Created, Authentication Successful!",
-    token: token,
-  };
-  // return the information including token as JSON
-  return res.status(200).json(response);
-  // } else {
-  //   return res.status("409").json("Authentication failed. admin not found.");
-  // }
-});
 
 const corsOptions = {
   origin: "*",

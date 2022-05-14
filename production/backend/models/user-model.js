@@ -26,28 +26,6 @@ const User = new mongoose.Schema(
       userAlgoAddress: { type: String },
       description:     { type: String },
       walletAddr:      { type: String },
-      isFollowing:     { type: Boolean, default: false },
-      isUnFollowing:   { type: Boolean, default: false },
-      viewedBy:        { 
-          type: [{
-            type: ObjectId,
-            ref: "User",
-          }]
-      },
-  
-      followers: {
-        type: [{
-            type: ObjectId,
-            ref: "User",
-          }]
-      },
-  
-      following: {
-        type: [{
-            type: ObjectId,
-            ref: "User",
-          }]
-      },
     },
   
     {timestamps: true}

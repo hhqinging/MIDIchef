@@ -110,21 +110,23 @@ const CreateScreen = () => {
     });
   }
   let onSubmit = (e) => {
-    let addresses = localStorage.getItem('addresses');
-    if(!addresses) {
+    let creator = localStorage.getItem('myalgo-wallet-addresses');
+    if(!creator) {
       alert("Login first to create NFT");
       return;
     }
-    let creator = addresses[0];
+
     e.preventDefault()
     const formData = new FormData()
+    console.log(creator)
+    formData.append('walletAddr', creator)
     formData.append('music', nft.music)
     formData.append('title', nft.title)
     formData.append('description', nft.description)
     formData.append('price', nft.price)
     formData.append('royalty', nft.royalty)
     formData.append('imageCover', imageCover[0])
-    axios.post("http://47.252.29.19:8000/api/upload", formData, {
+    axios.post("http://localhost:8000/api/upload", formData, {
     }).then(res => {
       console.log(res.status)
       if (res.status == 200) {

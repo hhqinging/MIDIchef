@@ -30,7 +30,7 @@ export class MyAlgoLogin extends React.Component {
       localStorage.setItem("myalgo-wallet-addresses", addresses);
       // console.log(this.state.accounts);
       axios
-        .post(`http://localhost:8000/api/auth`, {
+        .post(`http://localhost:8000/api/user/auth`, {
           accounts: accounts,
           addresses: addresses,
         })

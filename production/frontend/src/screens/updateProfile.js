@@ -31,6 +31,12 @@ const UpdateProfile = () => {
   let onSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
+    let creator = localStorage.getItem('myalgo-wallet-addresses');
+    if(!creator) {
+      alert("Login first to change profile");
+      return;
+    }
+    formData.append('walletAddr', creator)
     formData.append('userName', nft.userName);
     formData.append('description', nft.description);
     formData.append('imageCover', imageCover[0]);

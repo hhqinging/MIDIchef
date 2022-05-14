@@ -27,6 +27,7 @@ router.post("/upload", async (req, res) => {
         if (!req.files.music || !req.files.imageCover || req.body.title == '' || req.body.price == 0 || req.body.royalty == 0) {
             res.status(500).send("No complete info!");
         } else {
+            console.log(req.body.walletAddr)
             let music = req.files.music;
             let imageCover = req.files.imageCover;
             let ext_img=req.files.imageCover.name.split('.')[1];

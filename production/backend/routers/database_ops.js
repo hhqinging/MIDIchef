@@ -51,10 +51,10 @@ export async function Update_song(song) {
 export async function Create_new_user(user) {
     console.log(user)
     const A = new users({
-        username: user.username,
+        userName: user.username,
         description: user.description,
-        pfp: user.pfp,
-        walletAddr: user.walletAddr,
+        profilePhoto: user.pfp,
+        walletAddr: user.addresses[0],
 
     });
     A.save()
@@ -67,7 +67,7 @@ export async function Update_user(user) {
         description: user.description,
         profilePhoto: user.profilePhoto,
     };
-    users.findOneAndUpdate(filter, update, {
+     users.findOneAndUpdate(filter, update, {
         returnOriginal: false
     }, function (err, doc) {
         console.log(err)

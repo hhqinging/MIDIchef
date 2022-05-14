@@ -42,8 +42,7 @@ router.get('/get_user',function(req,res){
 })
 
 router.post('/auth',function(req,res){
-    let addresses = req.body.addresses;
-    let walletAddr = addresses[0];
+    let walletAddr = req.body.addresses[0];
     Users.findOne().where("walletAddr").equals(walletAddr).then(result=>{
         if(result==undefined){
             Create_new_user(req.body)
@@ -88,7 +87,7 @@ router.post('/setting',function(req,res){
             let ext_img=req.files.imageCover.name.split('.')[1];
             imageUser.mv("./uploads/imageUser/" + imageUser.md5 +"." +ext_img);
             let data={
-                walletAddr : "7781s55s41s5s3311s1",
+                walletAddr : req.body.walletAddr,
                 username : req.body.userName,
                 description: req.body.description,
                 profilePhoto: "http://47.252.29.19:8000/api/tracks/upser_file?photo="+ imageUser.md5 + "."+ ext_img,
