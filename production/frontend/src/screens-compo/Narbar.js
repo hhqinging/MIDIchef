@@ -39,7 +39,7 @@ const theme = createTheme({
   },
 });
 
-const NarBar = (props) => {
+const NarBar = () => {
   //use the style for menu bar
 
   const user = null;
