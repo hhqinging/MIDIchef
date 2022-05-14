@@ -28,6 +28,24 @@ router.get('/songlist', function (req, res) {
         )}
 })
 })
+router.get('/trending', function (req, res) {
+    for (var key in req.query) {
+        data = req.query[key];
+    }
+    Track.find().sort({ numFavorite: -1 })
+    .limit(10).then(test=>{
+        if(test.length==0){
+            res.status(200).json({
+                Info: "result not founded"
+            })
+        }
+        else{
+        console.log(test)
+        res.status(200).json(    
+            test
+        )}
+})
+})
 router.get('/single_song', function (req, res) {
     var data
     for (var key in req.query) {

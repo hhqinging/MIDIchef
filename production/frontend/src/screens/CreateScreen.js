@@ -132,7 +132,7 @@ const CreateScreen = () => {
       if (res.status == 200) {
         alert("create success!")
         createNFT(creator, res.assetID);
-        axios.post("http://47.252.29.19:8000/api/nft/transferNFT");
+        axios.post("http://localhost:8000/api/nft/transferNFT");
       } else {
         alert("create failed!")
       }
