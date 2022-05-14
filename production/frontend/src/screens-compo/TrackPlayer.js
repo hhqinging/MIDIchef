@@ -40,7 +40,7 @@ function TrackPlayer(props) {
           </Link>
         </CardContent>
         <Link to={`/track/${track.assetID}`}>
-          <img width="100%" src={track.img_src} alt={track.title} />
+          <img width={350}  height={350}  src={track.img_src} alt={track.title} />
         </Link>
 
         <CardContent>
