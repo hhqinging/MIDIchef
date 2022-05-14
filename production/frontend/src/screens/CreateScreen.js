@@ -118,7 +118,7 @@ const CreateScreen = () => {
     formData.append('price', nft.price)
     formData.append('royalty', nft.royalty)
     formData.append('imageCover', imageCover[0])
-    axios.post("http://localhost:8000/api/upload", formData, {
+    axios.post("http://47.252.29.19:8000/api/upload", formData, {
     }).then(res => {
       console.log(res.status)
       if (res.status == 200) {
