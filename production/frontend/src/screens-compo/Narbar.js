@@ -123,11 +123,61 @@ const NarBar = () => {
   };
 
   const userSignIn = () => {
+    let navbar = <div><Button
+    color="blue"
+    style={{ fontSize: "18px", fontWeight: "bold" }}
+    onClick={handleClick}
+    aria-describedby="explorePopover"
+  >
+    Explore
+  </Button>
+  <Link to="/create">
+    <Button
+      color="blue"
+      style={{ fontSize: "18px", fontWeight: "bold" }}
+    >
+      Create
+    </Button>
+  </Link></div>;
     // user not logged in
     if (!localStorage.getItem('myalgo-wallet-addresses')){
-      return <MyAlgoLogin navigate={navigate}/>
+      return <div>
+        <Button
+          color="blue"
+          style={{ fontSize: "18px", fontWeight: "bold" }}
+          onClick={handleClick}
+          aria-describedby="explorePopover"
+        >
+          Explore
+        </Button>
+        <Link to="/create">
+          <Button
+            color="blue"
+            style={{ fontSize: "18px", fontWeight: "bold" }}
+          >
+            Create
+          </Button>
+        </Link>
+        <MyAlgoLogin navigate={navigate}/>
+        </div>
     } else {
       return <div>
+        <Button
+          color="blue"
+          style={{ fontSize: "18px", fontWeight: "bold" }}
+          onClick={handleClick}
+          aria-describedby="explorePopover"
+        >
+          Explore
+        </Button>
+        <Link to="/create">
+          <Button
+            color="blue"
+            style={{ fontSize: "18px", fontWeight: "bold" }}
+          >
+            Create
+          </Button>
+        </Link>
         <Link to="/user/">
         <Button
           color="blue"
@@ -231,32 +281,7 @@ const NarBar = () => {
           ) : (
             <ThemeProvider theme={theme}>
               <section className={classes.rightToolbar}>
-                <Button
-                  color="blue"
-                  style={{ fontSize: "18px", fontWeight: "bold" }}
-                  onClick={handleClick}
-                  aria-describedby="explorePopover"
-                >
-                  Explore
-                </Button>
-                <Link to="/create">
-                  <Button
-                    color="blue"
-                    style={{ fontSize: "18px", fontWeight: "bold" }}
-                  >
-                    Create
-                  </Button>
-                </Link>
-                {/* <Button
-                  color="blue"
-                  className="login-buttons"
-                  id="myalgo-login-buttons"
-                  onClick={signout}
-                  style={{ fontSize: "18px", fontWeight: "bold" }}
-                >
-                  Sign out
-                </Button> */}
-                {userSignIn()};
+                {userSignIn()}
               </section>
             </ThemeProvider>
           )}
