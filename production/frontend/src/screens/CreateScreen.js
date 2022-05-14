@@ -9,6 +9,8 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useDropzone } from "react-dropzone"
 import Alert from '@mui/material/Alert';
+import MyAlgoConnect from "@randlabs/myalgo-connect";
+import algosdk from "algosdk";
 
 const Container = styled.div`
   flex: 1;
@@ -108,9 +110,13 @@ const CreateScreen = () => {
     });
   }
   let onSubmit = (e) => {
+    let addresses = localStorage.getItem('addresses');
+    if(!addresses) {
+      alert("Login first to create NFT");
+      return;
+    }
+    let creator = addresses[0];
     e.preventDefault()
-    // console.log("nft:", nft)
-    // console.log("cover:", imageCover)
     const formData = new FormData()
     formData.append('music', nft.music)
     formData.append('title', nft.title)
@@ -123,18 +129,16 @@ const CreateScreen = () => {
       console.log(res.status)
       if (res.status == 200) {
         alert("create success!")
-        console.log(res)
-        console.log(res.data.assetID)
-        alert(res.data.assetID)
+        createNFT(creator, res.assetID);
+        axios.post("http://47.252.29.19:8000/api/nft/transferNFT");
       } else {
-        console.log(res.status)
-        alert("can not success to create!")
+        alert("create failed!")
       }
 
     })
       .catch(err => {
         console.log(err)
-        alert("can not success to create!")
+        alert("create failed!")
       })
   }
 
@@ -158,6 +162,30 @@ const CreateScreen = () => {
       </div>
     </div>
   ))
+
+  const createNFT = (creator, assetID) => {
+    let transferAsset = async (sender, recipient, assetID, amount, note=undefined) => {
+      const myAlgoWallet = new MyAlgoConnect();
+      const algodClient = new algosdk.Algodv2("", "https://node.testnet.algoexplorerapi.io", "");
+      const params = await algodClient.getTransactionParams().do();
+
+      const txn = algosdk.makeAssetTransferTxnWithSuggestedParamsFromObject({
+        from: sender,
+        to: recipient,
+        assetIndex: assetID,
+        amount: amount,
+        note: note,
+        suggestedParams: params
+      })
+      const signedTxn = await myAlgoWallet.signTransaction(
+        txn.toByte()
+      );
+      const response = await algodClient
+      .sendRawTransaction(signedTxn.blob)
+      .do();
+    }
+    transferAsset(creator, creator, assetID, 0); // Opt in to asset transfer
+  }
 
   return (
     <div className="create">
