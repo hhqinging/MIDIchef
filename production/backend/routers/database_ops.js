@@ -63,9 +63,9 @@ export async function Update_user(user) {
     console.log(user)
     const filter = { walletAddr: user.walletAddr };
     const update = {
-        username: user.username,
+        userName: user.username,
         description: user.description,
-        pfp: user.pfp,
+        profilePhoto: user.profilePhoto,
     };
     users.findOneAndUpdate(filter, update, {
         returnOriginal: false
