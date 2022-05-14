@@ -45,7 +45,7 @@ export class MyAlgoLogin extends React.Component {
         })
         .catch((err) => Promise.reject("Authentication Failed!"));
       // console.log(this.state);
-      this.props.history.push("/");
+      this.props.navigate("/");
     } catch (err) {
       console.log(err);
     }

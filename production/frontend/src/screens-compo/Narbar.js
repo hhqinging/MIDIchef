@@ -8,7 +8,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { makeStyles, Popover } from "@material-ui/core";
 import { Button, InputBase, AppBar, Toolbar, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../img/logo.jpg";
 import { MyAlgoLogin } from "./MyAlgo";
 import axios from "axios";
@@ -67,7 +67,7 @@ const NarBar = () => {
 
   //mui button setup
   const [anchorEl, setAnchorEl] = useState(null);
-  const [history, setHistory] = useState(useHistory());
+  const navigate = useNavigate();
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -119,13 +119,13 @@ const NarBar = () => {
   const signout = () => {
     localStorage.removeItem("x-access-token");
     localStorage.removeItem('myalgo-wallet-addresses');
-    history.push("/");
+    navigate("/");
   };
 
   const userSignIn = () => {
     // user not logged in
     if (!localStorage.getItem('myalgo-wallet-addresses')){
-      return <MyAlgoLogin history={history}/>
+      return <MyAlgoLogin navigate={navigate}/>
     } else {
       return <Button
         color="blue"
