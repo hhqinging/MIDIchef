@@ -42,7 +42,9 @@ router.get('/get_user',function(req,res){
 })
 
 router.post('/auth',function(req,res){
-    Users.findOne().where("walletAddr").equals(req.body.walletAddr).then(result=>{
+    let addresses = req.body.addresses;
+    let walletAddr = addresses[0];
+    Users.findOne().where("walletAddr").equals(walletAddr).then(result=>{
         if(result==undefined){
             Create_new_user(req.body)
             let token_payload = {
