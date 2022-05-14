@@ -76,22 +76,26 @@ router.post('/update_user',function(req,res){
 })
 
 router.post('/setting',function(req,res){
+    
     try {
         if (!req.files.imageCover || req.body.userName == '' || req.body.description == 0) {
+            
             res.status(500).send("No complete info!");
         } else {
             let imageUser = req.files.imageCover;
             let ext_img=req.files.imageCover.name.split('.')[1];
-            imageCover.mv("./uploads/imageUser/" + imageUser.md5 +"." +ext_img);
+            imageUser.mv("./uploads/imageUser/" + imageUser.md5 +"." +ext_img);
             let data={
-                userName : req.body.userName,
+                walletAddr : "7781s55s41s5s3311s1",
+                username : req.body.userName,
                 description: req.body.description,
                 profilePhoto: "http://47.252.29.19:8000/api/tracks/upser_file?photo="+ imageUser.md5 + "."+ ext_img,
             }
-            Create_song(data)
-            res.status(200).json({assetID: assetID})
+            Update_user(data)
+            res.status(200).json()
         }
     } catch (err) {
+        console.log(err)
         res.status(500).send(err);
     }
 })
