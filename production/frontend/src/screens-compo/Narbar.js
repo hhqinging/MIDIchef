@@ -127,7 +127,24 @@ const NarBar = () => {
     if (!localStorage.getItem('myalgo-wallet-addresses')){
       return <MyAlgoLogin navigate={navigate}/>
     } else {
-      return <Button
+      return <div>
+        <Link to="/user/">
+        <Button
+          color="blue"
+          style={{ fontSize: "18px", fontWeight: "bold" }}
+        >
+          Profile
+        </Button>
+      </Link>
+      <Link to="/user/setting">
+        <Button
+          color="blue"
+          style={{ fontSize: "18px", fontWeight: "bold" }}
+        >
+          Setting
+        </Button>
+      </Link>
+      <Button
         color="blue"
         className="login-buttons"
         id="myalgo-login-buttons"
@@ -136,6 +153,7 @@ const NarBar = () => {
       >
         Sign out
       </Button>
+      </div>
     }
   };
 
@@ -227,22 +245,6 @@ const NarBar = () => {
                     style={{ fontSize: "18px", fontWeight: "bold" }}
                   >
                     Create
-                  </Button>
-                </Link>
-                <Link to="/user/">
-                  <Button
-                    color="blue"
-                    style={{ fontSize: "18px", fontWeight: "bold" }}
-                  >
-                    Profile
-                  </Button>
-                </Link>
-                <Link to="/user/setting">
-                  <Button
-                    color="blue"
-                    style={{ fontSize: "18px", fontWeight: "bold" }}
-                  >
-                    Setting
                   </Button>
                 </Link>
                 {/* <Button
