@@ -27,7 +27,7 @@ export class MyAlgoLogin extends React.Component {
       const accounts = await myalgo.connect();
       const addresses = accounts.map((account) => account.address);
       // this.props.setuserAddr(addresses);
-      localStorage.setItem("myalgo-wallet-addresses", addresses);
+      localStorage.setItem("myalgo-wallet-addresses", addresses[0]);
       // console.log(this.state.accounts);
       axios
         .post(`http://localhost:8000/api/user/auth`, {

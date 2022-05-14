@@ -49,7 +49,7 @@ router.post('/auth',function(req,res){
             let token_payload = {
                 wallet: req.body.WalletA
                 };
-            let token=JWT(token_payload)    
+            let token=JWT(token_payload)
             res.status(200).json({
                 Info: "user not founded, create new user",
                 jwt: token,
