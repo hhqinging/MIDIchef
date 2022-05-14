@@ -12,11 +12,10 @@ import { isLogin } from "./screens-compo/MyAlgo";
 import { Navigate } from "react-router-dom";
 
 export default function App(){
-  const [userAddr, setuserAddr] = useState([]);
   return (
     <BrowserRouter>
       <div>
-        <NarBar userAddr={userAddr} setuserAddr={setuserAddr} />
+        <NarBar />
         <main>
           <Routes>
             <Route path="/create" element={<CreateScreen />} />

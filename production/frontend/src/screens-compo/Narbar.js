@@ -39,7 +39,7 @@ const theme = createTheme({
   },
 });
 
-const NarBar = (props) => {
+const NarBar = () => {
   //use the style for menu bar
 
   const user = null;
@@ -117,14 +117,17 @@ const NarBar = (props) => {
 
   const signout = () => {
     localStorage.removeItem("x-access-token");
+    localStorage.removeItem('myalgo-wallet-addresses');
   };
 
   const userSignIn = () => {
     // user not logged in
-    if (props.userAddr.length === 0){
-      return <MyAlgoLogin setuserAddr={props.setuserAddr}/>
+    if (!localStorage.getItem('myalgo-wallet-addresses')){
+	    alert("user not logged in");
+      return <MyAlgoLogin />
     } else {
-      <Button
+	alert("user logged in");
+      return <Button
         color="blue"
         className="login-buttons"
         id="myalgo-login-buttons"
