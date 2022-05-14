@@ -76,7 +76,7 @@ const UpdateProfile = () => {
 
   return (
     <div className="update-container">
-      <h1 style={{ color: "white" }}>Update User Profile</h1>
+      <h1>Update User Profile</h1>
       <form onSubmit={onSubmit}>
         <label>Username</label>
         <input

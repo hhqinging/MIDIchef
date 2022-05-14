@@ -5,55 +5,55 @@
   }
 
 .update-container h1 {
-font-size: xx-large;
-max-width: 500px;
-margin: 20 0 20 0;
-padding-bottom: 2rem;
-text-align: center;
+    font-size: xx-large;
+    max-width: 500px;
+    margin: 20 0 20 0;
+    padding-bottom: 2rem;
+    text-align: center;
+    color: white;
 }
 
 .update-container label {
-font-size: x-large;
-color: white;
-font-weight: bold;
-text-align: left;
-display: block;
+    font-size: x-large;
+    color: white;
+    font-weight: bold;
+    text-align: left;
+    display: block;
 }
 
-.update-container input,
+.update-container input, 
 .update-container textarea {
-font-weight: bold;
-background-color: #dedede;
-min-height: 40px;
-width: 100%;
-font-size: medium;
-padding: 3px 10px;
-margin: 10px 0px;
-border: 1px soild #dedede;
-border-radius: 4px;
-box-sizing: border-box;
-display: block;
+    font-weight: bold;
+    background-color: #dedede;
+    min-height: 40px;
+    width: 100%;
+    font-size: medium;
+    padding: 3px 10px;
+    margin: 10px 0px;
+    border: 1px soild #dedede;
+    border-radius: 4px;
+    box-sizing: border-box;
+    display: block;
 }
 
 .update-container input[type="file"] {
-font-weight: bold;
-color: #656565;
-width: 100%;
-padding: 12px 20px;
-/* box-sizing: content-box; */
-box-sizing: border-box;
+    font-weight: bold;
+    color: #656565;
+    width: 100%;
+    padding: 12px 20px;
+    box-sizing: border-box;
 }
 
 .update-container button {
-font-size: larger;
-font-weight: bold;
-background: #59dfdd;
-color: black;
-border: 0;
-padding: 10px;
-border-radius: 8px;
-margin: 20px 30px 20px 30px;
-cursor: pointer;
+    font-size: larger;
+    font-weight: bold;
+    background: #59dfdd;
+    color: black;
+    border: 0;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 20px 30px 20px 30px;
+    cursor: pointer;
 }
 
 .update-container p {
@@ -64,5 +64,4 @@ cursor: pointer;
     border: 1px solid white;
     border-radius: 5px;
     margin-top: 10px;
-    /* border-color: white; */
 }
