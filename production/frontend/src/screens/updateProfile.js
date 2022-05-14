@@ -34,7 +34,7 @@ const UpdateProfile = () => {
     formData.append('userName', nft.userName);
     formData.append('description', nft.description);
     formData.append('imageCover', imageCover[0]);
-    axios.post("http://47.252.29.19:8000/api/user/setting", formData, {
+    axios.post("http://localhost:8000/api/user/setting", formData, {
     }).then(res => {
       console.log(res.status)
       if (res.status == 200) {

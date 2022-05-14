@@ -1,13 +1,24 @@
 //import field
+import cors from "cors";
 import express from 'express'
 import mongoose from 'mongoose';
 import Users from "../models/user-model.js";
 import {Create_new_user,Update_user} from './database_ops.js'
 import {JWT} from '../auth/library.js';
-//const and var
-var router=express.Router()
-const { Schema } = mongoose;
+import morgan from "morgan";
+import fileUpload from "express-fileupload";
 
+var router=express.Router()
+router.use(
+    fileUpload({
+        createParentPath: true,
+    })
+);
+router.use(morgan("dev"));
+//const and var
+
+const { Schema } = mongoose;
+router.use(cors());
 //mongoose connection
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
@@ -62,6 +73,27 @@ router.post('/update_user',function(req,res){
     res.send({
         note:"update success!"
     })
+})
+
+router.post('/setting',function(req,res){
+    try {
+        if (!req.files.imageCover || req.body.userName == '' || req.body.description == 0) {
+            res.status(500).send("No complete info!");
+        } else {
+            let imageUser = req.files.imageCover;
+            let ext_img=req.files.imageCover.name.split('.')[1];
+            imageCover.mv("./uploads/imageUser/" + imageUser.md5 +"." +ext_img);
+            let data={
+                userName : req.body.userName,
+                description: req.body.description,
+                profilePhoto: "http://47.252.29.19:8000/api/tracks/upser_file?photo="+ imageUser.md5 + "."+ ext_img,
+            }
+            Create_song(data)
+            res.status(200).json({assetID: assetID})
+        }
+    } catch (err) {
+        res.status(500).send(err);
+    }
 })
 
 export default router;
