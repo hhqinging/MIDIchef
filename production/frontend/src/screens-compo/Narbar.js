@@ -117,12 +117,13 @@ const NarBar = (props) => {
 
   const signout = () => {
     localStorage.removeItem("x-access-token");
+    localStorage.removeItem('myalgo-wallet-addresses');
   };
 
   const userSignIn = () => {
     // user not logged in
-    if (props.userAddr.length === 0){
-      return <MyAlgoLogin setuserAddr={props.setuserAddr}/>
+    if (!localStorage.getItem('myalgo-wallet-addresses')){
+      return <MyAlgoLogin />
     } else {
       <Button
         color="blue"
