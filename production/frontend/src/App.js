@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import NarBar from "./screens-compo/Narbar";
 import CreateScreen from "./screens/CreateScreen";
@@ -10,11 +11,12 @@ import "./App.css";
 import { isLogin } from "./screens-compo/MyAlgo";
 import { Navigate } from "react-router-dom";
 
-export default function App() {
+export default function App(){
+  const [userAddr, setuserAddr] = useState([]);
   return (
     <BrowserRouter>
       <div>
-        <NarBar />
+        <NarBar userAddr={userAddr} setuserAddr={setuserAddr} />
         <main>
           <Routes>
             <Route path="/create" element={<CreateScreen />} />

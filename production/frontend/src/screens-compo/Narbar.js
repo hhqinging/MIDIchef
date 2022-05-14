@@ -39,7 +39,7 @@ const theme = createTheme({
   },
 });
 
-const NarBar = () => {
+const NarBar = (props) => {
   //use the style for menu bar
 
   const user = null;
@@ -117,6 +117,23 @@ const NarBar = () => {
 
   const signout = () => {
     localStorage.removeItem("x-access-token");
+  };
+
+  const userSignIn = () => {
+    // user not logged in
+    if (props.userAddr.length === 0){
+      return <MyAlgoLogin setuserAddr={props.setuserAddr}/>
+    } else {
+      <Button
+        color="blue"
+        className="login-buttons"
+        id="myalgo-login-buttons"
+        onClick={signout}
+        style={{ fontSize: "18px", fontWeight: "bold" }}
+      >
+        Sign out
+      </Button>
+    }
   };
 
   // const storeDate = useSelector((store) => store);
@@ -225,8 +242,7 @@ const NarBar = () => {
                     Setting
                   </Button>
                 </Link>
-
-                <Button
+                {/* <Button
                   color="blue"
                   className="login-buttons"
                   id="myalgo-login-buttons"
@@ -234,7 +250,8 @@ const NarBar = () => {
                   style={{ fontSize: "18px", fontWeight: "bold" }}
                 >
                   Sign out
-                </Button>
+                </Button> */}
+                {userSignIn()};
               </section>
             </ThemeProvider>
           )}
