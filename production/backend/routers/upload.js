@@ -41,8 +41,8 @@ router.post("/upload", async (req, res) => {
                 description: req.body.description,
                 price: req.body.price,
                 //royalty: req.body.royalty,
-                src: "http://localhost:8000/api/tracks/song_file?song="+ music.md5 + "."+ ext_music,
-                img_src: "http://localhost:8000/api/tracks/photo_file?photo="+ imageCover.md5+"." +ext_img
+                src: "http://47.252.29.19:8000/api/tracks/song_file?song="+ music.md5 + "."+ ext_music,
+                img_src: "http://47.252.29.19:8000/api/tracks/photo_file?photo="+ imageCover.md5+"." +ext_img
             }
             Create_song(data)
             res.status(200).json({assetID: assetID})
