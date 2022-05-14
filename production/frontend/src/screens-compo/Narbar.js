@@ -123,10 +123,8 @@ const NarBar = () => {
   const userSignIn = () => {
     // user not logged in
     if (!localStorage.getItem('myalgo-wallet-addresses')){
-	    alert("user not logged in");
       return <MyAlgoLogin />
     } else {
-	alert("user logged in");
       return <Button
         color="blue"
         className="login-buttons"
@@ -205,9 +203,9 @@ const NarBar = () => {
                 >
                   Explore
                 </Button>
-                <Link to="/auth">
+                {/* <Link to="/auth">
                   <MyAlgoLogin />
-                </Link>
+                </Link> */}
               </section>
             </ThemeProvider>
           ) : (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Redirect } from "react";
 import MyAlgoConnect from "@randlabs/myalgo-connect";
 import algosdk from "algosdk";
 import axios from "axios";
@@ -45,6 +45,7 @@ export class MyAlgoLogin extends React.Component {
         })
         .catch((err) => Promise.reject("Authentication Failed!"));
       // console.log(this.state);
+      <Redirect to="/"/>
     } catch (err) {
       console.log(err);
     }
