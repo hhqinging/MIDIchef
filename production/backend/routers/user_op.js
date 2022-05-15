@@ -136,6 +136,19 @@ router.post("/setting", function (req, res) {
     res.status(500).send(err);
   }
 });
+router.get('/user_file', function (req, res) {
+  let fileName = req.query.photo
+  const __dirname = path.resolve();
+  let options = { root: path.join(__dirname, './uploads/imageUser') }
+  res.sendFile(fileName, options, function (err) {
+      if (err) {
+          console.log("err");
+          console.log(err);
+      } else {
+          console.log('Sent:', fileName);
+      }
+  });
+})
 
 router.get('/user_file', function (req, res) {
   let fileName = req.query.photo

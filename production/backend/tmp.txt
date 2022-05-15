@@ -1,0 +1,268 @@
+
+> backend@1.0.0 start
+> nodemon server.js "start"
+
+[33m[nodemon] 2.0.15[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: js,mjs,json[39m
+[32m[nodemon] starting `node server.js start`[39m
+connected to db
+3GGJQXKDRMNHET4SDNQSMDHOPSS4M3VF3DQCMRMYVWGGUBWMOZFIPUGXPM
+undefined
+ReferenceError: assetID is not defined
+    at file:///root/MIDIchef/production/backend/routers/upload.js:49:44
+    at Layer.handle [as handle_request] (/root/MIDIchef/production/backend/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/MIDIchef/production/backend/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/root/MIDIchef/production/backend/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/root/MIDIchef/production/backend/node_modules/express/lib/router/layer.js:95:5)
+    at /root/MIDIchef/production/backend/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/root/MIDIchef/production/backend/node_modules/express/lib/router/index.js:346:12)
+    at next (/root/MIDIchef/production/backend/node_modules/express/lib/router/index.js:280:10)
+    at logger (/root/MIDIchef/production/backend/node_modules/morgan/index.js:144:5)
+    at Layer.handle [as handle_request] (/root/MIDIchef/production/backend/node_modules/express/lib/router/layer.js:95:5)
+[0mPOST /api/upload [31m500[0m 13.121 ms - 2[0m
+[0;36mMongoose:[0m tracks.insertOne({ assetID: [33m12458[39m, title: [32m'help'[39m, description: [32m'me'[39m, numFavorite: [33m0[39m, price: [33m1[39m, img_src: [32m'http://47.252.29.19:8000/api/tracks/photo_file?photo=ef7822cd0d3aa5a72fe4925e610c6548.png'[39m, src: [32m'http://47.252.29.19:8000/api/tracks/song_file?song=d31f944ea2db1ed5cb8d31c5959b74fe.mp3'[39m, marketStatus: [33mtrue[39m, _id: new ObjectId("62805682fc44ee59c1abe59c"), transactions: [], createdAt: new Date("Sun, 15 May 2022 01:25:22 GMT"), updatedAt: new Date("Sun, 15 May 2022 01:25:22 GMT"), __v: [33m0[39m}, { session: [1mnull[22m })
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js start`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js start`[39m
+connected to db
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js start`[39m
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js start`[39m
+connected to db
+[0;36mMongoose:[0m tracks.find({}, { limit: [33m10[39m, projection: {} })
+[
+  {
+    _id: new ObjectId("626afcec981fce4383992bdf"),
+    assetID: 669464415,
+    title: 'Artem Uzunov - Melody Of Heartbeat',
+    owner: 'Artem Uzunov-owner',
+    creator: 'Artem Uzunov-creator',
+    description: 'Artem Uzunov - Melody Of Heartbeat',
+    numFavorite: 323,
+    price: 1,
+    duration: '00:35',
+    img_src: 'https://images.unsplash.com/photo-1650647249131-95ead03578d3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=900&q=60',
+    src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    numPlay: '3244',
+    numDay: '14',
+    __v: 0,
+    createdAt: 2022-04-28T20:45:32.286Z,
+    updatedAt: 2022-04-28T20:45:32.286Z,
+    transactions: []
+  },
+  {
+    _id: new ObjectId("626afcec981fce4383992be0"),
+    assetID: 596441436,
+    title: 'Artem Uzunov - Melody Of Heartbeat',
+    owner: 'Artem Uzunov-owner',
+    creator: 'Artem Uzunov-creator',
+    description: 'Artem Uzunov - Melody Of Heartbeat',
+    numFavorite: 323,
+    price: 1,
+    duration: '00:35',
+    img_src: 'https://images.unsplash.com/photo-1650665930305-862a32f90aec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1738&q=80',
+    src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    numPlay: '3244',
+    numDay: '14',
+    __v: 0,
+    createdAt: 2022-04-28T20:45:32.286Z,
+    updatedAt: 2022-04-28T20:45:32.286Z,
+    transactions: []
+  },
+  {
+    _id: new ObjectId("626afcec981fce4383992be1"),
+    assetID: 308806315,
+    title: 'Artem Uzunov - Melody Of Heartbeat3',
+    owner: 'Artem Uzunov-owner',
+    creator: 'Artem Uzunov-creator',
+    description: 'Artem Uzunov - Melody Of Heartbeat',
+    numFavorite: 323,
+    price: 1,
+    duration: '00:35',
+    img_src: 'https://images.unsplash.com/photo-1650665930305-862a32f90aec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1738&q=80',
+    src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    numPlay: '3244',
+    numDay: '14',
+    __v: 0,
+    createdAt: 2022-04-28T20:45:32.286Z,
+    updatedAt: 2022-04-28T20:45:32.286Z,
+    transactions: []
+  },
+  {
+    _id: new ObjectId("626afcec981fce4383992be2"),
+    assetID: 503132894,
+    title: 'Artem Uzunov - Melody Of Heartbeat4',
+    owner: 'Artem Uzunov-owner',
+    creator: 'Artem Uzunov-creator',
+    description: 'Artem Uzunov - Melody Of Heartbeat',
+    numFavorite: 323,
+    price: 1,
+    duration: '00:35',
+    img_src: 'https://images.unsplash.com/photo-1650665930305-862a32f90aec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1738&q=80',
+    src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    numPlay: '3244',
+    numDay: '14',
+    __v: 0,
+    createdAt: 2022-04-28T20:45:32.286Z,
+    updatedAt: 2022-04-28T20:45:32.286Z,
+    transactions: []
+  },
+  {
+    _id: new ObjectId("626afcec981fce4383992be3"),
+    assetID: 554113966,
+    title: 'Artem Uzunov - Melody Of Heartbeat5',
+    owner: 'Artem Uzunov-owner',
+    creator: 'Artem Uzunov-creator',
+    description: 'Artem Uzunov - Melody Of Heartbeat',
+    numFavorite: 323,
+    price: 1,
+    duration: '00:35',
+    img_src: 'https://images.unsplash.com/photo-1650665930305-862a32f90aec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1738&q=80',
+    src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    numPlay: '3244',
+    numDay: '14',
+    __v: 0,
+    createdAt: 2022-04-28T20:45:32.286Z,
+    updatedAt: 2022-04-28T20:45:32.286Z,
+    transactions: []
+  },
+  {
+    _id: new ObjectId("627ac8fbd8a14d4f5b4a8f55"),
+    assetID: 669464415,
+    title: 'Artem Uzunov - Melody Of Heartbeat',
+    owner: 'Artem Uzunov-owner',
+    creator: 'Artem Uzunov-creator',
+    description: 'Artem Uzunov - Melody Of Heartbeat',
+    numFavorite: 323,
+    price: 2,
+    duration: '00:35',
+    img_src: 'https://images.unsplash.com/photo-1650647249131-95ead03578d3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=900&q=60',
+    src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    numPlay: 3244,
+    numDay: 14,
+    transactions: [],
+    createdAt: 2022-05-10T20:20:11.237Z,
+    updatedAt: 2022-05-11T18:40:57.919Z,
+    __v: 0
+  },
+  {
+    _id: new ObjectId("627ff4af635284335fff212e"),
+    assetID: 89308426,
+    title: 'stand by me',
+    description: 'This is a test song from youtube ',
+    numFavorite: 0,
+    price: 1,
+    img_src: 'http://47.252.29.19:8000/api/tracks/photo_file?photo=de38455f1295c9daf8b9b31372860e56.jpg',
+    src: 'http://47.252.29.19:8000/api/tracks/song_file?song=d31f944ea2db1ed5cb8d31c5959b74fe.mp3',
+    marketStatus: true,
+    transactions: [],
+    createdAt: 2022-05-14T18:27:59.856Z,
+    updatedAt: 2022-05-14T18:27:59.856Z,
+    __v: 0
+  },
+  {
+    _id: new ObjectId("62803866ffbb498c2a3f40b4"),
+    assetID: 89337251,
+    title: 'www',
+    creator: 'maihan',
+    description: 'www',
+    numFavorite: 0,
+    price: 111,
+    img_src: 'http://47.252.29.19:8000/api/tracks/photo_file?photo=5891ccf3c08a570b2d74ea0b7ae20b06.jpg',
+    src: 'http://47.252.29.19:8000/api/tracks/song_file?song=4f774d08f0c3e66594704d6be4a2d052.mp3',
+    marketStatus: true,
+    transactions: [],
+    createdAt: 2022-05-14T23:16:54.277Z,
+    updatedAt: 2022-05-14T23:16:54.277Z,
+    __v: 0
+  },
+  {
+    _id: new ObjectId("62804d0ef5f923d5dc0cfcd5"),
+    assetID: 89349024,
+    title: 'qq',
+    description: 'qq',
+    numFavorite: 0,
+    price: 10,
+    img_src: 'http://47.252.29.19:8000/api/tracks/photo_file?photo=6e4d19a1a7f5a67a79c2085803ffb45f.jpg',
+    src: 'http://47.252.29.19:8000/api/tracks/song_file?song=0c481e87f2774b1bd41a0a70d9b70d11.mp3',
+    marketStatus: true,
+    transactions: [],
+    createdAt: 2022-05-15T00:45:02.662Z,
+    updatedAt: 2022-05-15T00:45:02.662Z,
+    __v: 0
+  },
+  {
+    _id: new ObjectId("62804f2f1cb35148e1ef81df"),
+    assetID: 89349876,
+    title: 'new test',
+    creator: 'maihan',
+    description: 'hello',
+    numFavorite: 0,
+    price: 1,
+    img_src: 'http://47.252.29.19:8000/api/tracks/photo_file?photo=ea46f02a06296748f2e74ae2da195272.jpg',
+    src: 'http://47.252.29.19:8000/api/tracks/song_file?song=4f774d08f0c3e66594704d6be4a2d052.mp3',
+    marketStatus: true,
+    transactions: [],
+    createdAt: 2022-05-15T00:54:07.994Z,
+    updatedAt: 2022-05-15T00:54:07.994Z,
+    __v: 0
+  }
+]
+Sent: de38455f1295c9daf8b9b31372860e56.jpg
+Sent: 5891ccf3c08a570b2d74ea0b7ae20b06.jpg
+err
+[Error: ENOENT: no such file or directory, stat '/root/MIDIchef/production/backend/uploads/imageCover/6e4d19a1a7f5a67a79c2085803ffb45f.jpg'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: '/root/MIDIchef/production/backend/uploads/imageCover/6e4d19a1a7f5a67a79c2085803ffb45f.jpg',
+  expose: false,
+  statusCode: 404,
+  status: 404
+}
+err
+[Error: ENOENT: no such file or directory, stat '/root/MIDIchef/production/backend/uploads/imageCover/ea46f02a06296748f2e74ae2da195272.jpg'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: '/root/MIDIchef/production/backend/uploads/imageCover/ea46f02a06296748f2e74ae2da195272.jpg',
+  expose: false,
+  statusCode: 404,
+  status: 404
+}
+Sent: 4f774d08f0c3e66594704d6be4a2d052.mp3
+err
+[Error: ENOENT: no such file or directory, stat '/root/MIDIchef/production/backend/uploads/music/0c481e87f2774b1bd41a0a70d9b70d11.mp3'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: '/root/MIDIchef/production/backend/uploads/music/0c481e87f2774b1bd41a0a70d9b70d11.mp3',
+  expose: false,
+  statusCode: 404,
+  status: 404
+}
+Sent: 4f774d08f0c3e66594704d6be4a2d052.mp3
+3GGJQXKDRMNHET4SDNQSMDHOPSS4M3VF3DQCMRMYVWGGUBWMOZFIPUGXPM
+undefined
+[0mPOST /api/upload [32m200[0m 6.346 ms - 17[0m
+[0;36mMongoose:[0m tracks.insertOne({ assetID: [33m12458[39m, title: [32m'help'[39m, description: [32m'me'[39m, numFavorite: [33m0[39m, price: [33m1[39m, img_src: [32m'http://47.252.29.19:8000/api/tracks/photo_file?photo=ef7822cd0d3aa5a72fe4925e610c6548.png'[39m, src: [32m'http://47.252.29.19:8000/api/tracks/song_file?song=d31f944ea2db1ed5cb8d31c5959b74fe.mp3'[39m, marketStatus: [33mtrue[39m, _id: new ObjectId("628056e2c467e0bdd9939f4a"), transactions: [], createdAt: new Date("Sun, 15 May 2022 01:26:58 GMT"), updatedAt: new Date("Sun, 15 May 2022 01:26:58 GMT"), __v: [33m0[39m}, { session: [1mnull[22m })
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js start`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js start`[39m
+connected to db
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node server.js start`[39m
+connected to db

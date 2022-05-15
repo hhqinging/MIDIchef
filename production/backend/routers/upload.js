@@ -57,13 +57,17 @@ router.post("/upload", async (req, res) => {
             }
 
             Create_song(data)
-            res.status(200).json({ assetID: assetID })
+            res.status(200).json({assetID: assetID});
         }
     } catch (err) {
         console.log(err)
         res.status(500).send(err);
     }
 });
+
+router.post("/testupload", async (req, res) => {
+	res.status(200).json({assetID: 89450665});
+})
 
 
 router.post('/addNumFavorite', function (req, res) {

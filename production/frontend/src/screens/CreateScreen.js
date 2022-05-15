@@ -41,7 +41,7 @@ const CreateScreen = () => {
       [e.target.name]: value
     });
   }
-  let onSubmit = (e) => {
+  let onSubmit = async (e) => {
     let creator = localStorage.getItem('myalgo-wallet-addresses');
     if(!creator) {
       alert("Login first to create NFT");
@@ -58,13 +58,16 @@ const CreateScreen = () => {
     formData.append('price', nft.price)
     formData.append('royalty', nft.royalty)
     formData.append('imageCover', imageCover[0])
-    axios.post("http://47.252.29.19:8000/api/upload", formData, {
+    axios.post("http://47.252.29.19:8000/api/testupload", formData, {
     }).then(res => {
       console.log(res.status)
       if (res.status == 200) {
-        alert("create success!")
-        createNFT(creator, res.assetID);
-        axios.post("http://47.252.29.19:8000/api/nft/transferNFT");
+        // alert("create success!")
+	// console.log(res.data.assetID);
+	// let creator = "WBBVOW7LKKTMB2HL4ZLN4W7QFH2DOEYXPZWC6NYNLUJACQP6JL5ZMNS27A";
+	// let assetID = 89450665;
+        // createNFT(creator, res.data.assetID);
+        // axios.post("http://47.252.29.19:8000/api/nft/transferNFT");
       } else {
         alert("create failed! Please try again later")
       }
@@ -74,6 +77,9 @@ const CreateScreen = () => {
         console.log(err)
         alert("create failed!")
       })
+	creator = "WBBVOW7LKKTMB2HL4ZLN4W7QFH2DOEYXPZWC6NYNLUJACQP6JL5ZMNS27A";
+	let assetID = 89450665;
+	createNFT(creator, assetID);
   }
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -99,10 +105,12 @@ const CreateScreen = () => {
 
   const createNFT = (creator, assetID) => {
     let transferAsset = async (sender, recipient, assetID, amount, note=undefined) => {
+	console.log("in transferAsset function");
       const myAlgoWallet = new MyAlgoConnect();
       const algodClient = new algosdk.Algodv2("", "https://node.testnet.algoexplorerapi.io", "");
       const params = await algodClient.getTransactionParams().do();
 
+	  console.log("before transaction");
       const txn = algosdk.makeAssetTransferTxnWithSuggestedParamsFromObject({
         from: sender,
         to: recipient,
@@ -117,7 +125,10 @@ const CreateScreen = () => {
       const response = await algodClient
       .sendRawTransaction(signedTxn.blob)
       .do();
+	console.log("response:", response);
     }
+	  console.log("creator:", creator);
+	  console.log("assetID:", assetID);
     transferAsset(creator, creator, assetID, 0); // Opt in to asset transfer
   }
 

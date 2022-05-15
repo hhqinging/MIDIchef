@@ -1,7 +1,8 @@
 import algosdk from 'algosdk';
 import dotenv from "dotenv";
 
-dotenv.config({path: "../.env"});
+// dotenv.config({path: "../.env"});
+dotenv.config();
 
 // purestake info, store in dotenv
 const ps_testnet = "https://testnet-algorand.api.purestake.io/ps2";
