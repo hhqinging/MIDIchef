@@ -120,23 +120,7 @@ const NarBar = () => {
   };
 
   const userSignIn = () => {
-    let navbar = <div><Button
-    color="blue"
-    style={{ fontSize: "18px", fontWeight: "bold" }}
-    onClick={handleClick}
-    aria-describedby="explorePopover"
-  >
-    Explore
-  </Button>
-  <Link to="/create">
-    <Button
-      color="blue"
-      style={{ fontSize: "18px", fontWeight: "bold" }}
-    >
-      Create
-    </Button>
-  </Link></div>;
-    // user not logged in
+    // dynamic navbar based on user login
     if (!localStorage.getItem('myalgo-wallet-addresses')){
       return <div>
         <Button
@@ -147,14 +131,6 @@ const NarBar = () => {
         >
           Explore
         </Button>
-        <Link to="/create">
-          <Button
-            color="blue"
-            style={{ fontSize: "18px", fontWeight: "bold" }}
-          >
-            Create
-          </Button>
-        </Link>
         <MyAlgoLogin navigate={navigate}/>
         </div>
     } else {

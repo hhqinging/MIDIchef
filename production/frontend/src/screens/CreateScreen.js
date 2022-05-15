@@ -5,6 +5,7 @@ import "../screens-css/CreateScreen.css";
 import styled from "styled-components";
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { useDropzone } from "react-dropzone"
 import MyAlgoConnect from "@randlabs/myalgo-connect";
 import algosdk from "algosdk";
@@ -199,7 +200,7 @@ const CreateScreen = () => {
           // onChange={(e) => setNft({ royalty: e.target.value })} 
           onChange={handleChange}
         />
-        <button>Cancel</button>
+        <button onclick={useNavigate().navigate('/')}>Cancel</button>
         <button type="submit">Submit</button>
       </form>
     </div>
