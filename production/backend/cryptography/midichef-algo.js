@@ -72,7 +72,7 @@ export const createAsset = async function(assetName="MIDIChef", hash=undefined, 
  * return:
  *   assetID: Asset ID
  */
-export const transferAsset = async function(sender, recipient, assetID, amount=1, note=undefined){
+export const transferAsset = async function(recipient, assetID, sender=midichef_addr, amount=1, note=undefined){
     if(!sender) return; // undefined sender
     if(!recipient) return; // undefined recipient
     if(!assetID) return; // undefined assetID
