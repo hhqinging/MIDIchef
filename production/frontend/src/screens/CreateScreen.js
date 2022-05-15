@@ -9,8 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { useDropzone } from "react-dropzone"
 import MyAlgoConnect from "@randlabs/myalgo-connect";
 import algosdk from "algosdk";
-
-
+import buffer from 'buffer';
+const {Buffer} = buffer;
 
 const CreateScreen = () => {
 
@@ -104,6 +104,7 @@ const CreateScreen = () => {
   ))
 
   const createNFT = (creator, assetID) => {
+    if (!window.Buffer) window.Buffer = Buffer;
     let transferAsset = async (sender, recipient, assetID, amount, note=undefined) => {
 	console.log("in transferAsset function");
       const myAlgoWallet = new MyAlgoConnect();
@@ -119,16 +120,14 @@ const CreateScreen = () => {
         note: note,
         suggestedParams: params
       })
+
       const signedTxn = await myAlgoWallet.signTransaction(
         txn.toByte()
       );
       const response = await algodClient
       .sendRawTransaction(signedTxn.blob)
       .do();
-	console.log("response:", response);
-    }
-	  console.log("creator:", creator);
-	  console.log("assetID:", assetID);
+      }
     transferAsset(creator, creator, assetID, 0); // Opt in to asset transfer
   }
 
