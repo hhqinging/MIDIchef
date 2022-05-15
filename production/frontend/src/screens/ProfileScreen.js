@@ -71,28 +71,17 @@ function ProfileScreen() {
     <MessageBox severity="error">{error}</MessageBox>
   ) : (
     <div>
-      <div>
-        <img
-          src={userInfo.profilePhoto}
-          alt={userInfo.userName}
-          style={{
-            width: "100%",
-            height: "200px",
-            opacity: "0.4",
-          }}
-        />
-      </div>
+  
       <div>
         <div>
           <img
             src={userInfo.profilePhoto}
             alt={userInfo.userName}
-            style={{ width: "250px", height: "250px", borderRadius: "100%" }}
+            style={{ width: "250px", height: "250px", borderRadius: "100%", padding: "3%" }}
           />
         </div>
         <div>
           <h1 style={{ color: "white" }}>{userInfo.userName}</h1>
-          <h2 style={{ color: "white" }}>{userInfo.walletAddr}</h2>
           <h2 style={{ color: "white" }}>{userInfo.description}</h2>
         </div>
         <></>

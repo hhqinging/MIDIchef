@@ -36,8 +36,8 @@ const reducer = (state, action) => {
 
 function UserScreen() {
   const params = useParams();
-  const { walletAddr } = params;
-  console.log("user", walletAddr);
+  const { user } = params;
+  console.log("user", user);
 
   const [{ loading, error, userInfo }, dispatch] = useReducer(reducer, {
     userInfo: [],
@@ -50,17 +50,15 @@ function UserScreen() {
     const fetchData = async () => {
       dispatch({ type: "FETCH_REQUEST" });
       try {
-        console.log("user", walletAddr);
-        const result = await axios.get(
-          `/api/user/get_user?walletAddr=${walletAddr}`
-        );
+        console.log("user", user);
+        const result = await axios.get(`/api/user/get_user?userName=${user}`);
         dispatch({ type: "FETCH_SUCCESS", payload: result.data });
       } catch (err) {
         dispatch({ type: "FETCH_FAIL", payload: getError(err) });
       }
     };
     fetchData();
-  }, [walletAddr]);
+  }, [user]);
 
   console.log("userInfo50", userInfo);
 
@@ -76,7 +74,7 @@ function UserScreen() {
     <div>
       {/* <br></br>
       <h1 style={{ color: "white" }}>{userInfo.userName}</h1> */}
-      <div>
+      {/* <div>
         <img
           src={userInfo.profilePhoto}
           alt={userInfo.userName}
@@ -86,24 +84,28 @@ function UserScreen() {
             opacity: "0.4",
           }}
         />
-      </div>
+      </div> */}
       <div>
         <div>
           <img
             src={userInfo.profilePhoto}
             alt={userInfo.userName}
-            style={{ width: "250px", height: "250px", borderRadius: "100%" }}
+            style={{
+              width: "250px",
+              height: "250px",
+              borderRadius: "100%",
+              padding: "3%",
+            }}
           />
         </div>
         <div>
           <h2 style={{ color: "white" }}>{userInfo.userName}</h2>
-          <h3 style={{ color: "white" }}>{userInfo.walletAddr}</h3>
           <h3 style={{ color: "white" }}>{userInfo.description}</h3>
         </div>
         <></>
         <ThemeProvider theme={theme}>
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <Link to={`/user/${walletAddr}/sales`}>
+            <Link to={`/user/${user}/sales`}>
               <Button
                 color="blue"
                 style={{ fontSize: "18px", fontWeight: "bold" }}
@@ -112,7 +114,7 @@ function UserScreen() {
                 Sales
               </Button>{" "}
             </Link>
-            <Link to={`/user/${walletAddr}/creation`}>
+            <Link to={`/user/${user}/creation`}>
               {" "}
               <Button
                 color="blue"
@@ -122,7 +124,7 @@ function UserScreen() {
                 Creation
               </Button>{" "}
             </Link>
-            <Link to={`/user/${walletAddr}/owned`}>
+            <Link to={`/user/${user}/owned`}>
               {" "}
               <Button
                 color="blue"
