@@ -24,7 +24,8 @@ const CreateScreen = () => {
   };
 
   let [nft, setNft] = useState(initialValues);
-  const [imageCover, setImageCover] = useState([])
+  const [imageCover, setImageCover] = useState([]);
+  const navigate = useNavigate();
 
   let onFileChange = (e) => {
     e.preventDefault();
@@ -65,7 +66,7 @@ const CreateScreen = () => {
         createNFT(creator, res.assetID);
         axios.post("http://47.252.29.19:8000/api/nft/transferNFT");
       } else {
-        alert("create failed!")
+        alert("create failed! Please try again later")
       }
 
     })
@@ -172,7 +173,7 @@ const CreateScreen = () => {
           // onChange={(e) => setNft({ royalty: e.target.value })} 
           onChange={handleChange}
         />
-        <button onclick={useNavigate().navigate('/')}>Cancel</button>
+        <button onclick={navigate('/')}>Cancel</button>
         <button type="submit">Submit</button>
       </form>
     </div>
