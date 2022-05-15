@@ -15,7 +15,7 @@ router.get('/songlist', function (req, res) {
         data = req.query[key];
     }
     Track.find()
-    .limit(10).then(test=>{
+    .limit(99).then(test=>{
         if(test.length==0){
             res.status(200).json({
                 Info: "result not founded"
@@ -96,11 +96,9 @@ router.get('/song_file',function(req,res){
     const __dirname = path.resolve();
     let options={ root: path.join(__dirname, './uploads/music') }
     res.set('Content-Type', 'audio/mpeg');
-    res.sendFile(fileName, options, function (err) {
+	res.sendFile(fileName, options, function (err) {
         if (err) {
-            console.log("err");
-            console.log(err);
-        } else {
+         } else {
             console.log('Sent:', fileName);
         }
     });

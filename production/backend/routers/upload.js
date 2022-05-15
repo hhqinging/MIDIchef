@@ -28,7 +28,8 @@ router.post("/upload", async (req, res) => {
             res.status(500).send("No complete info!");
         } else {
             let creator;
-            console.log(req.body.walletAddr)
+		console.log("Hello");
+            console.log("Wallet Address:", req.body.walletAddr)
             Users.findOne().where('walletAddr').equals(req.body.walletAddr).then(result=>{
                 if(result.length==0){
                     res.status(500).json({Info: "user unexist"})
@@ -42,9 +43,10 @@ router.post("/upload", async (req, res) => {
             let ext_music=req.files.music.name.split('.')[1];
             music.mv("./uploads/music/" + music.md5 + "."+ ext_music);
             imageCover.mv("./uploads/imageCover/" + imageCover.md5 +"." +ext_img);
-            let assetID=await createAsset(req.body.title)
-            let data={
+            let assetID = await createAsset(req.body.title);
+	let data={
                 creator : creator,
+		owner : creator,
                 assetID : assetID,
                 title: req.body.title,
                 description: req.body.description,
@@ -55,13 +57,17 @@ router.post("/upload", async (req, res) => {
             }
             
             Create_song(data)
-            res.status(200).json({assetID: assetID})
+            res.status(200).json({assetID: assetID});
         }
     } catch (err) {
         console.log(err)
         res.status(500).send(err);
     }
 });
+
+router.post("/testupload", async (req, res) => {
+	res.status(200).json({assetID: 89450665});
+})
 
 // router.post("/upload-files", async (req, res) => {
 //     try {
