@@ -1,13 +1,11 @@
 import algosdk from 'algosdk';
 import dotenv from "dotenv";
-import mongoose from "mongoose";
 
-dotenv.config();
+dotenv.config({path: "../.env"});
 
 // purestake info, store in dotenv
 const ps_testnet = "https://testnet-algorand.api.purestake.io/ps2";
 const port = process.env.PORT;
-console.log(process.env.MIDIChef_ADDr)
 const token = {
     'X-API-Key': process.env.APITOKEN
 };
@@ -60,7 +58,7 @@ export const createAsset = async function(assetName="MIDIChef", hash=undefined, 
     // Get info from transaction
     let ptx = await algosdk.waitForConfirmation(algodClient, tx.txId, 4);
     let assetID = ptx['asset-index']
-    console.log(`Asset ${assetID} destroyed in transaction ${tx.txId}`);
+    console.log(`Asset ${assetID} created in transaction ${tx.txId}`);
     return assetID;
 }
 
