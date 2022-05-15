@@ -9,18 +9,36 @@ import AudioPlayer from "material-ui-audio-player";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import axios from 'axios';
-
+import React, { useState } from 'react';
 
 function TrackPlayer(props) {
   const { track } = props;
+  const [numFavorite, setNumFavorite] = useState(track.numFavorite);
+  const [favorite, setFavorite] = useState(false);
 
   let onSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    console.log("wwwww:", track.numFavorite);
-    let numFavorite = track.numFavorite + 1;
-    console.log("wwwwwNew:", numFavorite);
-    formData.append('numFavorite', numFavorite)
+    if (!favorite) {
+      setFavorite(true);
+      console.log(favorite);
+      console.log("ori :", numFavorite);
+      setNumFavorite(track.numFavorite + 1);
+      track.numFavorite++;
+      console.log("after:", numFavorite);
+      console.log("after track:", track.numFavorite);
+      formData.append('numFavorite', numFavorite + 1)
+    } else {
+      setFavorite(false);
+      console.log(favorite);
+      console.log("ori :", numFavorite);
+      setNumFavorite(track.numFavorite - 1);
+      track.numFavorite--;
+      console.log("after:", numFavorite);
+      console.log("after track:", track.numFavorite);
+      formData.append('numFavorite', numFavorite - 1)
+    }
+
     formData.append('assetID', track.assetID)
     // console.log(formData.getAll("numFavorite"))
     axios.post("http://localhost:8000/api/addNumFavorite", formData, {
