@@ -10,14 +10,14 @@ import MyAlgoConnect from "@randlabs/myalgo-connect";
 import algosdk from "algosdk";
 
 
-const formSchema = Yup.object({
-  title: Yup.string().required("Title is required"),
-  description: Yup.string().required("Description is required"),
-  price: Yup.number().required("Price is required"),
-  image: Yup.string().required("Track cover is required"),
-  track: Yup.string().required("Track audio is required"),
-  royalty: Yup.number().required("royalty is required"),
-});
+// const formSchema = Yup.object({
+//   title: Yup.string().required("Title is required"),
+//   description: Yup.string().required("Description is required"),
+//   price: Yup.number().required("Price is required"),
+//   image: Yup.string().required("Track cover is required"),
+//   track: Yup.string().required("Track audio is required"),
+//   royalty: Yup.number().required("royalty is required"),
+// });
 
 const CreateScreen = () => {
   // //   const params = useParams();
@@ -27,20 +27,20 @@ const CreateScreen = () => {
   // const create = useSelector(state => state?.create);
   // const { isCreated, loading, appErr, serverErr } = create;
 
-  const formik = useFormik({
-    initialValues: {
-      title: "",
-      description: "",
-      price: "",
-      image: "",
-      track: "",
-      royalty: "",
-    },
-    onSubmit: (values) => {
-      console.log(values);
-    },
-    validationSchema: formSchema,
-  });
+  // const formik = useFormik({
+  //   initialValues: {
+  //     title: "",
+  //     description: "",
+  //     price: "",
+  //     image: "",
+  //     track: "",
+  //     royalty: "",
+  //   },
+  //   onSubmit: (values) => {
+  //     console.log(values);
+  //   },
+  //   validationSchema: formSchema,
+  // });
 
   const initialValues = {
     title: '',
