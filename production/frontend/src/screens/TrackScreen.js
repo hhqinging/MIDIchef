@@ -51,6 +51,8 @@ function TrackScreen() {
   const params = useParams();
   const { assetID } = params;
 
+  console.log("assetID", assetID);
+
   const [{ loading, error, track }, dispatch] = useReducer(reducer, {
     track: [],
     loading: true,
@@ -65,7 +67,9 @@ function TrackScreen() {
       //before send the axios, use dispatch to update the state, set loading to true
       dispatch({ type: "FETCH_REQUEST" });
       try {
-        const result = await axios.get(`/api/tracks/single_song?assetID=${assetID}`);
+        const result = await axios.get(
+          `/api/tracks/single_song?assetID=${assetID}`
+        );
         dispatch({ type: "FETCH_SUCCESS", payload: result.data });
       } catch (err) {
         dispatch({ type: "FETCH_FAIL", payload: getError(err) });
@@ -75,7 +79,7 @@ function TrackScreen() {
     fetchData();
   }, [assetID]);
 
-  console.log("trackinfo",track)
+  console.log("trackinfo", track);
 
   return loading ? (
     <CircularProgress

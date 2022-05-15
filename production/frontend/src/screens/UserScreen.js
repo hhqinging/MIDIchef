@@ -14,7 +14,6 @@ let currentUser = localStorage.getItem("myalgo-wallet-addresses");
 const theme = createTheme({
   palette: {
     blue: {
-      // Purple and green play nicely together.
       main: "#59DFDD",
     },
   },
@@ -37,8 +36,8 @@ const reducer = (state, action) => {
 
 function UserScreen() {
   const params = useParams();
-  const { user } = params;
-  console.log("user", user);
+  const { walletAddr } = params;
+  console.log("user", walletAddr);
 
   const [{ loading, error, userInfo }, dispatch] = useReducer(reducer, {
     userInfo: [],
@@ -51,15 +50,17 @@ function UserScreen() {
     const fetchData = async () => {
       dispatch({ type: "FETCH_REQUEST" });
       try {
-        console.log("user", user);
-        const result = await axios.get(`/api/user/get_user?userName=${user}`);
+        console.log("user", walletAddr);
+        const result = await axios.get(
+          `/api/user/get_user?walletAddr=${walletAddr}`
+        );
         dispatch({ type: "FETCH_SUCCESS", payload: result.data });
       } catch (err) {
         dispatch({ type: "FETCH_FAIL", payload: getError(err) });
       }
     };
     fetchData();
-  }, [user]);
+  }, [walletAddr]);
 
   console.log("userInfo50", userInfo);
 
@@ -102,7 +103,7 @@ function UserScreen() {
         <></>
         <ThemeProvider theme={theme}>
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <Link to={`/user/${user}/sales`}>
+            <Link to={`/user/${walletAddr}/sales`}>
               <Button
                 color="blue"
                 style={{ fontSize: "18px", fontWeight: "bold" }}
@@ -111,7 +112,7 @@ function UserScreen() {
                 Sales
               </Button>{" "}
             </Link>
-            <Link to={`/user/${user}/creation`}>
+            <Link to={`/user/${walletAddr}/creation`}>
               {" "}
               <Button
                 color="blue"
@@ -121,7 +122,7 @@ function UserScreen() {
                 Creation
               </Button>{" "}
             </Link>
-            <Link to={`/user/${user}/owned`}>
+            <Link to={`/user/${walletAddr}/owned`}>
               {" "}
               <Button
                 color="blue"

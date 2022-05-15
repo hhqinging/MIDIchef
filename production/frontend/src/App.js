@@ -12,7 +12,7 @@ import "./App.css";
 import { isLogin } from "./screens-compo/MyAlgo";
 import { Navigate } from "react-router-dom";
 
-export default function App(){
+export default function App() {
   return (
     <BrowserRouter>
       <div>
@@ -22,7 +22,7 @@ export default function App(){
             <Route path="/create" element={<CreateScreen />} />
             {/* <Route path="/auth" element={<AuthScreen />} /> */}
             <Route path="/track/:assetID" element={<TrackScreen />} />
-            <Route path="/user/:user" element={<UserScreen />} />
+            <Route path="/user/:walletAddr" element={<UserScreen />} />
             <Route path="/" element={<HomeScreen />} />
             <Route path="user/setting" element={<UpdateProfile />} />
             <Route path="/profile" element={<ProfileScreen />} />

@@ -71,7 +71,6 @@ function HomeScreen() {
           }}
         
         >
-          {/* if loading is true, show the loading message, if err, show err, otherwise, show tracks info */}
           {loading ? (
             <CircularProgress
               style={{
