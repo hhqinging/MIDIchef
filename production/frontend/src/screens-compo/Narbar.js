@@ -23,6 +23,12 @@ const useStyles = makeStyles({
     marginLeft: "auto",
     marginRight: -12,
   },
+  button: {
+    // color: "#59DFDD",
+    '&:hover': {
+      color: "#e785e7",
+    }
+  }
 });
 
 //color theme for button
@@ -31,6 +37,9 @@ const theme = createTheme({
     blue: {
       // Purple and green play nicely together.
       main: "#59DFDD",
+      '&:hover': {
+        color: "#e785e7",
+      }
     },
   },
 });
@@ -121,29 +130,30 @@ const NarBar = () => {
   };
 
   const userSignIn = () => {
-    let navbar = (
-      <div>
-        <Button
-          color="blue"
-          style={{ fontSize: "18px", fontWeight: "bold" }}
-          onClick={handleClick}
-          aria-describedby="explorePopover"
-        >
-          Explore
-        </Button>
-        <Link to="/create">
-          <Button color="blue" style={{ fontSize: "18px", fontWeight: "bold" }}>
-            Create
-          </Button>
-        </Link>
-      </div>
-    );
+    // let navbar = (
+    //   <div>
+    //     <Button
+    //       color="blue"
+    //       style={{ fontSize: "18px", fontWeight: "bold" }}
+    //       onClick={handleClick}
+    //       aria-describedby="explorePopover"
+    //     >
+    //       Explore
+    //     </Button>
+    //     <Link to="/create">
+    //       <Button color="blue" style={{ fontSize: "18px", fontWeight: "bold" }}>
+    //         Create
+    //       </Button>
+    //     </Link>
+    //   </div>
+    // );
     // user not logged in
     if (!localStorage.getItem("myalgo-wallet-addresses")) {
       return (
         <div>
           <Button
             color="blue"
+            className={classes.button}
             style={{ fontSize: "18px", fontWeight: "bold" }}
             onClick={handleClick}
             aria-describedby="explorePopover"
@@ -166,6 +176,7 @@ const NarBar = () => {
         <div>
           <Button
             color="blue"
+            className={classes.button}
             style={{ fontSize: "18px", fontWeight: "bold" }}
             onClick={handleClick}
             aria-describedby="explorePopover"
@@ -175,6 +186,7 @@ const NarBar = () => {
           <Link to="/create">
             <Button
               color="blue"
+              className={classes.button}
               style={{ fontSize: "18px", fontWeight: "bold" }}
             >
               Create
@@ -183,6 +195,7 @@ const NarBar = () => {
           <Link to="/profile">
             <Button
               color="blue"
+              className={classes.button}
               style={{ fontSize: "18px", fontWeight: "bold" }}
             >
               Profile
@@ -191,6 +204,7 @@ const NarBar = () => {
           <Link to="/user/setting">
             <Button
               color="blue"
+              className={classes.button}
               style={{ fontSize: "18px", fontWeight: "bold" }}
             >
               Setting
@@ -198,8 +212,9 @@ const NarBar = () => {
           </Link>
           <Button
             color="blue"
-            className="login-buttons"
-            id="myalgo-login-buttons"
+            // className="login-buttons"
+            className={classes.button}
+            // id="myalgo-login-buttons"
             onClick={signout}
             style={{ fontSize: "18px", fontWeight: "bold" }}
           >
@@ -270,6 +285,7 @@ const NarBar = () => {
               <section className={classes.rightToolbar}>
                 <Button
                   color="blue"
+                  className={classes.button}
                   style={{ fontSize: "18px", fontWeight: "bold" }}
                   onClick={handleClick}
                   aria-describedby="explorePopover"
