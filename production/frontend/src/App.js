@@ -7,6 +7,7 @@ import TrackScreen from "./screens/TrackScreen";
 import UserScreen from "./screens/UserScreen";
 import AuthScreen from "./screens/AuthScreen";
 import UpdateProfile from "./screens/updateProfile";
+import ProfileScreen from "./screens/ProfileScreen";
 import "./App.css";
 import { isLogin } from "./screens-compo/MyAlgo";
 import { Navigate } from "react-router-dom";
@@ -21,9 +22,10 @@ export default function App(){
             <Route path="/create" element={<CreateScreen />} />
             {/* <Route path="/auth" element={<AuthScreen />} /> */}
             <Route path="/track/:assetID" element={<TrackScreen />} />
-            <Route path="/user/:creator" element={<UserScreen />} />
+            <Route path="/user/:user" element={<UserScreen />} />
             <Route path="/" element={<HomeScreen />} />
             <Route path="user/setting" element={<UpdateProfile />} />
+            <Route path="/profile" element={<ProfileScreen />} />
           </Routes>
         </main>
       </div>
