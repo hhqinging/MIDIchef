@@ -8,6 +8,9 @@ import fileUpload from "express-fileupload";
 import cors from "cors";
 import morgan from "morgan";
 import _ from "lodash";
+import mongoose from 'mongoose';
+import Users from "../models/user-model.js";
+const { Schema } = mongoose;
 
 var router = express.Router();
 router.use(
@@ -19,11 +22,8 @@ router.use(cors());
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(morgan("dev"));
-import mongoose from 'mongoose';
-import Users from "../models/user-model.js";
-const { Schema } = mongoose;
+
 router.post("/upload", async (req, res) => {
-    console.log("addaaaaaaaaaaaa:", req.body);
     try {
         if (!req.files.music || !req.files.imageCover || req.body.title == '' || req.body.price == 0 || req.body.royalty == 0) {
             res.status(500).send("No complete info!");
