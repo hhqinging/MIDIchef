@@ -5,8 +5,8 @@ var router = express.Router();
 
 router.post("/transferNFT", async (req, res) => {
     try{
-        let sender = req.body.sender;
-        let recipient = req.body.recipient;
+        // let sender = req.body.sender;
+        let recipient = req.body.creator;
         let assetID = req.body.assetID;
         transferAsset(sender, recipient, assetID);
         res.status(200);

@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import song from "./routers/songs_op.js";
 import user from "./routers/user_op.js";
 import upload from "./routers/upload.js";
+import nft from "./routers/algorand_op.js";
 import http from 'http';
 import jwt from "jsonwebtoken";
 
@@ -38,6 +39,7 @@ const port = 8000;
 app.use("/api/tracks", song);
 app.use("/api/user", user);
 app.use("/api", upload);
+app.use("/api/nft", nft)
 
 
 
