@@ -14,7 +14,6 @@ let currentUser = localStorage.getItem("myalgo-wallet-addresses");
 const theme = createTheme({
   palette: {
     blue: {
-      // Purple and green play nicely together.
       main: "#59DFDD",
     },
   },
@@ -75,7 +74,7 @@ function UserScreen() {
     <div>
       {/* <br></br>
       <h1 style={{ color: "white" }}>{userInfo.userName}</h1> */}
-      <div>
+      {/* <div>
         <img
           src={userInfo.profilePhoto}
           alt={userInfo.userName}
@@ -85,18 +84,22 @@ function UserScreen() {
             opacity: "0.4",
           }}
         />
-      </div>
+      </div> */}
       <div>
         <div>
           <img
             src={userInfo.profilePhoto}
             alt={userInfo.userName}
-            style={{ width: "250px", height: "250px", borderRadius: "100%" }}
+            style={{
+              width: "250px",
+              height: "250px",
+              borderRadius: "100%",
+              padding: "3%",
+            }}
           />
         </div>
         <div>
           <h2 style={{ color: "white" }}>{userInfo.userName}</h2>
-          <h3 style={{ color: "white" }}>{userInfo.walletAddr}</h3>
           <h3 style={{ color: "white" }}>{userInfo.description}</h3>
         </div>
         <></>

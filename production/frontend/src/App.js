@@ -12,7 +12,7 @@ import "./App.css";
 import { isLogin } from "./screens-compo/MyAlgo";
 import { Navigate } from "react-router-dom";
 
-export default function App(){
+export default function App() {
   return (
     <BrowserRouter>
       <div>

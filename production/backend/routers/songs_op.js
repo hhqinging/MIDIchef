@@ -15,7 +15,7 @@ router.get('/songlist', function (req, res) {
         data = req.query[key];
     }
     Track.find()
-    .limit(99).then(test=>{
+    .limit(20).then(test=>{
         if(test.length==0){
             res.status(200).json({
                 Info: "result not founded"
@@ -33,7 +33,7 @@ router.get('/trending', function (req, res) {
         data = req.query[key];
     }
     Track.find().sort({ numFavorite: -1 })
-    .limit(10).then(test=>{
+    .limit(20).then(test=>{
         if(test.length==0){
             res.status(200).json({
                 Info: "result not founded"

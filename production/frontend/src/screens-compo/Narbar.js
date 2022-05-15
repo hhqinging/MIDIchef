@@ -179,7 +179,7 @@ const NarBar = () => {
               className={classes.button}
               style={{ fontSize: "18px", fontWeight: "bold" }}
             >
-              Setting
+              Settings
             </Button>
           </Link>
           <Button

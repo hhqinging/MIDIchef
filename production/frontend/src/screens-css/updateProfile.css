@@ -27,10 +27,11 @@
     background-color: #dedede;
     min-height: 40px;
     width: 100%;
-    font-size: medium;
-    padding: 3px 10px;
+    /* font-size: medium; */
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
     margin: 10px 0px;
-    border: 1px soild #dedede;
+    border: 1px solid #dedede;
     border-radius: 4px;
     box-sizing: border-box;
     display: block;
@@ -60,12 +61,12 @@
     color: white;
 }
 
-.create button:hover{
+.update-container button:hover{
     background: #e785e7;
 }
 
 #image-container {
     border: 1px solid white;
     border-radius: 5px;
-    margin-top: 10px;
+    margin-top: 12px;
 }

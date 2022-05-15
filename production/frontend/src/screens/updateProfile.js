@@ -85,19 +85,20 @@ const UpdateProfile = () => {
       <form onSubmit={onSubmit}>
         <label>Username</label>
         <input
+          placeholder='Enter new username '
           value={nft.userName}
           name="userName"
           onChange={handleChange}
         />
         <label>Description</label>
         <textarea
-          placeholder="Description"
+          placeholder="Enter new description"
           value={nft.description}
           name="description"
           onChange={handleChange}
           style={{ height: "100px" }}
         />
-        <label>Track cover</label>
+        <label>Background Image</label>
         <div id="image-container" >
           <div {...getRootProps()}>
             <input {...getInputProps()} />
@@ -105,7 +106,7 @@ const UpdateProfile = () => {
           </div>
         </div>
         <button>Cancel</button>
-        <button type="submit">Submit</button>
+        <button type="submit">Update</button>
       </form>
     </div>
   );
