@@ -21,7 +21,7 @@ export default function App(){
             <Route path="/create" element={<CreateScreen />} />
             {/* <Route path="/auth" element={<AuthScreen />} /> */}
             <Route path="/track/:assetID" element={<TrackScreen />} />
-            <Route path="/user/:creator" element={<UserScreen />} />
+            <Route path="/user/:user" element={<UserScreen />} />
             <Route path="/" element={<HomeScreen />} />
             <Route path="user/setting" element={<UpdateProfile />} />
           </Routes>
