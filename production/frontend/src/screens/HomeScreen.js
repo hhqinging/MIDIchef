@@ -64,16 +64,10 @@ function HomeScreen() {
           container
           style={{
             display: "flex",
-            // position: "relative",
-            // alignContent: "start",
-            
+            width: "92%",
+            margin: "auto",
             justifyContent: "space-evenly",
-            alignItems: "flex-start",
             spacing:"2"
-            // alignContent: "left",
-            // gap: "5%",
-            // gap: 20, padding: "5% 5% 0 5% ",
-            // paddingLeft: 100
           }}
         
         >
@@ -88,7 +82,10 @@ function HomeScreen() {
             <MessageBox severity="error">{error}</MessageBox>
           ) : (
             tracks.map((track) => (
-              <Card sx={{ maxWidth: 345 }} key={track.assetID}>
+              <Card 
+                style={{ marginTop: "1%", marginBottom: "1%", marginRight: "0.5%", marginLeft: "0.5%"}} 
+                sx={{ maxWidth: 345 }} 
+                key={track.assetID}>
                 <TrackPlayer track={track}></TrackPlayer>
               </Card>
             ))
