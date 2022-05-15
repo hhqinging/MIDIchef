@@ -15,7 +15,6 @@ const UpdateProfile = () => {
 
   let onFileChange = (e) => {
     e.preventDefault();
-    // console.log("e.target:", e.target.files)
     setNft({
       ...nft,
       music: e.target.files[0]
@@ -86,10 +85,6 @@ const UpdateProfile = () => {
       <form onSubmit={onSubmit}>
         <label>Username</label>
         <input
-          // value={formik.values.title}
-          // onChange={formik.handleChange("title")}
-          // onBlur={formik.handleBlur("title")}
-          placeholder="Username"
           value={nft.userName}
           name="userName"
           onChange={handleChange}
