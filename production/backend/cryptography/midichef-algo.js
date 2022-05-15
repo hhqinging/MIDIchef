@@ -7,6 +7,7 @@ dotenv.config();
 // purestake info, store in dotenv
 const ps_testnet = "https://testnet-algorand.api.purestake.io/ps2";
 const port = process.env.PORT;
+console.log(process.env.MIDIChef_ADDr)
 const token = {
     'X-API-Key': process.env.APITOKEN
 };

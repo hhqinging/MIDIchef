@@ -173,7 +173,7 @@ const CreateScreen = () => {
           // onChange={(e) => setNft({ royalty: e.target.value })} 
           onChange={handleChange}
         />
-        <button onclick={navigate('/')}>Cancel</button>
+        <button onClick={navigate('/')}>Cancel</button>
         <button type="submit">Submit</button>
       </form>
     </div>
