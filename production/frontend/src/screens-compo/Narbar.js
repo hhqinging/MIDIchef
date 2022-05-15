@@ -32,10 +32,6 @@ const theme = createTheme({
       // Purple and green play nicely together.
       main: "#59DFDD",
     },
-    secondary: {
-      //
-      main: "#59DFDD",
-    },
   },
 });
 

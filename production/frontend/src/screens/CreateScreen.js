@@ -1,31 +1,14 @@
 // import { useParams } from "react-router-dom";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
 import "../screens-css/CreateScreen.css";
 import styled from "styled-components";
-import Dropzone from "react-dropzone";
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useDropzone } from "react-dropzone"
-import Alert from '@mui/material/Alert';
 import MyAlgoConnect from "@randlabs/myalgo-connect";
 import algosdk from "algosdk";
 
-const Container = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  // padding: 20px;
-  border-width: 2px;
-  border-radius: 2px;
-  border-style: dashed;
-  background-color: #fafafa;
-  color: #bdbdbd;
-border-color:'red'
-  transition: border 0.24s ease-in-out;
-`;
 
 const formSchema = Yup.object({
   title: Yup.string().required("Title is required"),
@@ -59,30 +42,6 @@ const CreateScreen = () => {
     validationSchema: formSchema,
   });
 
-  // const formik = useFormik({
-  //   initialValues: {
-  //     title: "",
-  //     description: "",
-  //     price:"",
-  //     image: "",
-  //     track:"",
-  //     royalty:""
-  //   },
-  //   onSubmit: values => {
-  //     //dispath the action
-  //     const data = {
-  //       title: values?.title,
-  //       description: values?.description,
-  //       price: values?.price,
-  //       image: values?.image,
-  //       track:values?.track,
-  //       royalty:values?.royalty
-  //     };
-  //     // dispatch(createpostAction(data));
-  //   },
-  //   validationSchema: formSchema,
-  // });
-
   const initialValues = {
     title: '',
     description: '',
@@ -96,7 +55,6 @@ const CreateScreen = () => {
 
   let onFileChange = (e) => {
     e.preventDefault();
-    // console.log("e.target:", e.target.files)
     setNft({
       ...nft,
       music: e.target.files[0]
@@ -195,9 +153,6 @@ const CreateScreen = () => {
       <form onSubmit={onSubmit}>
         <label>Title</label>
         <input
-          // value={formik.values.title}
-          // onChange={formik.handleChange("title")}
-          // onBlur={formik.handleBlur("title")}
           placeholder="NFT track title"
           value={nft.title}
           name="title"
