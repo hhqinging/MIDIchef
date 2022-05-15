@@ -90,7 +90,7 @@ const NarBar = () => {
     },
   }));
   const SearchIconWrapper = styled("div")(({ theme }) => ({
-    padding: theme.spacing(0, 2),
+    padding: theme.spacing(0, 1.5),
     height: "100%",
     position: "absolute",
     pointerEvents: "none",
@@ -104,6 +104,7 @@ const NarBar = () => {
       padding: theme.spacing(1, 1, 1, 0),
       // vertical padding + font size from searchIcon
       paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+      paddingRight: `calc(10em + ${theme.spacing(4)})`,
       transition: theme.transitions.create("width"),
       width: "100%",
       [theme.breakpoints.up("md")]: {

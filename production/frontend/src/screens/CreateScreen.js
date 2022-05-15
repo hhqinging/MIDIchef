@@ -177,9 +177,11 @@ const CreateScreen = () => {
         />
 
         <label>Image cover</label>
-        <div {...getRootProps()}>
-          <input {...getInputProps()} />
-          <p style={{ color: "white" }}>Drop files here</p>
+        <div id="image-container" >
+          <div {...getRootProps()}>
+            <input {...getInputProps()} />
+            <p style={{ color: "white" }}>Drop files here</p>
+          </div>
         </div>
         <div>{images}</div>
 

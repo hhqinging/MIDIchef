@@ -50,8 +50,18 @@
   background: #59dfdd;
   color: black;
   border: 0;
-  padding: 10px;
+  padding: 10px 30px;
   border-radius: 8px;
   margin: 20px 30px 20px 30px;
   cursor: pointer;
+}
+
+.create button:hover{
+  background: #e785e7;
+}
+
+#image-container {
+  border: 1px solid white;
+  border-radius: 5px;
+  margin: 10px;
 }
