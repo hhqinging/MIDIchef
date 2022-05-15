@@ -22,7 +22,6 @@ router.get('/songlist', function (req, res) {
                 })
             }
             else {
-                console.log(test)
                 res.status(200).json(
                     test
                 )
@@ -41,7 +40,6 @@ router.get('/trending', function (req, res) {
                 })
             }
             else {
-                console.log(test)
                 res.status(200).json(
                     test
                 )
@@ -61,7 +59,6 @@ router.get('/single_song', function (req, res) {
             })
         }
         else {
-            console.log(test)
             res.status(200).json(
 
                 test[0]
@@ -85,9 +82,7 @@ router.get('/search', function (req, res) {
             })
         }
         else {
-            console.log(test)
             res.status(200).json(
-
                 test
             )
         }
@@ -111,8 +106,6 @@ router.get('/photo_file', function (req, res) {
     let options = { root: path.join(__dirname, './uploads/imageCover') }
     res.sendFile(fileName, options, function (err) {
         if (err) {
-            console.log("err");
-            console.log(err);
         } else {
             console.log('Sent:', fileName);
         }
@@ -129,12 +122,6 @@ router.post('/create_song', function (req, res) {
     Create_song(req.body)
     res.send({
         note: "save success!"
-    })
-})
-router.post('/addNumFavorite', function (req, res) {
-    console.log("addaaaaaaaaaaaa:", req.body);
-    res.status(200).json({
-        numFavorite: req.body.numFavorite
     })
 })
 
