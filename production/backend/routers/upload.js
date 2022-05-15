@@ -29,18 +29,10 @@ router.post("/upload", async (req, res) => {
             res.status(500).send("No complete info!");
         } else {
             let creator;
-<<<<<<< HEAD
-		console.log("Hello");
-            console.log("Wallet Address:", req.body.walletAddr)
-            Users.findOne().where('walletAddr').equals(req.body.walletAddr).then(result=>{
-                if(result.length==0){
-                    res.status(500).json({Info: "user unexist"})
-=======
             console.log(req.body.walletAddr)
             Users.findOne().where('walletAddr').equals(req.body.walletAddr).then(result => {
                 if (result.length == 0) {
                     res.status(500).json({ Info: "user unexist" })
->>>>>>> 6f37a16e261ddf794a091a5ad0f65e3925a8809f
                 }
                 else {
                     creator = result.userName;
@@ -87,7 +79,6 @@ router.post('/addNumFavorite', function (req, res) {
 
 
 
->>>>>>> 6f37a16e261ddf794a091a5ad0f65e3925a8809f
 // router.post("/upload-files", async (req, res) => {
 //     try {
 //         if (!req.files) {
