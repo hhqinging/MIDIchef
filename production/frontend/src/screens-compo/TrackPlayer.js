@@ -8,9 +8,29 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import AudioPlayer from "material-ui-audio-player";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import axios from 'axios';
+
 
 function TrackPlayer(props) {
   const { track } = props;
+
+  let onSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    console.log("wwwww:", track.numFavorite);
+    let numFavorite = track.numFavorite + 1;
+    console.log("wwwwwNew:", numFavorite);
+    formData.append('numFavorite', numFavorite)
+    // console.log(formData.getAll("numFavorite"))
+    axios.post("http://localhost:8000/api/addNumFavorite", formData, {
+    }).then(res => {
+      console.log("numFavoriteSend:", res.data.numFavorite)
+    })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
 
   return (
     <div>
@@ -79,10 +99,13 @@ function TrackPlayer(props) {
             fontWeight: "bold",
             margin: "auto",
           }}>
-            <IconButton aria-label="add to favorites">
-              <FavoriteIcon fontSize="large" fontWeight="bold" />
-            </IconButton>
-            {track.numFavorite}</div>
+            <form onSubmit={onSubmit}>
+              <IconButton aria-label="add to favorites" type="submit">
+                <FavoriteIcon fontSize="large" fontWeight="bold" />
+              </IconButton>
+              {track.numFavorite}
+            </form>
+          </div>
           {/* <IconButton aria-label="num of play">
             <PlayArrowIcon fontSize="medium" />
           </IconButton>

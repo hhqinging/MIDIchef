@@ -67,7 +67,7 @@ export async function Update_user(user) {
         description: user.description,
         profilePhoto: user.profilePhoto,
     };
-     users.findOneAndUpdate(filter, update, {
+    users.findOneAndUpdate(filter, update, {
         returnOriginal: false
     }, function (err, doc) {
         console.log(err)
