@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const tracks = new Schema({
-    assetID:        { type: Number,require: true },
+    assetID:        { type: Number, require: true },
     title:          { type: String, require: true },
     owner:          { type: String, require: true },
     creator:        { type: String, require: true },

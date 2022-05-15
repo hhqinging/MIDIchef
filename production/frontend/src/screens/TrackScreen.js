@@ -10,6 +10,7 @@ import algoicon from "../img/algoicon.png";
 import AudioPlayer from "material-ui-audio-player";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { getError } from "../utils/utils";
+import { withStyles } from "@material-ui/core/styles";
 
 //taking two paras: current state & the action that changed current state and create the new state
 const reducer = (state, action) => {
@@ -41,11 +42,20 @@ const theme = createTheme({
       contrastText: "#000000",
     },
     pink: {
-      main: "#FB9DDB",
+      main: "#e785e7",
       contrastText: "#000000",
     },
   },
 });
+
+const StyledButton = withStyles({
+  root: {
+    color: "black",
+    '&:hover': {
+      backgroundColor: "#e785e7",
+    }
+  }
+})(Button);
 
 function TrackScreen() {
   const params = useParams();
@@ -95,7 +105,7 @@ function TrackScreen() {
       <Grid container style={{ paddingLeft: "10%" }}>
         {/* <Grid container sx={{ p: 10, margin: "auto", flexGrow: 1 }}> */}
         <Grid container direction="row" spacing={5}>
-          <Grid item xs={5}>
+          <Grid item xs={5} style={{ maxWidth: "700px", maxHeight: "700px"}}>
             <img
               style={{
                 margin: "auto",
@@ -103,16 +113,15 @@ function TrackScreen() {
                 maxWidth: "100%",
                 maxHeight: "100%",
               }}
-              // style={{ width: "300px", height: "300px" }}
               src={track.img_src}
               alt={track.title}
             />
           </Grid>
           <Grid item xs={7}>
-            <p style={{ color: "white", fontSize: "25px", fontWeight: "bold" }}>
+            <p style={{ color: "white", fontSize: "35px", fontWeight: "bold" }}>
               {track.title}
             </p>
-            <p style={{ color: "white", fontWeight: "bold" }}>
+            <p style={{ color: "white", fontSize: "20px", fontWeight: "bold" }}>
               Owned by{" "}
               <Link
                 to={`/user/${track.owner}`}
@@ -132,11 +141,11 @@ function TrackScreen() {
             >
               <FavoriteIcon
                 fontSize="small"
-                style={{ margin: "0px 5px 0px 0px" }}
+                style={{ margin: "0px 9px 0px 5px" }}
               />
               {track.numFavorite} Favorited
             </p>
-            <p
+            {/* <p
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -145,9 +154,9 @@ function TrackScreen() {
                 fontWeight: "bold",
               }}
             >
-              <PlayArrowIcon style={{ width: "24px" }} />
-              {track.numPlay} Play times
-            </p>
+              <PlayArrowIcon style={{ width: "24px", marginRight: "2px", }} />
+              Played {track.numPlay} times
+            </p> */}
 
             <p
               style={{
@@ -160,7 +169,7 @@ function TrackScreen() {
             >
               <img
                 src={algoicon}
-                style={{ width: "18px", margin: "0px 5px 0px 0px" }}
+                style={{ width: "18px", margin: "0px 5px 0px 3px", border: "1px solid white", borderRadius: "100%", padding: "2px" }}
                 alt={algoicon}
               />
               {track.price} Algo
@@ -173,7 +182,7 @@ function TrackScreen() {
                 loop={false}
                 elevation={0}
                 src={track.src}
-                width="80%"
+                width="60%"
               />
             </ThemeProvider>
             <br></br>
@@ -181,24 +190,24 @@ function TrackScreen() {
             <Stack direction="row" spacing={2}>
               {track.marketStatus === "onSale" ? (
                 <ThemeProvider theme={theme}>
-                  <Button variant="contained" color="blue">
+                  <StyledButton variant="contained" color="blue" style={{fontWeight: "bold"}}>
                     Buy Now
-                  </Button>
-                  <Button variant="contained" color="blue">
-                    Add to Favorite
-                  </Button>
+                  </StyledButton>
+                  <StyledButton variant="contained" color="blue" style={{fontWeight: "bold"}}>
+                    Add to Favorites
+                  </StyledButton>
                 </ThemeProvider>
               ) : (
                 <ThemeProvider theme={theme}>
-                  <Button variant="contained" color="blue">
-                    Add to Favorite
-                  </Button>
+                  <StyledButton variant="contained" color="blue" style={{fontWeight: "bold"}}>
+                    Add to Favorites
+                  </StyledButton>
                 </ThemeProvider>
               )}
             </Stack>
           </Grid>
         </Grid>
-        <Grid container direction="row" spacing={3}>
+        <Grid container spacing={3}>
           <Grid item xs={5}>
             <p style={{ color: "white", fontSize: "13px", fontWeight: "bold" }}>
               Creator by{" "}
@@ -215,7 +224,7 @@ function TrackScreen() {
             </p>
             <p
               style={{
-                color: "#FB9DDB",
+                color: "#e785e7",
                 fontSize: "13px",
                 fontWeight: "bold",
                 margin: "0px 0px 0px 0px",
@@ -228,7 +237,7 @@ function TrackScreen() {
                 color: "white",
                 fontSize: "13px",
                 fontWeight: "bold",
-                margin: "0px 0px 0px 0px",
+                margin: "0px 0px 50px 0px",
               }}
             >
               {track.description}
