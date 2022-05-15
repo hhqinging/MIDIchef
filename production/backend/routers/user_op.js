@@ -7,6 +7,7 @@ import { Create_new_user, Update_user } from "./database_ops.js";
 import { JWT } from "../auth/library.js";
 import morgan from "morgan";
 import fileUpload from "express-fileupload";
+import path from 'path'
 
 var router = express.Router();
 router.use(
@@ -23,6 +24,28 @@ router.use(cors());
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 router.get("/get_user", function (req, res) {
+  var data;
+  for (var key in req.query) {
+    data = req.query[key];
+  }
+  Users.find()
+    .where(Object.keys(req.query)[0])
+    .equals(data)
+    .then((test) => {
+      if (test.length == 0) {
+        res.status(404).json({
+          Info: "user not founded",
+        });
+      } else {
+        res.status(200).json(
+          // Info: "result founded",
+          // data: test
+          test[0]
+        );
+      }
+    });
+});
+router.get("/profile", function (req, res) {
   var data;
   for (var key in req.query) {
     data = req.query[key];
@@ -100,7 +123,7 @@ router.post("/setting", function (req, res) {
         username: req.body.userName,
         description: req.body.description,
         profilePhoto:
-          "http://47.252.29.19:8000/api/tracks/upser_file?photo=" +
+          "http://47.252.29.19:8000/api/user/user_file?photo=" +
           imageUser.md5 +
           "." +
           ext_img,
@@ -114,4 +137,17 @@ router.post("/setting", function (req, res) {
   }
 });
 
+router.get('/user_file', function (req, res) {
+  let fileName = req.query.photo
+  const __dirname = path.resolve();
+  let options = { root: path.join(__dirname, './uploads/imageUser') }
+  res.sendFile(fileName, options, function (err) {
+      if (err) {
+          console.log("err");
+          console.log(err);
+      } else {
+          console.log('Sent:', fileName);
+      }
+  });
+})
 export default router;
