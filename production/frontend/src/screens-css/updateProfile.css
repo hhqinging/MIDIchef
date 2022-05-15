@@ -60,6 +60,10 @@
     color: white;
 }
 
+.create button:hover{
+    background: #e785e7;
+}
+
 #image-container {
     border: 1px solid white;
     border-radius: 5px;
