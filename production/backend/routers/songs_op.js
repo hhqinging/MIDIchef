@@ -74,8 +74,9 @@ router.get('/search', function (req, res) {
     for (var key in req.query) {
         data = req.query[key];
     }
-    Track.find().where(Object.keys(req.query)[0]).equals(data).then(test => {
-        console.log(req)
+    const regex = new RegExp(data, 'i')
+    Track.find({ 'title': { $regex: regex} }).then(test => {
+
         if (test.length == 0) {
             res.status(200).json({
                 Info: "result not founded"
