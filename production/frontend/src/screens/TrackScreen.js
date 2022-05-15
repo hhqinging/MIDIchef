@@ -75,6 +75,8 @@ function TrackScreen() {
     fetchData();
   }, [assetID]);
 
+  console.log("trackinfo",track)
+
   return loading ? (
     <CircularProgress
       style={{
@@ -195,7 +197,7 @@ function TrackScreen() {
         <Grid container direction="row" spacing={3}>
           <Grid item xs={5}>
             <p style={{ color: "white", fontSize: "13px", fontWeight: "bold" }}>
-              Owned by{" "}
+              Creator by{" "}
               <Link
                 to={`/user/${track.creator}`}
                 style={{

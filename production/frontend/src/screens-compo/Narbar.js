@@ -23,6 +23,12 @@ const useStyles = makeStyles({
     marginLeft: "auto",
     marginRight: -12,
   },
+  button: {
+    // color: "#59DFDD",
+    '&:hover': {
+      color: "#e785e7",
+    }
+  }
 });
 
 //color theme for button
@@ -31,6 +37,9 @@ const theme = createTheme({
     blue: {
       // Purple and green play nicely together.
       main: "#59DFDD",
+      '&:hover': {
+        color: "#e785e7",
+      }
     },
   },
 });
@@ -49,17 +58,18 @@ const NarBar = () => {
   };
 
   const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      console.log("handleKeyPress", event.target.value)
+    if (event.key === "Enter") {
+      console.log("handleKeyPress", event.target.value);
       axios
-        .get(`http://localhost:8000/api/tracks/search?title=${event.target.value}`, {
-        })
+        .get(
+          `http://localhost:8000/api/tracks/search?title=${event.target.value}`,
+          {}
+        )
         .then((res) => {
-          console.log("kkkkkkkkk:")
-        })
+          console.log("kkkkkkkkk:");
+        });
     }
-  }
-
+  };
 
   //mui button setup
   const [anchorEl, setAnchorEl] = useState(null);
@@ -115,7 +125,7 @@ const NarBar = () => {
 
   const signout = () => {
     localStorage.removeItem("x-access-token");
-    localStorage.removeItem('myalgo-wallet-addresses');
+    localStorage.removeItem("myalgo-wallet-addresses");
     navigate("/");
   };
 
@@ -134,49 +144,56 @@ const NarBar = () => {
         <MyAlgoLogin navigate={navigate}/>
         </div>
     } else {
-      return <div>
-        <Button
-          color="blue"
-          style={{ fontSize: "18px", fontWeight: "bold" }}
-          onClick={handleClick}
-          aria-describedby="explorePopover"
-        >
-          Explore
-        </Button>
-        <Link to="/create">
+      return (
+        <div>
           <Button
             color="blue"
+            className={classes.button}
+            style={{ fontSize: "18px", fontWeight: "bold" }}
+            onClick={handleClick}
+            aria-describedby="explorePopover"
+          >
+            Explore
+          </Button>
+          <Link to="/create">
+            <Button
+              color="blue"
+              className={classes.button}
+              style={{ fontSize: "18px", fontWeight: "bold" }}
+            >
+              Create
+            </Button>
+          </Link>
+          <Link to="/profile">
+            <Button
+              color="blue"
+              className={classes.button}
+              style={{ fontSize: "18px", fontWeight: "bold" }}
+            >
+              Profile
+            </Button>
+          </Link>
+          <Link to="/user/setting">
+            <Button
+              color="blue"
+              className={classes.button}
+              style={{ fontSize: "18px", fontWeight: "bold" }}
+            >
+              Setting
+            </Button>
+          </Link>
+          <Button
+            color="blue"
+            // className="login-buttons"
+            className={classes.button}
+            // id="myalgo-login-buttons"
+            onClick={signout}
             style={{ fontSize: "18px", fontWeight: "bold" }}
           >
-            Create
+            Sign out
           </Button>
-        </Link>
-        <Link to="/user/">
-        <Button
-          color="blue"
-          style={{ fontSize: "18px", fontWeight: "bold" }}
-        >
-          Profile
-        </Button>
-      </Link>
-      <Link to="/user/setting">
-        <Button
-          color="blue"
-          style={{ fontSize: "18px", fontWeight: "bold" }}
-        >
-          Setting
-        </Button>
-      </Link>
-      <Button
-        color="blue"
-        className="login-buttons"
-        id="myalgo-login-buttons"
-        onClick={signout}
-        style={{ fontSize: "18px", fontWeight: "bold" }}
-      >
-        Sign out
-      </Button>
-      </div>
+        </div>
+      );
     }
   };
 
@@ -240,6 +257,7 @@ const NarBar = () => {
               <section className={classes.rightToolbar}>
                 <Button
                   color="blue"
+                  className={classes.button}
                   style={{ fontSize: "18px", fontWeight: "bold" }}
                   onClick={handleClick}
                   aria-describedby="explorePopover"
@@ -253,9 +271,7 @@ const NarBar = () => {
             </ThemeProvider>
           ) : (
             <ThemeProvider theme={theme}>
-              <section className={classes.rightToolbar}>
-                {userSignIn()}
-              </section>
+              <section className={classes.rightToolbar}>{userSignIn()}</section>
             </ThemeProvider>
           )}
 

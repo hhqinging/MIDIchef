@@ -40,7 +40,12 @@ function TrackPlayer(props) {
           </Link>
         </CardContent>
         <Link to={`/track/${track.assetID}`}>
-          <img width={350}  height={350}  src={track.img_src} alt={track.title} />
+          <img style={{
+            height: 350,
+            width: 350,
+            objectFit: "fill",
+            objectFit: "cover"
+          }} src={track.img_src} alt={track.title} />
         </Link>
 
         <CardContent>
@@ -50,34 +55,34 @@ function TrackPlayer(props) {
             loop={false}
             elevation={0}
             src={track.src}
-            // useStyle={useStyles}
+          // useStyle={useStyles}
           />
         </CardContent>
 
         <CardActions disableSpacing>
           {/* Algo Icon and Price */}
-          <div style={{ fontWeight: "bold", display: "flex"}}>
+          <div style={{ fontWeight: "bold", display: "flex" }}>
             <img
               src={algoicon}
               style={{ width: "35px", padding: "0px 10px 0px 10px" }}
               alt={track.title}
             />
-            <div style={{paddingTop: "5px", }}>
+            <div style={{ paddingTop: "5px", }}>
               {track.price}
             </div>
           </div>
-          
+
           {/* Favorites Icon and Num */}
           <div style={{
-              textDecoration: "none",
-              color: "#808080",
-              fontWeight: "bold",
-              margin: "auto",
-            }}>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon fontSize="large" fontWeight="bold"/>
-          </IconButton>
-          {track.numFavorite}</div>
+            textDecoration: "none",
+            color: "#808080",
+            fontWeight: "bold",
+            margin: "auto",
+          }}>
+            <IconButton aria-label="add to favorites">
+              <FavoriteIcon fontSize="large" fontWeight="bold" />
+            </IconButton>
+            {track.numFavorite}</div>
           {/* <IconButton aria-label="num of play">
             <PlayArrowIcon fontSize="medium" />
           </IconButton>

@@ -3,6 +3,7 @@ import MyAlgoConnect from "@randlabs/myalgo-connect";
 import algosdk from "algosdk";
 import axios from "axios";
 import { Button, Typography } from "@mui/material";
+import { withStyles } from "@material-ui/core/styles";
 
 // import baseUrl from './utils/baseURL.js';
 // const [signinData, setSigninData] = useState(
@@ -11,11 +12,19 @@ import { Button, Typography } from "@mui/material";
 //     : null
 // );
 
+const StyledButton = withStyles({
+  root: {
+    color: "#59DFDD",
+    '&:hover': {
+      color: "#e785e7",
+    }
+  }
+})(Button);
+
 export class MyAlgoLogin extends React.Component {
 
   // dispatch = useDispatch();
   
-
   constructor(props) {
     super(props);
     this.connect = this.connect.bind(this);
@@ -54,16 +63,13 @@ export class MyAlgoLogin extends React.Component {
 
   render() {
     return (
-
-      <Button
+      <StyledButton
         color="blue"
-        className="login-buttons"
-        id="myalgo-login-buttons"
         onClick={this.connect}
         style={{ fontSize: "18px", fontWeight: "bold" }}
       >
         Sign in
-      </Button>
+      </StyledButton>
     );
   }
 }
