@@ -243,7 +243,7 @@ function TrackScreen() {
             >
               Detail info in{" "}
               <a
-                href={`https://algoexplorer.io/asset/${track.assetID}`}
+                href={`https://testnet.algoexplorer.io/asset/${track.assetID}`}
                 style={{ textDecoration: "none" }}
               >
                 algoexplorer.io
