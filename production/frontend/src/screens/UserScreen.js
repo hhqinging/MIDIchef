@@ -4,7 +4,7 @@ import axios from "axios";
 import { CircularProgress } from "@mui/material";
 import MessageBox from "../screens-compo/MessageBox";
 import { getError } from "../utils/utils";
-import { Store } from "../Store";
+
 
 let currentUser = localStorage.getItem("myalgo-wallet-addresses");
 
@@ -86,6 +86,11 @@ function UserScreen() {
             alt={user.userName}
             style={{ width: "250px", height: "250px", borderRadius: "100%" }}
           />
+        </div>
+        <div>
+          <h1>{user.userName}</h1>
+          <h2>{user.walletAddr}</h2>
+          <h2>{user.description}</h2>
         </div>
       </div>
     </div>
