@@ -1,13 +1,19 @@
 import express from "express";
-import {createAsset, transferAsset, destroyAsset} from '../cryptography/midichef-algo.js'
+import {transferAsset, destroyAsset} from '../cryptography/midichef-algo.js'
 
 var router = express.Router();
 
 router.post("/transferNFT", async (req, res) => {
-    let sender = req.sender;
-    let recipient = req.recipient;
-    let assetID = req.assetID;
-    transferAsset(sender, recipient, assetID);
+    try{
+        let sender = req.body.sender;
+        let recipient = req.body.recipient;
+        let assetID = req.body.assetID;
+        transferAsset(sender, recipient, assetID);
+        res.status(200);
+    }
+    catch(err){
+        res.status(500).send(err);
+    }
 })
 
 export default router;

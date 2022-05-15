@@ -50,7 +50,6 @@ const CreateScreen = () => {
 
     e.preventDefault()
     const formData = new FormData()
-    console.log(creator)
     formData.append('walletAddr', creator)
     formData.append('music', nft.music)
     formData.append('title', nft.title)
@@ -62,24 +61,25 @@ const CreateScreen = () => {
     }).then(res => {
       console.log(res.status)
       if (res.status == 200) {
-        // alert("create success!")
-	// console.log(res.data.assetID);
-	// let creator = "WBBVOW7LKKTMB2HL4ZLN4W7QFH2DOEYXPZWC6NYNLUJACQP6JL5ZMNS27A";
-	// let assetID = 89450665;
-        // createNFT(creator, res.data.assetID);
-        // axios.post("http://47.252.29.19:8000/api/nft/transferNFT");
+        createNFT(creator, res.data.assetID);
+        let form = new FormData();
+        form.append('creator', creator);
+        form.append('assetID', res.data.assetID);
+        axios.post("http://47.252.29.19:8000/api/nft/transferNFT", form, {})
+        .then(res => {
+          alert("Create success!")
+        })
+        .catch(err => {
+          alert("Create failed! Cannot connect to algorand testnet. Please try again later");
+        });
       } else {
-        alert("create failed! Please try again later")
+        alert("Create failed! Server busy. Please try again later.");
       }
-
     })
       .catch(err => {
         console.log(err)
         alert("create failed!")
       })
-	creator = "WBBVOW7LKKTMB2HL4ZLN4W7QFH2DOEYXPZWC6NYNLUJACQP6JL5ZMNS27A";
-	let assetID = 89450665;
-	createNFT(creator, assetID);
   }
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -106,12 +106,10 @@ const CreateScreen = () => {
   const createNFT = (creator, assetID) => {
     if (!window.Buffer) window.Buffer = Buffer;
     let transferAsset = async (sender, recipient, assetID, amount, note=undefined) => {
-	console.log("in transferAsset function");
       const myAlgoWallet = new MyAlgoConnect();
       const algodClient = new algosdk.Algodv2("", "https://node.testnet.algoexplorerapi.io", "");
       const params = await algodClient.getTransactionParams().do();
 
-	  console.log("before transaction");
       const txn = algosdk.makeAssetTransferTxnWithSuggestedParamsFromObject({
         from: sender,
         to: recipient,
