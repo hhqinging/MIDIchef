@@ -10,6 +10,7 @@ import morgan from "morgan";
 import _ from "lodash";
 import mongoose from 'mongoose';
 import Users from "../models/user-model.js";
+import tracks from "../models/track-model.js";
 const { Schema } = mongoose;
 
 var router = express.Router();
@@ -71,49 +72,20 @@ router.post("/testupload", async (req, res) => {
 
 
 router.post('/addNumFavorite', function (req, res) {
-    console.log("addaaaaaaaaaaaa:", req.body.numFavorite);
+    const filter = { assetID: req.body.assetID };
+    const update = {
+        numFavorite: req.body.numFavorite,
+    };
+    tracks.findOneAndUpdate(filter, update, {
+        returnOriginal: false
+    }, function (err, doc) {
+        console.log(err)
+        console.log(doc)
+    })
     res.status(200).json({
         numFavorite: req.body.numFavorite
     })
 })
 
-
-
-// router.post("/upload-files", async (req, res) => {
-//     try {
-//         if (!req.files) {
-//             res.send({
-//                 status: false,
-//                 message: "No file uploaded",
-//             });
-//         } else {
-//             let data = [];
-
-//             //loop all files
-//             _.forEach(_.keysIn(req.files.files), (key) => {
-//                 let file = req.files.files[key];
-
-//                 //move photo to uploads directory
-//                 file.mv("./uploads/" + file.name);
-
-//                 //push file details
-//                 data.   ({
-//                     name: file.name,
-//                     mimetype: file.mimetype,
-//                     size: file.size,
-//                 });
-//             });
-
-//             //return response
-//             res.send({
-//                 status: true,
-//                 message: "Files are uploaded",
-//                 data: data,
-//             });
-//         }
-//     } catch (err) {
-//         res.status(500).send(err);
-//     }
-// });
 
 export default router;

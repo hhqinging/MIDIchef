@@ -21,6 +21,7 @@ function TrackPlayer(props) {
     let numFavorite = track.numFavorite + 1;
     console.log("wwwwwNew:", numFavorite);
     formData.append('numFavorite', numFavorite)
+    formData.append('assetID', track.assetID)
     // console.log(formData.getAll("numFavorite"))
     axios.post("http://localhost:8000/api/addNumFavorite", formData, {
     }).then(res => {
