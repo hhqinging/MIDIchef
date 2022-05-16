@@ -52,7 +52,7 @@ router.get('/single_song', function (req, res) {
         data = req.query[key];
     }
     Track.find().where(Object.keys(req.query)[0]).equals(data).then(test => {
-        console.log(req)
+        
         if (test.length == 0) {
             res.status(200).json({
                 Info: "result not founded"
