@@ -22,68 +22,94 @@ const reducer = (state, action) => {
 };
 
 function OwnedTracks() {
-    let currentUser = localStorage.getItem("myalgo-wallet-addresses");
+  // let currentUser = localStorage.getItem("myalgo-wallet-addresses");
 
-    const [{ loading, error, tracks }, dispatch] = useReducer(logger(reducer), {
-        tracks: [],
-        loading: true,
-        error: "",
+  // const [{ loading, error, tracks }, dispatch] = useReducer(logger(reducer), {
+  //     tracks: [],
+  //     loading: true,
+  //     error: "",
+  // });
+  // console.log("TRACKS1", tracks);
+  let currentAddr = localStorage.getItem("myalgo-wallet-addresses");
+  let currentU;
+  try {
+    axios.get(`/api/user/get_user?walletAddr=${currentAddr}`).then((result) => {
+      currentU = result.data.userName;
+      localStorage.setItem("username", currentU);
     });
-    console.log("TRACKS1", tracks);
+  } catch (error) {
+    console.log(error);
+  }
 
-    useEffect(() => {
-        const fetchData = async () => {
-          dispatch({ type: "FETCH_REQUEST" });
-          try {
-            const result = await axios.get("/api/tracks/songlist");
-            dispatch({ type: "FETCH_SUCCESS", payload: result.data });
-          } catch (err) {
-            dispatch({ type: "FETCH_FAIL", payload: err.message });
-          }
-        };
-        fetchData();
-    }, []);
-    
-    
-    console.log("USER: ", currentUser);
+  //   const currentUser = currentUserProm.data.userName;
+  let currentUser = localStorage.getItem("username");
+  localStorage.removeItem("username");
+  console.log(currentUser);
+  const [{ loading, error, tracks }, dispatch] = useReducer(logger(reducer), {
+    tracks: [],
+    loading: true,
+    error: "",
+  });
 
-    const filteredTracks = tracks.filter((track) => track.owner === currentUser);
-    console.log("TRACKS2", filteredTracks);
+  useEffect(() => {
+    const fetchData = async () => {
+      dispatch({ type: "FETCH_REQUEST" });
+      try {
+        const result = await axios.get("/api/tracks/songlist");
+        dispatch({ type: "FETCH_SUCCESS", payload: result.data });
+      } catch (err) {
+        dispatch({ type: "FETCH_FAIL", payload: err.message });
+      }
+    };
+    fetchData();
+  }, []);
 
-    return (
-        <div>
-        <div className="tracks">
-            <Grid container
+  console.log("USER: ", currentUser);
+
+  const filteredTracks = tracks.filter((track) => track.owner === currentUser);
+  console.log("TRACKS2", filteredTracks);
+
+  return (
+    <div>
+      <h1 style={{ color: "white" }}>Your owned NFT tracks</h1>
+      <div className="tracks">
+        <Grid
+          container
+          style={{
+            display: "flex",
+            width: "92%",
+            margin: "auto",
+            justifyContent: "space-evenly",
+            spacing: "2",
+          }}
+        >
+          {loading ? (
+            <CircularProgress
+              style={{
+                padding: "2% 45% 2% 45%",
+              }}
+            />
+          ) : error ? (
+            <MessageBox severity="error">{error}</MessageBox>
+          ) : (
+            filteredTracks.map((track) => (
+              <Card
                 style={{
-                    display: "flex",
-                    width: "92%",
-                    margin: "auto",
-                    justifyContent: "space-evenly",
-                    spacing:"2"
+                  marginTop: "1%",
+                  marginBottom: "1%",
+                  marginRight: "0.5%",
+                  marginLeft: "0.5%",
                 }}
-            >
-            {loading ? (
-                <CircularProgress
-                style={{
-                    padding: "2% 45% 2% 45%",
-                }}
-                />
-            ) : error ? (
-                <MessageBox severity="error">{error}</MessageBox>
-            ) : (                
-                filteredTracks.map((track) => (
-                    <Card 
-                      style={{ marginTop: "1%", marginBottom: "1%", marginRight: "0.5%", marginLeft: "0.5%"}} 
-                      sx={{ maxWidth: 345 }} 
-                      key={track.assetID}>
-                      <TrackPlayer track={track}></TrackPlayer>
-                    </Card>
-                ))
-                
-            )}
-            </Grid>
-        </div>
-        </div>
-    );
+                sx={{ maxWidth: 345 }}
+                key={track.assetID}
+              >
+                <TrackPlayer track={track}></TrackPlayer>
+              </Card>
+            ))
+          )}
+        </Grid>
+      </div>
+    </div>
+  );
 }
 export default OwnedTracks;
