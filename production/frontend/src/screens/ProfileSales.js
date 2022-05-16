@@ -31,18 +31,24 @@ const reducer = (state, action) => {
   }
 };
 
+
 function ProfileSales() {
   let currentAddr = localStorage.getItem("myalgo-wallet-addresses");
   let currentU;
-  const currentUserProm = axios
-    .get(`/api/user/get_user?walletAddr=${currentAddr}`)
-    .then((result) => {currentU = result.data;console.log(currentU)});
-
-  //   const currentUser = currentUserProm.data.userName;
-
-  console.log("currentUser:", currentUserProm);
-  console.log("currentU:", currentU);
-
+   try {
+  axios
+     .get(`/api/user/get_user?walletAddr=${currentAddr}`)
+     .then((result) => {
+       currentU = result.data.userName;
+       localStorage.setItem("username", currentU)
+     }); 
+      } catch(error) {
+       console.log(error);
+    }
+   //   const currentUser = currentUserProm.data.userName;
+    let currentUser = localStorage.getItem("username");
+    localStorage.removeItem("username") 
+    console.log(currentUser);
   const [{ loading, error, tracks }, dispatch] = useReducer(logger(reducer), {
     tracks: [],
     loading: true,

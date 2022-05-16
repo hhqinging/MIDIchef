@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 const { Schema } = mongoose;
+import { generateUsername } from "unique-username-generator";
 import Track from "../models/track-model.js";
 import users from "../models/user-model.js";
 mongoose.set('debug', true);
@@ -51,7 +52,7 @@ export async function Update_song(song) {
 export async function Create_new_user(user) {
     console.log(user)
     const A = new users({
-        userName: user.username,
+        userName:  generateUsername(),
         description: user.description,
         profilePhoto: user.pfp,
         walletAddr: user.addresses[0],
