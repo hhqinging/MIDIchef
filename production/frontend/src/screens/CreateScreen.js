@@ -41,18 +41,6 @@ const CreateScreen = () => {
       [e.target.name]: value
     });
   }
-  let testSubmit = async (e) => {
-    let form = new FormData();
-    form.append('creator', "addr");
-    form.append('assetID', 123123);
-    axios.post("http://47.252.29.19:8000/api/nft/transferNFT", form, {})
-    .then(res => {
-      alert("Create success!")
-    })
-    .catch(err => {
-      alert("Create failed! Cannot connect to algorand testnet. Please try again later");
-    });
-  }
   let onSubmit = async (e) => {
     let creator = localStorage.getItem('myalgo-wallet-addresses');
     let assetID = undefined;

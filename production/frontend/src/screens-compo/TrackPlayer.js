@@ -41,7 +41,7 @@ function TrackPlayer(props) {
 
     formData.append('assetID', track.assetID)
     // console.log(formData.getAll("numFavorite"))
-    axios.post("http://localhost:8000/api/addNumFavorite", formData, {
+    axios.post("http://47.252.29.19:8000/api/addNumFavorite", formData, {
     }).then(res => {
       console.log("numFavoriteSend:", res.data.numFavorite)
     })

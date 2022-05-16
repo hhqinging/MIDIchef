@@ -72,7 +72,7 @@ const NarBar = () => {
       console.log("handleKeyPress", event.target.value);
       axios
         .get(
-          `http://localhost:8000/api/tracks/search?title=${event.target.value}`,
+          `http://47.252.29.19:8000/api/tracks/search?title=${event.target.value}`,
           {}
         )
         .then((res) => {
