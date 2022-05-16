@@ -45,7 +45,10 @@ router.post("/upload", async (req, res) => {
             let ext_music = req.files.music.name.split('.')[1];
             music.mv("./uploads/music/" + music.md5 + "." + ext_music);
             imageCover.mv("./uploads/imageCover/" + imageCover.md5 + "." + ext_img);
+	    console.log("title:", req.body.title);
             let assetID = await createAsset(req.body.title)
+	    // console.log("creating asset...");
+	    // let assetID = 12341234;
             let data = {
                 creator: creator,
                 assetID: assetID,

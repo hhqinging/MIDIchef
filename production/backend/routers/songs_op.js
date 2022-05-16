@@ -22,7 +22,7 @@ router.get('/songlist', function (req, res) {
             })
         }
         else{
-        console.log(test)
+        // console.log(test)
         res.status(200).json(    
             test
         )}
@@ -40,7 +40,7 @@ router.get('/trending', function (req, res) {
             })
         }
         else{
-        console.log(test)
+        // console.log(test)
         res.status(200).json(    
             test
         )}
@@ -59,7 +59,7 @@ router.get('/single_song', function (req, res) {
             })
         }
         else {
-            console.log(test)
+            // console.log(test)
             res.status(200).json(
 
                 test[0]
@@ -83,7 +83,7 @@ router.get('/search', function (req, res) {
             })
         }
         else {
-            console.log(test)
+            // console.log(test)
             res.status(200).json(
 
                 test
