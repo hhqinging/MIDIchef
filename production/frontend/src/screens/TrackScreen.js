@@ -227,7 +227,7 @@ function TrackScreen() {
             <br></br>
             <br></br>
             <Stack direction="row" spacing={2}>
-              {track.marketStatus === "onSale" ? (
+              {track.marketStatus === true ? (
                 <ThemeProvider theme={theme}>
                   <StyledButton variant="contained" color="blue" style={{ fontWeight: "bold" }}>
                     Buy Now
