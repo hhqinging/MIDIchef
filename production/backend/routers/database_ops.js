@@ -67,6 +67,20 @@ export async function Update_user(user) {
         description: user.description,
         profilePhoto: user.profilePhoto,
     };
+    let old
+    Users.findOne()
+    .where("walletAddr")
+    .equals(user.walletAddr)
+    .then((test) => {
+        old= test.userName
+      }
+    );
+    Track.updateMany({ creator: old }, {
+        creator: user.username
+      });
+    Track.updateMany({ owner: old }, {
+        owner: user.username
+      });
     users.findOneAndUpdate(filter, update, {
         returnOriginal: false
     }, function (err, doc) {

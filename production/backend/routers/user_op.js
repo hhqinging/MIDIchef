@@ -109,8 +109,8 @@ router.post("/update_user", function (req, res) {
 router.post("/setting", function (req, res) {
   try {
     if (
-      !req.files.imageCover ||
-      req.body.userName == "" ||
+      !req.files.imageCover |
+      req.body.userName == "" |
       req.body.description == 0
     ) {
       res.status(500).send("No complete info!");
@@ -148,17 +148,4 @@ router.get('/user_file', function (req, res) {
   });
 })
 
-router.get('/user_file', function (req, res) {
-  let fileName = req.query.photo
-  const __dirname = path.resolve();
-  let options = { root: path.join(__dirname, './uploads/imageUser') }
-  res.sendFile(fileName, options, function (err) {
-      if (err) {
-          console.log("err");
-          console.log(err);
-      } else {
-          console.log('Sent:', fileName);
-      }
-  });
-})
 export default router;
