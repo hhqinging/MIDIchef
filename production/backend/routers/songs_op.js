@@ -2,6 +2,7 @@
 import express from 'express'
 import mongoose from 'mongoose';
 import Track from "../models/track-model.js";
+import users from "../models/user-model.js";
 import {Create_song,Update_song} from './database_ops.js'
 import path from 'path'
 //const and var
@@ -128,14 +129,16 @@ router.post('/create_song', function (req, res) {
         note: "save success!"
     })
 })
-router.post('/buy_it',function(req,res){
+router.post('/buy_it',async function(req,res){
     let walletAddr=req.body.walletAddr
     let assetID=req.body.assetID
     let old
-     users.find({ walletAddr: user.walletAddr }).then((test) => {
+    await users.find({ walletAddr: walletAddr }).then((test) => {
         old = test[0].userName
+        
     })
-    const filter = { assetID: song.assetID };
+    console.log(old)
+    const filter = { assetID: assetID };
     const update = {
         owner: old,
     };
