@@ -57,20 +57,6 @@ const NarBar = () => {
     alert(result);
   };
 
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      console.log("handleKeyPress", event.target.value);
-      axios
-        .get(
-          `http://localhost:8000/api/tracks/search?title=${event.target.value}`,
-          {}
-        )
-        .then((res) => {
-          console.log("kkkkkkkkk:");
-        });
-    }
-  };
-
   //mui button setup
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
@@ -80,6 +66,31 @@ const NarBar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      console.log("handleKeyPress", event.target.value);
+      axios
+        .get(
+          `http://localhost:8000/api/tracks/search?title=${event.target.value}`,
+          {}
+        )
+        .then((res) => {
+          console.log("search feedback:", res.data.Info);
+          console.log("search feedback:", res.data);
+          if (res.data.Info) {
+            navigate("/");
+          } else {
+            navigate("/searchScreen/" + event.target.value);
+          }
+        });
+
+    }
+  };
+
+
+
+
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
@@ -131,7 +142,7 @@ const NarBar = () => {
 
   const userSignIn = () => {
     // dynamic navbar based on user login
-    if (!localStorage.getItem('myalgo-wallet-addresses')){
+    if (!localStorage.getItem('myalgo-wallet-addresses')) {
       return <div>
         <Button
           color="blue"
@@ -141,8 +152,8 @@ const NarBar = () => {
         >
           Explore
         </Button>
-        <MyAlgoLogin navigate={navigate}/>
-        </div>
+        <MyAlgoLogin navigate={navigate} />
+      </div>
     } else {
       return (
         <div>

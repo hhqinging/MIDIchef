@@ -11,6 +11,8 @@ import ProfileScreen from "./screens/ProfileScreen";
 import OwnedTracks from "./screens/ownedTracks";
 import ExploreTracks from "./screens/ExploreTracks";
 import ExploreTrending from "./screens/ExploreTrending";
+import SearchScreen from "./screens/SearchScreen";
+
 
 import "./App.css";
 import { isLogin } from "./screens-compo/MyAlgo";
@@ -35,7 +37,7 @@ export default function App() {
             <Route path="/profile/owned" element={<OwnedTracks />} />
             <Route path="/tracks" element={<ExploreTracks />} />
             <Route path="/trending" element={<ExploreTrending />} />
-
+            <Route path="/SearchScreen/:title" element={<SearchScreen />} />
           </Routes>
         </main>
       </div>
