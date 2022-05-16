@@ -69,7 +69,7 @@ function ProfileCreation() {
   }, []);
 
   const creationTracks = tracks.filter(
-    (track) => track.owner === currentUser && track.marketStatus === true
+    (track) => track.creator === currentUser && track.marketStatus === true
   );
   console.log("selling tracks", creationTracks);
 
