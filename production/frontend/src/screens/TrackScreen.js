@@ -145,9 +145,8 @@ function TrackScreen() {
         .then((res) => {
           console.log(res);
           if (res.status === 200) {
-            alert("Succeed to buy")
-            navigate("/");
-            
+            alert("Succeed to buy");
+            navigate("/profile/owned");
           } else {
             alert("failed to buy");
           }
