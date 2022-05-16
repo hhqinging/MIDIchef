@@ -74,7 +74,7 @@ export async function Update_user(user) {
       }
     );
     
-     Track.updateMany({ creator: old }, {
+     Track.updateMany({"$or":[{ owner: old },{ creator: old }]}, {
         creator: user.username
       } ,function (err, docs) {
         if (err){
@@ -82,13 +82,7 @@ export async function Update_user(user) {
         }
 
     });
-     Track.updateMany({ owner: old }, {
-        owner: user.username
-      }, function (err, docs) {
-        if (err){
-            console.log(err)
-        }
-    });
+    
      users.findOneAndUpdate(filter, update, {
         returnOriginal: false
     }, function (err, doc) {

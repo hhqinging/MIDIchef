@@ -101,7 +101,6 @@ router.post("/auth", function (req, res) {
 });
 router.post("/update_user", function (req, res) {
   Update_user(req.body);
-  console.log(req.body);
   res.send({
     note: "update success!",
   });
@@ -151,7 +150,7 @@ router.get('/user_file', function (req, res) {
   res.sendFile(fileName, options, function (err) {
       if (err) {
       } else {
-          console.log('Sent:', fileName);
+         // console.log('Sent:', fileName);
       }
   });
 })
