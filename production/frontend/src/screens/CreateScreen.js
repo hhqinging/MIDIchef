@@ -41,14 +41,28 @@ const CreateScreen = () => {
       [e.target.name]: value
     });
   }
+  let testSubmit = async (e) => {
+    let form = new FormData();
+    form.append('creator', "addr");
+    form.append('assetID', 123123);
+    axios.post("http://47.252.29.19:8000/api/nft/transferNFT", form, {})
+    .then(res => {
+      alert("Create success!")
+    })
+    .catch(err => {
+      alert("Create failed! Cannot connect to algorand testnet. Please try again later");
+    });
+  }
   let onSubmit = async (e) => {
     let creator = localStorage.getItem('myalgo-wallet-addresses');
+    let assetID = undefined;
     if(!creator) {
       alert("Login first to create NFT");
       return;
     }
 
     e.preventDefault()
+    // Create NFT
     const formData = new FormData()
     formData.append('walletAddr', creator)
     formData.append('music', nft.music)
@@ -57,28 +71,28 @@ const CreateScreen = () => {
     formData.append('price', nft.price)
     formData.append('royalty', nft.royalty)
     formData.append('imageCover', imageCover[0])
-    axios.post("http://47.252.29.19:8000/api/testupload", formData, {
+    await axios.post("http://47.252.29.19:8000/api/upload", formData, {
     }).then(res => {
       console.log(res.status)
       if (res.status == 200) {
-        createNFT(creator, res.data.assetID);
-        let form = new FormData();
-        form.append('creator', creator);
-        form.append('assetID', res.data.assetID);
-        axios.post("http://47.252.29.19:8000/api/nft/transferNFT", form, {})
-        .then(res => {
-          alert("Create success!")
-        })
-        .catch(err => {
-          alert("Create failed! Cannot connect to algorand testnet. Please try again later");
-        });
-      } else {
-        alert("Create failed! Server busy. Please try again later.");
-      }
-    })
+        assetID = res.data.assetID;
+      }})
       .catch(err => {
         console.log(err)
-        alert("create failed!")
+        alert("Create failed! Server busy, please try again later.");
+      })
+      await createNFT(creator, assetID);
+      console.log("transferring NFT...")
+      let form = new FormData();
+      form.append('creator', creator);
+      form.append('assetID', assetID);
+      axios.post("http://47.252.29.19:8000/api/nft/transferNFT", form, {})
+      .then(res => {
+        alert("Create success!");
+      })
+      .catch(err => {
+        console.log(err);
+        alert("Create failed! Cannot transfer created asset. Please try again later");
       })
   }
 
@@ -103,7 +117,7 @@ const CreateScreen = () => {
     </div>
   ))
 
-  const createNFT = (creator, assetID) => {
+  const createNFT = async (creator, assetID) => {
     if (!window.Buffer) window.Buffer = Buffer;
     let transferAsset = async (sender, recipient, assetID, amount, note=undefined) => {
       const myAlgoWallet = new MyAlgoConnect();
@@ -126,7 +140,7 @@ const CreateScreen = () => {
       .sendRawTransaction(signedTxn.blob)
       .do();
       }
-    transferAsset(creator, creator, assetID, 0); // Opt in to asset transfer
+    await transferAsset(creator, creator, assetID, 0); // Opt in to asset transfer
   }
 
   return (

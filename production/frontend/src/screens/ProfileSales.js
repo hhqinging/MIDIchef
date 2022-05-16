@@ -31,15 +31,17 @@ const reducer = (state, action) => {
   }
 };
 
-async function ProfileSales() {
+function ProfileSales() {
   let currentAddr = localStorage.getItem("myalgo-wallet-addresses");
-  let currentU = " ";
-
-  const currentUserProm = await axios
+  let currentU;
+  const currentUserProm = axios
     .get(`/api/user/get_user?walletAddr=${currentAddr}`)
-  const currentUser = currentUserProm.data.userName;
+    .then((result) => {currentU = result.data;console.log(currentU)});
 
-  console.log("currentUser:", currentUser);
+  //   const currentUser = currentUserProm.data.userName;
+
+  console.log("currentUser:", currentUserProm);
+  console.log("currentU:", currentU);
 
   const [{ loading, error, tracks }, dispatch] = useReducer(logger(reducer), {
     tracks: [],
@@ -62,10 +64,10 @@ async function ProfileSales() {
     fetchData();
   }, []);
 
-    // const salesTracks = tracks.filter(
-    //   (track) => track.owner === currentUser && track.marketStatus === true
-    // );
-    // console.log("selling tracks", salesTracks);
+  // const salesTracks = tracks.filter(
+  //   (track) => track.owner === currentUser && track.marketStatus === true
+  // );
+  // console.log("selling tracks", salesTracks);
 
   return (
     <div>

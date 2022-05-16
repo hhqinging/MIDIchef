@@ -8,6 +8,8 @@ router.post("/transferNFT", async (req, res) => {
         // let sender = req.body.sender;
         let recipient = req.body.creator;
         let assetID = req.body.assetID;
+	console.log("recipient:", recipient);
+	console.log("assetID:", assetID);
         transferAsset(sender, recipient, assetID);
         res.status(200);
     }
