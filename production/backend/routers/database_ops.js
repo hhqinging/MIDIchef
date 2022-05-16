@@ -68,7 +68,7 @@ export async function Update_user(user) {
         profilePhoto: user.profilePhoto,
     };
     let old
-    Users.findOne()
+    users.findOne()
     .where("walletAddr")
     .equals(user.walletAddr)
     .then((test) => {
