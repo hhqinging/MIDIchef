@@ -31,12 +31,12 @@ router.post("/upload", async (req, res) => {
         } else {
             let creator;
             console.log(req.body.walletAddr)
-            Users.findOne().where('walletAddr').equals(req.body.walletAddr).then(result => {
+            Users.find().where('walletAddr').equals(req.body.walletAddr).then(result => {
                 if (result.length == 0) {
                     res.status(500).json({ Info: "user unexist" })
                 }
                 else {
-                    creator = result.userName;
+                    creator = result[0].userName;
                 }
             })
             let music = req.files.music;
