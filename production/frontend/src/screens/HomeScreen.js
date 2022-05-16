@@ -67,9 +67,9 @@ function HomeScreen() {
             width: "92%",
             margin: "auto",
             justifyContent: "space-evenly",
-            spacing:"2"
+            spacing: "2"
           }}
-        
+
         >
           {loading ? (
             <CircularProgress
@@ -81,9 +81,9 @@ function HomeScreen() {
             <MessageBox severity="error">{error}</MessageBox>
           ) : (
             tracks.map((track) => (
-              <Card 
-                style={{ marginTop: "1%", marginBottom: "1%", marginRight: "0.5%", marginLeft: "0.5%"}} 
-                sx={{ maxWidth: 345 }} 
+              <Card
+                style={{ marginTop: "1%", marginBottom: "1%", marginRight: "0.5%", marginLeft: "0.5%" }}
+                sx={{ maxWidth: 345 }}
                 key={track.assetID}>
                 <TrackPlayer track={track}></TrackPlayer>
               </Card>
