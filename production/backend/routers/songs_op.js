@@ -130,9 +130,11 @@ router.post('/create_song', function (req, res) {
     })
 })
 router.post('/buy_it',async function(req,res){
+
     let walletAddr=req.body.walletAddr
     let assetID=req.body.assetID
     let old
+    try{
     await users.find({ walletAddr: walletAddr }).then((test) => {
         old = test[0].userName
         
@@ -148,5 +150,9 @@ router.post('/buy_it',async function(req,res){
         console.log(err)
         console.log(doc)
     })
+    res.status(200).json({info: "All good"})}
+    catch(err){
+        res.status(500).json({info: "err"})
+    }
 })
 export default router;
