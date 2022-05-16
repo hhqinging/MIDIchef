@@ -31,27 +31,15 @@ const reducer = (state, action) => {
   }
 };
 
-function ProfileSales() {
+async function ProfileSales() {
   let currentAddr = localStorage.getItem("myalgo-wallet-addresses");
   let currentU = " ";
 
-  const currentUserProm = axios
+  const currentUserProm = await axios
     .get(`/api/user/get_user?walletAddr=${currentAddr}`)
-    .then((result) => {
-      console.log("data:", result.data);
-      currentU = result.data.userName;
-    })
-    .then((vaule) => {
-      currentU = vaule.userName;
-    });
+  const currentUser = currentUserProm.data.userName;
 
-  const getCurrentUser = () => {
-    currentUserProm.then((a) => {
-      console.log(a);
-    });
-  };
-
-  console.log("currentUserProm", currentU);
+  console.log("currentUser:", currentUser);
 
   const [{ loading, error, tracks }, dispatch] = useReducer(logger(reducer), {
     tracks: [],
@@ -59,7 +47,7 @@ function ProfileSales() {
     error: "",
   });
 
-  console.log("preFilter", tracks);
+  // console.log("preFilter", tracks);
 
   useEffect(() => {
     const fetchData = async () => {
