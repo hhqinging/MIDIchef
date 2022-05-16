@@ -9,7 +9,6 @@ import { Button } from "@mui/material";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-let currentUser = localStorage.getItem("myalgo-wallet-addresses");
 
 const theme = createTheme({
   palette: {
