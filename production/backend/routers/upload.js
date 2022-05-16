@@ -48,6 +48,7 @@ router.post("/upload", async (req, res) => {
             let assetID = await createAsset(req.body.title)
             let data = {
                 creator: creator,
+                owner: creator,
                 assetID: assetID,
                 title: req.body.title,
                 description: req.body.description,
