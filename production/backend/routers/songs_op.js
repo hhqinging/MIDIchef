@@ -128,4 +128,22 @@ router.post('/create_song', function (req, res) {
         note: "save success!"
     })
 })
+router.post('/buy_it',function(req,res){
+    let walletAddr=req.body.walletAddr
+    let assetID=req.body.assetID
+    let old
+     users.find({ walletAddr: user.walletAddr }).then((test) => {
+        old = test[0].userName
+    })
+    const filter = { assetID: song.assetID };
+    const update = {
+        owner: old,
+    };
+    Track.findOneAndUpdate(filter, update, {
+        returnOriginal: false
+    }, function (err, doc) {
+        console.log(err)
+        console.log(doc)
+    })
+})
 export default router;
