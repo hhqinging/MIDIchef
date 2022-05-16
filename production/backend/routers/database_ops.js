@@ -52,7 +52,7 @@ export async function Update_song(song) {
 export async function Create_new_user(user) {
     console.log(user)
     const A = new users({
-        userName:  generateUsername(),
+        userName: generateUsername(),
         description: user.description,
         profilePhoto: user.pfp,
         walletAddr: user.addresses[0],
@@ -62,26 +62,28 @@ export async function Create_new_user(user) {
 }
 export async function Update_user(user) {
     console.log(user)
-    const filter = { walletAddr: user.walletAddr};
+    const filter = { walletAddr: user.walletAddr };
     const update = {
         userName: user.username,
         description: user.description,
         profilePhoto: user.profilePhoto,
     };
     let old
-    await users.find({ walletAddr: user.walletAddr}).then((test) => {
-        old=test[0].userName
-      }
+    await users.find({ walletAddr: user.walletAddr }).then((test) => {
+        old = test[0].userName
+    }
     );
+
     
      Track.updateMany({"$or":[{ owner: old },{ creator: old }]}, {
         creator: user.username
-      } ,function (err, docs) {
-        if (err){
+    }, function (err, docs) {
+        if (err) {
             console.log(err)
         }
 
     });
+
     
      users.findOneAndUpdate(filter, update, {
         returnOriginal: false
