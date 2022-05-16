@@ -99,7 +99,6 @@ router.get('/song_file',function(req,res){
 	res.sendFile(fileName, options, function (err) {
         if (err) {
          } else {
-            console.log('Sent:', fileName);
         }
     });
 })
@@ -109,10 +108,9 @@ router.get('/photo_file',function(req,res){
     let options={ root: path.join(__dirname, './uploads/imageCover') }
     res.sendFile(fileName, options, function (err) {
         if (err) {
-            console.log("err");
-            console.log(err);
+
         } else {
-            console.log('Sent:', fileName);
+
         }
     });
 })
