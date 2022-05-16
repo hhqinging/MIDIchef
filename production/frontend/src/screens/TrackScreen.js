@@ -11,8 +11,7 @@ import AudioPlayer from "material-ui-audio-player";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { getError } from "../utils/utils";
 import { withStyles } from "@material-ui/core/styles";
-import React, { useState } from 'react';
-
+import React, { useState } from "react";
 
 //taking two paras: current state & the action that changed current state and create the new state
 const reducer = (state, action) => {
@@ -53,10 +52,10 @@ const theme = createTheme({
 const StyledButton = withStyles({
   root: {
     color: "black",
-    '&:hover': {
+    "&:hover": {
       backgroundColor: "#e785e7",
-    }
-  }
+    },
+  },
 })(Button);
 
 function TrackScreen() {
@@ -84,7 +83,7 @@ function TrackScreen() {
       track.numFavorite++;
       console.log("after:", numFavorite);
       console.log("after track:", track.numFavorite);
-      formData.append('numFavorite', numFavorite + 1)
+      formData.append("numFavorite", numFavorite + 1);
     } else {
       setFavorite(false);
       console.log(favorite);
@@ -93,20 +92,20 @@ function TrackScreen() {
       track.numFavorite--;
       console.log("after:", numFavorite);
       console.log("after track:", track.numFavorite);
-      formData.append('numFavorite', numFavorite - 1)
+      formData.append("numFavorite", numFavorite - 1);
     }
 
-    formData.append('assetID', track.assetID)
+    formData.append("assetID", track.assetID);
     // console.log(formData.getAll("numFavorite"))
-    axios.post("http://47.252.29.19:8000/api/addNumFavorite", formData, {
-    }).then(res => {
-      console.log("numFavoriteSend:", res.data.numFavorite)
-    })
-      .catch(err => {
-        console.log(err)
+    axios
+      .post("http://47.252.29.19:8000/api/addNumFavorite", formData, {})
+      .then((res) => {
+        console.log("numFavoriteSend:", res.data.numFavorite);
       })
-  }
-
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   // const [tracks, setTracks] = useState([]);
   useEffect(() => {
@@ -129,6 +128,27 @@ function TrackScreen() {
   }, [assetID]);
 
   console.log("trackinfo", track);
+
+  const currentAddr = localStorage.getItem("myalgo-wallet-addresses");
+  console.log("currentAddr ", currentAddr);
+  console.log("assetID", assetID);
+
+  const handleClick = async () => {
+    const walletAddr = localStorage.getItem("myalgo-wallet-addresses");
+    try {
+      axios
+        .post(`http://47.252.29.19:8000/api/tracks/buy_it`, {
+          walletAddr,
+          assetID,
+        })
+        .then((res) => {
+          console.log(res);
+        });
+      console.log("checjhuahfiashfi");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return loading ? (
     <CircularProgress
@@ -208,7 +228,13 @@ function TrackScreen() {
             >
               <img
                 src={algoicon}
-                style={{ width: "18px", margin: "0px 5px 0px 3px", border: "1px solid white", borderRadius: "100%", padding: "2px" }}
+                style={{
+                  width: "18px",
+                  margin: "0px 5px 0px 3px",
+                  border: "1px solid white",
+                  borderRadius: "100%",
+                  padding: "2px",
+                }}
                 alt={algoicon}
               />
               {track.price} Algo
@@ -229,7 +255,12 @@ function TrackScreen() {
             <Stack direction="row" spacing={2}>
               {track.marketStatus === true ? (
                 <ThemeProvider theme={theme}>
-                  <StyledButton variant="contained" color="blue" style={{ fontWeight: "bold" }}>
+                  <StyledButton
+                    onClick={handleClick}
+                    variant="contained"
+                    color="blue"
+                    style={{ fontWeight: "bold" }}
+                  >
                     Buy Now
                   </StyledButton>
                   {/* <form onSubmit={onSubmit}>
@@ -260,7 +291,7 @@ function TrackScreen() {
                   textDecoration: "none",
                   fontWeight: "bold",
                   color: "#59DFDD",
-                  fontSize: "20px"
+                  fontSize: "20px",
                 }}
               >
                 {track.creator}
