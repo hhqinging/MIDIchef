@@ -62,6 +62,7 @@ const CreateScreen = () => {
     }
 
     e.preventDefault()
+    // Create NFT
     const formData = new FormData()
     formData.append('walletAddr', creator)
     formData.append('music', nft.music)
@@ -74,32 +75,26 @@ const CreateScreen = () => {
     }).then(res => {
       console.log(res.status)
       if (res.status == 200) {
-	console.log("creating NFT");
-	assetID = res.data.assetID;
-	let result = await createNFT(creator, assetID);
-	console.log(result);
-	
-	console.log("transferring NFT...")
-        let form = new FormData();
-        form.append('creator', creator);
-        form.append('assetID', assetID);
-        axios.post("http://47.252.29.19:8000/api/nft/transferNFT", form, {})
-        .then(res => {
-          alert("Create success!")
-        })
-        .catch(err => {
-          alert("Create failed! Cannot connect to algorand testnet. Please try again later");
-	  console.log(err);
-        });
-      } else {
-        alert("Create failed! Server busy. Please try again later.");
-      }
-    })
+        assetID = res.data.assetID;
+      }})
       .catch(err => {
         console.log(err)
-        alert("create failed!")
+        alert("Create failed! Server busy, please try again later.");
       })
-    }
+      await createNFT(creator, assetID);
+      console.log("transferring NFT...")
+      let form = new FormData();
+      form.append('creator', creator);
+      form.append('assetID', assetID);
+      axios.post("http://47.252.29.19:8000/api/nft/transferNFT", form, {})
+      .then(res => {
+        alert("Create success!");
+      })
+      .catch(err => {
+        console.log(err);
+        alert("Create failed! Cannot transfer created asset. Please try again later");
+      })
+  }
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
