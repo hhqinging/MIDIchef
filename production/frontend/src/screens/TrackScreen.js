@@ -209,14 +209,15 @@ function TrackScreen() {
         </Grid>
         <Grid container spacing={3}>
           <Grid item xs={5}>
-            <p style={{ color: "white", fontSize: "13px", fontWeight: "bold" }}>
-              Creator by{" "}
+            <p style={{ color: "white", fontSize: "15px", fontWeight: "bold" }}>
+              Created by{" "}
               <Link
                 to={`/user/${track.creator}`}
                 style={{
                   textDecoration: "none",
                   fontWeight: "bold",
                   color: "#59DFDD",
+                  fontSize: "20px"
                 }}
               >
                 {track.creator}
@@ -225,7 +226,7 @@ function TrackScreen() {
             <p
               style={{
                 color: "#e785e7",
-                fontSize: "13px",
+                fontSize: "15px",
                 fontWeight: "bold",
                 margin: "0px 0px 0px 0px",
               }}
@@ -235,7 +236,7 @@ function TrackScreen() {
             <p
               style={{
                 color: "white",
-                fontSize: "13px",
+                fontSize: "15px",
                 fontWeight: "bold",
                 margin: "0px 0px 50px 0px",
               }}
@@ -263,7 +264,7 @@ function TrackScreen() {
             <p
               style={{
                 color: "white",
-                fontSize: "13px",
+                fontSize: "15px",
                 fontWeight: "bold",
               }}
             >

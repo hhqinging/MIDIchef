@@ -91,47 +91,70 @@ function UserOwned() {
 
   console.log("selling tracks", ownedTracks);
 
-  return (
-    <div>
-      <h1 style={{ color: "white" }}>{user} Owned Songs</h1>
-      <div className="tracks">
-        <Grid
-          container
-          style={{
-            display: "flex",
-            width: "92%",
-            margin: "auto",
-            justifyContent: "space-evenly",
-            spacing: "2",
-          }}
-        >
-          {loading ? (
-            <CircularProgress
-              style={{
-                padding: "2% 45% 2% 45%",
-              }}
+  return loading ? (
+    <CircularProgress
+      style={{
+        padding: "2% 45% 2% 45%",
+      }}
+    />
+    ) : error ? (
+      <MessageBox severity="error">{error}</MessageBox>
+    ) : (
+      <div class="row">
+        <div class="column">
+          <div class="pfp">
+            <img
+              src={userInfo.profilePhoto}
+              alt={userInfo.userName}
             />
-          ) : error ? (
-            <MessageBox severity="error">{error}</MessageBox>
-          ) : (
-            ownedTracks.map((track) => (
-              <Card
-                style={{
-                  marginTop: "1%",
-                  marginBottom: "1%",
-                  marginRight: "0.5%",
-                  marginLeft: "0.5%",
-                }}
-                sx={{ maxWidth: 345 }}
-                key={ownedTracks.assetID}
-              >
-                <TrackPlayer track={track}></TrackPlayer>
-              </Card>
-            ))
-          )}
-        </Grid>
+          </div>
+          
+          <div>
+            <div class="userName">{userInfo.userName}</div>
+            <div class="description">{userInfo.description}</div>
+          </div>
+        </div>
+        <></>
+        <div class="column">
+          <div>
+            <Grid
+              container
+              style={{
+                display: "flex",
+                width: "92%",
+                margin: "auto",
+                justifyContent: "space-evenly",
+                spacing: "2",
+              }}
+            >
+              {loading ? (
+                <CircularProgress
+                  style={{
+                    padding: "2% 45% 2% 45%",
+                  }}
+                />
+              ) : error ? (
+                <MessageBox severity="error">{error}</MessageBox>
+              ) : (
+                ownedTracks.map((track) => (
+                  <Card
+                    style={{
+                      marginTop: "1%",
+                      marginBottom: "1%",
+                      marginRight: "0.5%",
+                      marginLeft: "0.5%",
+                    }}
+                    sx={{ maxWidth: 345 }}
+                    key={ownedTracks.assetID}
+                  >
+                    <TrackPlayer track={track}></TrackPlayer>
+                  </Card>
+                ))
+              )}
+            </Grid>
+          </div>
+        </div>
       </div>
-    </div>
-  );
+    );
 }
 export default UserOwned;
