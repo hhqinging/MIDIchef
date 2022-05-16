@@ -39,6 +39,7 @@ export default function App() {
             <Route path="user/setting" element={<UpdateProfile />} />
             <Route path="/profile" element={<ProfileScreen />} />
             <Route path="/profile/sales" element={<ProfileSales />} />
+            <Route path="/profile/creation" element={<ProfileSales />} />
             <Route path="/profile/owned" element={<OwnedTracks />} />
             <Route path="/tracks" element={<ExploreTracks />} />
             <Route path="/trending" element={<ExploreTrending />} />

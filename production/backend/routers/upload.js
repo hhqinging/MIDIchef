@@ -51,6 +51,7 @@ router.post("/upload", async (req, res) => {
 	    // let assetID = 12341234;
             let data = {
                 creator: creator,
+                owner: creator,
                 assetID: assetID,
                 title: req.body.title,
                 description: req.body.description,

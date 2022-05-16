@@ -22,7 +22,6 @@ router.get('/songlist', function (req, res) {
             })
         }
         else{
-        // console.log(test)
         res.status(200).json(    
             test
         )}
