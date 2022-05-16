@@ -12,6 +12,7 @@ import OwnedTracks from "./screens/ownedTracks";
 import "./App.css";
 import { isLogin } from "./screens-compo/MyAlgo";
 import { Navigate } from "react-router-dom";
+import ProfileSales from "./screens/ProfileSales";
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
             <Route path="/" element={<HomeScreen />} />
             <Route path="user/setting" element={<UpdateProfile />} />
             <Route path="/profile" element={<ProfileScreen />} />
+            <Route path="/profile/sales" element={<ProfileSales />} />
             <Route path="/profile/owned" element={<OwnedTracks />} />
           </Routes>
         </main>
