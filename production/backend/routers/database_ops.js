@@ -61,31 +61,37 @@ export async function Create_new_user(user) {
 }
 export async function Update_user(user) {
     console.log(user)
-    const filter = { walletAddr: user.walletAddr };
+    const filter = { walletAddr: user.walletAddr};
     const update = {
         userName: user.username,
         description: user.description,
         profilePhoto: user.profilePhoto,
     };
     let old
-    users.findOne()
-    .where("walletAddr")
-    .equals(user.walletAddr)
-    .then((test) => {
-        old= test.userName
+    await users.find({ walletAddr: user.walletAddr}).then((test) => {
+        old=test[0].userName
       }
     );
-    Track.updateMany({ creator: old }, {
+    
+     Track.updateMany({ creator: old }, {
         creator: user.username
-      });
-    Track.updateMany({ owner: old }, {
+      } ,function (err, docs) {
+        if (err){
+            console.log(err)
+        }
+
+    });
+     Track.updateMany({ owner: old }, {
         owner: user.username
-      });
-    users.findOneAndUpdate(filter, update, {
+      }, function (err, docs) {
+        if (err){
+            console.log(err)
+        }
+    });
+     users.findOneAndUpdate(filter, update, {
         returnOriginal: false
     }, function (err, doc) {
         console.log(err)
-        console.log(doc)
     })
 }
 

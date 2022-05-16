@@ -38,6 +38,7 @@ router.get("/get_user", function (req, res) {
         });
       } else {
         res.status(200).json(
+          
           // Info: "result founded",
           // data: test
           test[0]
@@ -118,6 +119,12 @@ router.post("/setting", function (req, res) {
       let imageUser = req.files.imageCover;
       let ext_img = req.files.imageCover.name.split(".")[1];
       imageUser.mv("./uploads/imageUser/" + imageUser.md5 + "." + ext_img);
+      let old 
+      // Users.find({walletAddr:req.body.walletAddr}).then(test=>{
+        
+      //   console.log(test[0].userName)
+      // })
+      console.log(old)
       let data = {
         walletAddr: req.body.walletAddr,
         username: req.body.userName,
@@ -128,6 +135,7 @@ router.post("/setting", function (req, res) {
           "." +
           ext_img,
       };
+      
       Update_user(data);
       res.status(200).json();
     }
