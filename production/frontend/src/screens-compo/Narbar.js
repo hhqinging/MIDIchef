@@ -305,11 +305,11 @@ const NarBar = () => {
                 Tracks
               </Typography>
             </Link>
-            <Link to="/artists" style={{ textDecoration: "none" }}>
+            {/* <Link to="/artists" style={{ textDecoration: "none" }}>
               <Typography sx={{ p: 1, fontWeight: "bold", color: "#292828" }}>
                 Artists
               </Typography>
-            </Link>
+            </Link> */}
             <Link to="/trending" style={{ textDecoration: "none" }}>
               <Typography sx={{ p: 1, fontWeight: "bold", color: "#292828" }}>
                 Trending
