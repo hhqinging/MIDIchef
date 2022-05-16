@@ -31,24 +31,21 @@ const reducer = (state, action) => {
   }
 };
 
-
 function ProfileSales() {
   let currentAddr = localStorage.getItem("myalgo-wallet-addresses");
   let currentU;
-   try {
-  axios
-     .get(`/api/user/get_user?walletAddr=${currentAddr}`)
-     .then((result) => {
-       currentU = result.data.userName;
-       localStorage.setItem("username", currentU)
-     }); 
-      } catch(error) {
-       console.log(error);
-    }
-   //   const currentUser = currentUserProm.data.userName;
-    let currentUser = localStorage.getItem("username");
-    localStorage.removeItem("username") 
-    console.log(currentUser);
+  try {
+    axios.get(`/api/user/get_user?walletAddr=${currentAddr}`).then((result) => {
+      currentU = result.data.userName;
+      localStorage.setItem("username", currentU);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+  //   const currentUser = currentUserProm.data.userName;
+  let currentUser = localStorage.getItem("username");
+  localStorage.removeItem("username");
+  console.log(currentUser);
   const [{ loading, error, tracks }, dispatch] = useReducer(logger(reducer), {
     tracks: [],
     loading: true,
@@ -70,16 +67,16 @@ function ProfileSales() {
     fetchData();
   }, []);
 
-  // const salesTracks = tracks.filter(
-  //   (track) => track.owner === currentUser && track.marketStatus === true
-  // );
-  // console.log("selling tracks", salesTracks);
+  const salesTracks = tracks.filter(
+    (track) => track.owner === currentUser && track.marketStatus === true
+  );
+  console.log("selling tracks", salesTracks);
 
   return (
     <div>
-      <h1 style={{ color: "white" }}> Selling Songs</h1>
+      <h1 style={{ color: "white" }}> Your Selling NFT tracks</h1>
       <div className="tracks">
-        {/* <Grid
+        <Grid
           container
           style={{
             display: "flex",
@@ -113,7 +110,7 @@ function ProfileSales() {
               </Card>
             ))
           )}
-        </Grid> */}
+        </Grid>
       </div>
     </div>
   );
