@@ -11,6 +11,8 @@ import AudioPlayer from "material-ui-audio-player";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { getError } from "../utils/utils";
 import { withStyles } from "@material-ui/core/styles";
+import React, { useState } from 'react';
+
 
 //taking two paras: current state & the action that changed current state and create the new state
 const reducer = (state, action) => {
@@ -68,6 +70,43 @@ function TrackScreen() {
     loading: true,
     error: "",
   });
+  const [numFavorite, setNumFavorite] = useState(track.numFavorite);
+  const [favorite, setFavorite] = useState(false);
+
+  let onSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    if (!favorite) {
+      setFavorite(true);
+      console.log(favorite);
+      console.log("ori :", numFavorite);
+      setNumFavorite(track.numFavorite + 1);
+      track.numFavorite++;
+      console.log("after:", numFavorite);
+      console.log("after track:", track.numFavorite);
+      formData.append('numFavorite', numFavorite + 1)
+    } else {
+      setFavorite(false);
+      console.log(favorite);
+      console.log("ori :", numFavorite);
+      setNumFavorite(track.numFavorite - 1);
+      track.numFavorite--;
+      console.log("after:", numFavorite);
+      console.log("after track:", track.numFavorite);
+      formData.append('numFavorite', numFavorite - 1)
+    }
+
+    formData.append('assetID', track.assetID)
+    // console.log(formData.getAll("numFavorite"))
+    axios.post("http://47.252.29.19:8000/api/addNumFavorite", formData, {
+    }).then(res => {
+      console.log("numFavoriteSend:", res.data.numFavorite)
+    })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
 
   // const [tracks, setTracks] = useState([]);
   useEffect(() => {
@@ -105,7 +144,7 @@ function TrackScreen() {
       <Grid container style={{ paddingLeft: "10%" }}>
         {/* <Grid container sx={{ p: 10, margin: "auto", flexGrow: 1 }}> */}
         <Grid container direction="row" spacing={5}>
-          <Grid item xs={5} style={{ maxWidth: "700px", maxHeight: "700px"}}>
+          <Grid item xs={5} style={{ maxWidth: "700px", maxHeight: "700px" }}>
             <img
               style={{
                 margin: "auto",
@@ -190,18 +229,22 @@ function TrackScreen() {
             <Stack direction="row" spacing={2}>
               {track.marketStatus === "onSale" ? (
                 <ThemeProvider theme={theme}>
-                  <StyledButton variant="contained" color="blue" style={{fontWeight: "bold"}}>
+                  <StyledButton variant="contained" color="blue" style={{ fontWeight: "bold" }}>
                     Buy Now
                   </StyledButton>
-                  <StyledButton variant="contained" color="blue" style={{fontWeight: "bold"}}>
-                    Add to Favorites
-                  </StyledButton>
+                  {/* <form onSubmit={onSubmit}>
+                    <StyledButton variant="contained" color="blue" style={{ fontWeight: "bold" }}>
+                      Add to Favorites
+                    </StyledButton>
+                  </form> */}
                 </ThemeProvider>
               ) : (
                 <ThemeProvider theme={theme}>
-                  <StyledButton variant="contained" color="blue" style={{fontWeight: "bold"}}>
-                    Add to Favorites
-                  </StyledButton>
+                  {/* <form onSubmit={onSubmit}>
+                    <StyledButton variant="contained" color="blue" style={{ fontWeight: "bold" }}>
+                      Add to Favorites
+                    </StyledButton>
+                  </form> */}
                 </ThemeProvider>
               )}
             </Stack>
