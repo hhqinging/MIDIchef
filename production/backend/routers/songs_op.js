@@ -52,7 +52,7 @@ router.get('/single_song', function (req, res) {
         data = req.query[key];
     }
     Track.find().where(Object.keys(req.query)[0]).equals(data).then(test => {
-        console.log(req)
+        
         if (test.length == 0) {
             res.status(200).json({
                 Info: "result not founded"
@@ -130,9 +130,11 @@ router.post('/create_song', function (req, res) {
     })
 })
 router.post('/buy_it',async function(req,res){
+
     let walletAddr=req.body.walletAddr
     let assetID=req.body.assetID
     let old
+    try{
     await users.find({ walletAddr: walletAddr }).then((test) => {
         old = test[0].userName
         
@@ -146,7 +148,10 @@ router.post('/buy_it',async function(req,res){
         returnOriginal: false
     }, function (err, doc) {
         console.log(err)
-        console.log(doc)
     })
+    res.status(200).json({info: "All good"})}
+    catch(err){
+        res.status(500).json({info: "err"})
+    }
 })
 export default router;
