@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useEffect, useReducer } from "react";
 import axios from "axios";
@@ -133,6 +133,7 @@ function TrackScreen() {
   console.log("currentAddr ", currentAddr);
   console.log("assetID", assetID);
 
+  const navigate = useNavigate();
   const handleClick = async () => {
     const walletAddr = localStorage.getItem("myalgo-wallet-addresses");
     try {
@@ -143,6 +144,13 @@ function TrackScreen() {
         })
         .then((res) => {
           console.log(res);
+          if (res.status === 200) {
+            alert("Succeed to buy")
+            navigate("/");
+            
+          } else {
+            alert("failed to buy");
+          }
         });
       console.log("checjhuahfiashfi");
     } catch (err) {
