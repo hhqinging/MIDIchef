@@ -6,13 +6,14 @@ import HomeScreen from "./screens/HomeScreen";
 import TrackScreen from "./screens/TrackScreen";
 import UserScreen from "./screens/UserScreen";
 import AuthScreen from "./screens/AuthScreen";
+import UserSales from "./screens/UserSales";
+import UserCreation from "./screens/UserCreation";
+import UserOwned from "./screens/UserOwned";
 import UpdateProfile from "./screens/updateProfile";
 import ProfileScreen from "./screens/ProfileScreen";
 import OwnedTracks from "./screens/ownedTracks";
 import ExploreTracks from "./screens/ExploreTracks";
 import ExploreTrending from "./screens/ExploreTrending";
-import SearchScreen from "./screens/SearchScreen";
-
 
 import "./App.css";
 import { isLogin } from "./screens-compo/MyAlgo";
@@ -27,9 +28,11 @@ export default function App() {
         <main>
           <Routes>
             <Route path="/create" element={<CreateScreen />} />
-            {/* <Route path="/auth" element={<AuthScreen />} /> */}
             <Route path="/track/:assetID" element={<TrackScreen />} />
             <Route path="/user/:user" element={<UserScreen />} />
+            <Route path="/user/:user/sales" element={<UserSales />} />
+            <Route path="/user/:user/owned" element={<UserOwned />} />
+            <Route path="/user/:user/creation" element={<UserCreation />} />
             <Route path="/" element={<HomeScreen />} />
             <Route path="user/setting" element={<UpdateProfile />} />
             <Route path="/profile" element={<ProfileScreen />} />
@@ -37,7 +40,6 @@ export default function App() {
             <Route path="/profile/owned" element={<OwnedTracks />} />
             <Route path="/tracks" element={<ExploreTracks />} />
             <Route path="/trending" element={<ExploreTrending />} />
-            <Route path="/SearchScreen/:title" element={<SearchScreen />} />
           </Routes>
         </main>
       </div>
