@@ -149,6 +149,7 @@ router.post('/buy_it',async function(req,res){
     })
     res.status(200).json({info: "All good"})}
     catch(err){
+        console.log(err)
         res.status(500).json({info: "err"})
     }
 })
