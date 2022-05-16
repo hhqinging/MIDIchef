@@ -31,21 +31,26 @@ const reducer = (state, action) => {
   }
 };
 
-function HomeScreen() {
-  //dispatch: to call an action and update state
-  //two paras in useReducer: 1: reducer[defined at previous code], 2: default state (set the default object val)
+async function ProfileSales() {
+  let currentAddr = localStorage.getItem("myalgo-wallet-addresses");
+  let currentU = " ";
+
+  const currentUserProm = await axios
+    .get(`/api/user/get_user?walletAddr=${currentAddr}`)
+  const currentUser = currentUserProm.data.userName;
+
+  console.log("currentUser:", currentUser);
+
   const [{ loading, error, tracks }, dispatch] = useReducer(logger(reducer), {
     tracks: [],
     loading: true,
     error: "",
   });
 
-  // const [tracks, setTracks] = useState([]);
+  // console.log("preFilter", tracks);
+
   useEffect(() => {
     const fetchData = async () => {
-      // const result = await axios.get("/api/tracks");
-      // setTracks(result.data);
-      //before send the axios, use dispatch to update the state, set loading to true
       dispatch({ type: "FETCH_REQUEST" });
       try {
         const result = await axios.get("/api/tracks/songlist");
@@ -57,19 +62,24 @@ function HomeScreen() {
     fetchData();
   }, []);
 
+    // const salesTracks = tracks.filter(
+    //   (track) => track.owner === currentUser && track.marketStatus === true
+    // );
+    // console.log("selling tracks", salesTracks);
+
   return (
     <div>
+      <h1 style={{ color: "white" }}> Selling Songs</h1>
       <div className="tracks">
-        <Grid
+        {/* <Grid
           container
           style={{
             display: "flex",
             width: "92%",
             margin: "auto",
             justifyContent: "space-evenly",
-            spacing: "2"
+            spacing: "2",
           }}
-
         >
           {loading ? (
             <CircularProgress
@@ -80,18 +90,24 @@ function HomeScreen() {
           ) : error ? (
             <MessageBox severity="error">{error}</MessageBox>
           ) : (
-            tracks.map((track) => (
+            salesTracks.map((track) => (
               <Card
-                style={{ marginTop: "1%", marginBottom: "1%", marginRight: "0.5%", marginLeft: "0.5%" }}
+                style={{
+                  marginTop: "1%",
+                  marginBottom: "1%",
+                  marginRight: "0.5%",
+                  marginLeft: "0.5%",
+                }}
                 sx={{ maxWidth: 345 }}
-                key={track.assetID}>
+                key={track.assetID}
+              >
                 <TrackPlayer track={track}></TrackPlayer>
               </Card>
             ))
           )}
-        </Grid>
+        </Grid> */}
       </div>
     </div>
   );
 }
-export default HomeScreen;
+export default ProfileSales;
