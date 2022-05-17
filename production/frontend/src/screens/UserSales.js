@@ -57,7 +57,6 @@ function UserSales() {
 
   const params = useParams();
   const { user } = params;
-  console.log("user", user);
 
   const [{ loadingUser, errorUser, userInfo }, dispatchUser] = useReducer(
     reducerforUser,
@@ -67,13 +66,11 @@ function UserSales() {
       error: "",
     }
   );
-  console.log("userInfo", userInfo);
 
   useEffect(() => {
     const fetchData = async () => {
       dispatchUser({ type: "FETCH_REQUEST" });
       try {
-        console.log("user", user);
         const result = await axios.get(`/api/user/get_user?userName=${user}`);
         dispatchUser({ type: "FETCH_SUCCESS", payload: result.data });
       } catch (err) {
@@ -83,19 +80,21 @@ function UserSales() {
     fetchData();
   }, [user]);
 
-  console.log("preFilterTrack", tracks);
-
-  console.log("user", user);
-
   const salesTracks = tracks.filter(
     (track) => track.owner === user && track.marketStatus === true
   );
 
-  console.log("selling tracks", salesTracks);
-
   return (
     <div>
-      <h1 style={{ color: "white" }}>{user} Selling Songs</h1>
+      <h1
+        style={{
+          color: "white",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        {user} Selling NFT Tracks
+      </h1>
       <div className="tracks">
         <Grid
           container
@@ -125,9 +124,9 @@ function UserSales() {
                   marginLeft: "0.5%",
                 }}
                 sx={{ maxWidth: 345 }}
-                key={salesTracks.assetID}
+                key={track.assetID}
               >
-                <TrackPlayer track={track}></TrackPlayer>
+                <TrackPlayer track={track} key={track.assetID}></TrackPlayer>
               </Card>
             ))
           )}

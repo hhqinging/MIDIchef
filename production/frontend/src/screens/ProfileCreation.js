@@ -46,7 +46,7 @@ function ProfileCreation() {
   //   const currentUser = currentUserProm.data.userName;
   let currentUser = localStorage.getItem("username");
   localStorage.removeItem("username");
-  console.log(currentUser);
+
   const [{ loading, error, tracks }, dispatch] = useReducer(logger(reducer), {
     tracks: [],
     loading: true,
@@ -71,11 +71,19 @@ function ProfileCreation() {
   const creationTracks = tracks.filter(
     (track) => track.creator === currentUser && track.marketStatus === true
   );
-  console.log("selling tracks", creationTracks);
 
   return (
     <div>
-      <h1 style={{ color: "white" }}> Your created NFT tracks</h1>
+      <h1
+        style={{
+          color: "white",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        {" "}
+        Your Created NFT Tracks
+      </h1>
       <div className="tracks">
         <Grid
           container

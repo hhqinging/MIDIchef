@@ -5,12 +5,7 @@ import axios from "axios";
 import { Button, Typography } from "@mui/material";
 import { withStyles } from "@material-ui/core/styles";
 
-// import baseUrl from './utils/baseURL.js';
-// const [signinData, setSigninData] = useState(
-//   JSON.getItem("signinData")
-//     ? JSON.parse(localStorage.getItem("signinData"))
-//     : null
-// );
+
 
 const StyledButton = withStyles({
   root: {

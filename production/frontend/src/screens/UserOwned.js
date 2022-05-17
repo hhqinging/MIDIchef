@@ -57,7 +57,6 @@ function UserOwned() {
 
   const params = useParams();
   const { user } = params;
-  console.log("user", user);
 
   const [{ loadingUser, errorUser, userInfo }, dispatchUser] = useReducer(
     reducerforUser,
@@ -67,13 +66,11 @@ function UserOwned() {
       error: "",
     }
   );
-  console.log("userInfo", userInfo);
 
   useEffect(() => {
     const fetchData = async () => {
       dispatchUser({ type: "FETCH_REQUEST" });
       try {
-        console.log("user", user);
         const result = await axios.get(`/api/user/get_user?userName=${user}`);
         dispatchUser({ type: "FETCH_SUCCESS", payload: result.data });
       } catch (err) {
@@ -83,13 +80,7 @@ function UserOwned() {
     fetchData();
   }, [user]);
 
-  console.log("preFilterTrack", tracks);
-
-  console.log("user", user);
-
   const ownedTracks = tracks.filter((track) => track.owner === user);
-
-  console.log("selling tracks", ownedTracks);
 
   return loading ? (
     <CircularProgress
@@ -97,64 +88,70 @@ function UserOwned() {
         padding: "2% 45% 2% 45%",
       }}
     />
-    ) : error ? (
-      <MessageBox severity="error">{error}</MessageBox>
-    ) : (
-      <div class="row">
-        <div class="column">
-          <div class="pfp">
-            <img
-              src={userInfo.profilePhoto}
-              alt={userInfo.userName}
-            />
-          </div>
-          
-          <div>
-            <div class="userName">{userInfo.userName}</div>
-            <div class="description">{userInfo.description}</div>
-          </div>
-        </div>
-        <></>
-        <div class="column">
-          <div>
-            <Grid
-              container
+  ) : error ? (
+    <MessageBox severity="error">{error}</MessageBox>
+  ) : (
+    // <div className="row">
+    //   <div className="column">
+    //     <div className="pfp">
+    //       <img src={userInfo.profilePhoto} alt={userInfo.userName} />
+    //     </div>
+
+    //     <div>
+    //       <div className="userName">{userInfo.userName}</div>
+    //       <div className="description">{userInfo.description}</div>
+    //     </div>
+    //   </div>
+    //   <></>
+    //   <div className="column">
+    <div>
+      <h1
+        style={{
+          color: "white",
+          display: "flex", justifyContent: "center" 
+        }}
+      >
+        {userInfo.userName} Owned NFT Tracks
+      </h1>
+
+      <Grid
+        container
+        style={{
+          display: "flex",
+          width: "92%",
+          margin: "auto",
+          justifyContent: "space-evenly",
+          spacing: "2",
+        }}
+      >
+        {loading ? (
+          <CircularProgress
+            style={{
+              padding: "2% 45% 2% 45%",
+            }}
+          />
+        ) : error ? (
+          <MessageBox severity="error">{error}</MessageBox>
+        ) : (
+          ownedTracks.map((track) => (
+            <Card
               style={{
-                display: "flex",
-                width: "92%",
-                margin: "auto",
-                justifyContent: "space-evenly",
-                spacing: "2",
+                marginTop: "1%",
+                marginBottom: "1%",
+                marginRight: "0.5%",
+                marginLeft: "0.5%",
               }}
+              sx={{ maxWidth: 345 }}
+              key={track.assetID}
             >
-              {loading ? (
-                <CircularProgress
-                  style={{
-                    padding: "2% 45% 2% 45%",
-                  }}
-                />
-              ) : error ? (
-                <MessageBox severity="error">{error}</MessageBox>
-              ) : (
-                ownedTracks.map((track) => (
-                  <Card
-                    style={{
-                      marginTop: "1%",
-                      marginBottom: "1%",
-                      marginRight: "0.5%",
-                      marginLeft: "0.5%",
-                    }}
-                    sx={{ maxWidth: 345 }}
-                    key={ownedTracks.assetID}
-                  >
-                    <TrackPlayer track={track}></TrackPlayer>
-                  </Card>
-                ))
-              )}
-            </Grid>
-          </div>
-        </div>
-      </div>
-    );
+              <TrackPlayer track={track}></TrackPlayer>
+            </Card>
+          ))
+        )}
+      </Grid>
+      {/* </div>
+      </div> */}
+    </div>
+  );
 }
 export default UserOwned;

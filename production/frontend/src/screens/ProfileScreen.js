@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { withStyles } from "@material-ui/core/styles";
-import "./profileScreen.css"
+import "./profileScreen.css";
 
 const theme = createTheme({
   palette: {
@@ -23,10 +23,10 @@ const StyledButton = withStyles({
   root: {
     textDecoration: "none",
     color: "#59DFDD",
-    '&:hover': {
+    "&:hover": {
       color: "#e785e7",
-    }
-  }
+    },
+  },
 })(Button);
 
 //taking two paras: current state & the action that changed current state and create the new state
@@ -46,22 +46,17 @@ const reducer = (state, action) => {
 
 function ProfileScreen() {
   let currentUser = localStorage.getItem("myalgo-wallet-addresses");
-  // const params = useParams();
-  // const { currentUser } = params;
-  console.log("user", currentUser);
 
   const [{ loading, error, userInfo }, dispatch] = useReducer(reducer, {
     userInfo: [],
     loading: true,
     error: "",
   });
-  console.log("userInfo", userInfo);
 
   useEffect(() => {
     const fetchData = async () => {
       dispatch({ type: "FETCH_REQUEST" });
       try {
-        console.log("user", currentUser);
         const result = await axios.get(
           `/api/user/get_user?walletAddr=${currentUser}`
         );
@@ -83,29 +78,31 @@ function ProfileScreen() {
     <MessageBox severity="error">{error}</MessageBox>
   ) : (
     <div>
-      <div class="row">
-        <div class="column">
-          <div class="pfp">
-            <img
-              src={userInfo.profilePhoto}
-              alt={userInfo.userName}
-            />
+      <div className="row">
+        <div className="column">
+          <div className="pfp">
+            <img src={userInfo.profilePhoto} alt={userInfo.userName} />
           </div>
-          
+
           <div>
-            <div class="userName">{userInfo.userName}</div>
-            <div class="description">{userInfo.description}</div>
+            <div className="userName">{userInfo.userName}</div>
+            <div className="description">{userInfo.description}</div>
           </div>
         </div>
         <></>
 
-        <div class="column">
+        <div className="column">
           <ThemeProvider theme={theme}>
-            <div class="tracks-container">
+            <div className="tracks-container">
               <Link to={`/profile/sales`}>
                 <StyledButton
                   color="blue"
-                  style={{ textDecoration: "none", fontSize: "18px", fontWeight: "bold", margin: "0px 10px" }}
+                  style={{
+                    textDecoration: "none",
+                    fontSize: "18px",
+                    fontWeight: "bold",
+                    margin: "0px 10px",
+                  }}
                 >
                   {" "}
                   Sales
@@ -115,7 +112,12 @@ function ProfileScreen() {
                 {" "}
                 <StyledButton
                   color="blue"
-                  style={{ textDecoration: "none", fontSize: "18px", fontWeight: "bold", margin: "0px 10px" }}
+                  style={{
+                    textDecoration: "none",
+                    fontSize: "18px",
+                    fontWeight: "bold",
+                    margin: "0px 10px",
+                  }}
                 >
                   {" "}
                   Creations
@@ -125,7 +127,12 @@ function ProfileScreen() {
                 {" "}
                 <StyledButton
                   color="blue"
-                  style={{ textDecoration: "none", fontSize: "18px", fontWeight: "bold", margin: "0px 10px" }}
+                  style={{
+                    textDecoration: "none",
+                    fontSize: "18px",
+                    fontWeight: "bold",
+                    margin: "0px 10px",
+                  }}
                 >
                   {" "}
                   Owned Tracks

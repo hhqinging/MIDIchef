@@ -30,8 +30,8 @@ router.post("/upload", async (req, res) => {
       !req.files.music ||
       !req.files.imageCover ||
       req.body.title == "" ||
-      req.body.price == 0
-      //   req.body.royalty == 0
+      req.body.price == 0 
+    //   req.body.royalty == 0
     ) {
       res.status(500).send("No complete info!");
     } else {

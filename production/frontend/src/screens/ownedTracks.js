@@ -22,14 +22,6 @@ const reducer = (state, action) => {
 };
 
 function OwnedTracks() {
-  // let currentUser = localStorage.getItem("myalgo-wallet-addresses");
-
-  // const [{ loading, error, tracks }, dispatch] = useReducer(logger(reducer), {
-  //     tracks: [],
-  //     loading: true,
-  //     error: "",
-  // });
-  // console.log("TRACKS1", tracks);
   let currentAddr = localStorage.getItem("myalgo-wallet-addresses");
   let currentU;
   try {
@@ -44,7 +36,7 @@ function OwnedTracks() {
   //   const currentUser = currentUserProm.data.userName;
   let currentUser = localStorage.getItem("username");
   localStorage.removeItem("username");
-  console.log(currentUser);
+
   const [{ loading, error, tracks }, dispatch] = useReducer(logger(reducer), {
     tracks: [],
     loading: true,
@@ -64,14 +56,19 @@ function OwnedTracks() {
     fetchData();
   }, []);
 
-  console.log("USER: ", currentUser);
-
   const filteredTracks = tracks.filter((track) => track.owner === currentUser);
-  console.log("TRACKS2", filteredTracks);
 
   return (
     <div>
-      <h1 style={{ color: "white" }}>Your owned NFT tracks</h1>
+      <h1
+        style={{
+          color: "white",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        Your Owned NFT Tracks
+      </h1>
       <div className="tracks">
         <Grid
           container

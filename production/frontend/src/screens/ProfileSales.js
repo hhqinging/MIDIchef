@@ -12,21 +12,12 @@ import MessageBox from "../screens-compo/MessageBox";
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
-      //it happens when sending axios req to backend
-      //...state: return newest state,
-      //keep prev state val and only update when loading: true
-      //loading :true, we can show loading to ui
       return { ...state, loading: true };
     case "FETCH_SUCCESS":
-      //keep prev state val, and only update tracks the data that coming from action, the data in action is in action.payload
-      //action.payload contains all tracks from backend,
-      //and we need to update loading to false since we success fetch data to frontend, no need tp show loading
       return { ...state, tracks: action.payload, loading: false };
     case "FETCH_FAIL":
-      //return prev state, and set loading to false[not show loading], and fail the error in the action.payload
       return { ...state, loading: false, error: action.payload };
     default:
-      //return current state
       return state;
   }
 };
@@ -45,7 +36,6 @@ function ProfileSales() {
   //   const currentUser = currentUserProm.data.userName;
   let currentUser = localStorage.getItem("username");
   localStorage.removeItem("username");
-  console.log(currentUser);
   const [{ loading, error, tracks }, dispatch] = useReducer(logger(reducer), {
     tracks: [],
     loading: true,
@@ -70,11 +60,19 @@ function ProfileSales() {
   const salesTracks = tracks.filter(
     (track) => track.owner === currentUser && track.marketStatus === true
   );
-  console.log("selling tracks", salesTracks);
 
   return (
     <div>
-      <h1 style={{ color: "white" }}> Your Selling NFT tracks</h1>
+      <h1
+        style={{
+          color: "white",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        {" "}
+        Your Selling NFT Tracks
+      </h1>
       <div className="tracks">
         <Grid
           container
