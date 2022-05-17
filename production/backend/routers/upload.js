@@ -25,43 +25,6 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.use(morgan("dev"));
 
 router.post("/upload", async (req, res) => {
-<<<<<<< HEAD
-    try {
-        if (!req.files.music || !req.files.imageCover || req.body.title == '' || req.body.price == 0 || req.body.royalty == 0) {
-            res.status(500).send("No complete info!");
-        } else {
-            let creator;
-            console.log(req.body.walletAddr)
-            Users.find().where('walletAddr').equals(req.body.walletAddr).then(result => {
-                if (result.length == 0) {
-                    res.status(500).json({ Info: "user unexist" })
-                }
-                else {
-                    creator = result[0].userName;
-                }
-            })
-            let music = req.files.music;
-            let imageCover = req.files.imageCover;
-            let ext_img = req.files.imageCover.name.split('.')[1];
-            let ext_music = req.files.music.name.split('.')[1];
-            music.mv("./uploads/music/" + music.md5 + "." + ext_music);
-            imageCover.mv("./uploads/imageCover/" + imageCover.md5 + "." + ext_img);
-	    console.log("title:", req.body.title);
-            let assetID = await createAsset(req.body.title)
-	    // console.log("creating asset...");
-	    // let assetID = 12341234;
-            let data = {
-                creator: creator,
-                owner: creator,
-                assetID: assetID,
-                title: req.body.title,
-                description: req.body.description,
-                price: req.body.price,
-                //royalty: req.body.royalty,
-                src: "http://47.252.29.19:8000/api/tracks/song_file?song=" + music.md5 + "." + ext_music,
-                img_src: "http://47.252.29.19:8000/api/tracks/photo_file?photo=" + imageCover.md5 + "." + ext_img
-            }
-=======
   try {
     if (
       !req.files.music ||
@@ -73,8 +36,6 @@ router.post("/upload", async (req, res) => {
       res.status(500).send("No complete info!");
     } else {
       let assetID = req.body.assetID;
->>>>>>> 5ca4f3b41327d41065228abb26c4c012e5a70106
-
       let creator;
       console.log(req.body.walletAddr);
       Users.find()
