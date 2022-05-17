@@ -53,6 +53,7 @@ const CreateScreen = () => {
 
     e.preventDefault()
     // Create NFT
+    // createNFT(creator, nft.title);
     const formData = new FormData()
     formData.append('walletAddr', creator)
     formData.append('music', nft.music)
@@ -71,7 +72,7 @@ const CreateScreen = () => {
         console.log(err)
         alert("Create failed! Server busy, please try again later.");
       })
-      await createNFT(creator, assetID);
+      // await createNFT(creator, assetID);
       console.log("transferring NFT...")
       let form = new FormData();
       form.append('creator', creator);
@@ -108,30 +109,45 @@ const CreateScreen = () => {
     </div>
   ))
 
-  const createNFT = async (creator, assetID) => {
+  const createNFT = async (creator, assetName) => {
     if (!window.Buffer) window.Buffer = Buffer;
-    let transferAsset = async (sender, recipient, assetID, amount, note=undefined) => {
-      const myAlgoWallet = new MyAlgoConnect();
-      const algodClient = new algosdk.Algodv2("", "https://node.testnet.algoexplorerapi.io", "");
-      const params = await algodClient.getTransactionParams().do();
+    const algodClient = new algosdk.Algodv2('', 
+    'https://node.testnet.algoexplorerapi.io', 
+    '');
+    let params = await algodClient.getTransactionParams().do();
+    let defaultFrozen = false;
+    let decimals = 0;
+    let totalIssuance = 1;
+    let unitName = "NFT"
+    let note = undefined;
+    let hash = undefined;
 
-      const txn = algosdk.makeAssetTransferTxnWithSuggestedParamsFromObject({
-        from: sender,
-        to: recipient,
-        assetIndex: assetID,
-        amount: amount,
-        note: note,
-        suggestedParams: params
-      })
+    let manager = creator;
+    let freeze = creator;
+    let clawback = creator;
+    let reserve = creator;
 
-      const signedTxn = await myAlgoWallet.signTransaction(
-        txn.toByte()
-      );
-      const response = await algodClient
-      .sendRawTransaction(signedTxn.blob)
-      .do();
-      }
-    await transferAsset(creator, creator, assetID, 0); // Opt in to asset transfer
+    let txn = algosdk.makeAssetCreateTxnWithSuggestedParamsFromObject({
+      from: creator,
+      note: note,
+      suggestedParams: params,
+      total: totalIssuance,
+      decimals: decimals,
+      defaultFrozen: defaultFrozen,
+      manager: manager,
+      reserve: reserve,
+      freeze: freeze,
+      clawback: clawback,
+      unitName: unitName,
+      assetName: assetName,
+      assetMetadataHash: hash
+  });
+
+    let myAlgoWallet = new MyAlgoConnect();
+    let signedTxn = await myAlgoWallet.signTransaction(txn.toByte());
+		console.log(signedTxn);
+		let response = await algodClient.sendRawTransaction(signedTxn.blob).do();
+		console.log(response)
   }
 
   return (
