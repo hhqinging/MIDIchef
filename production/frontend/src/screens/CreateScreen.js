@@ -53,7 +53,8 @@ const CreateScreen = () => {
 
     e.preventDefault()
     // Create NFT
-    // createNFT(creator, nft.title);
+    let txID = await createNFT(creator, nft.title);
+    console.log("txID", txID);
     const formData = new FormData()
     formData.append('walletAddr', creator)
     formData.append('music', nft.music)
@@ -62,28 +63,16 @@ const CreateScreen = () => {
     formData.append('price', nft.price)
     formData.append('royalty', nft.royalty)
     formData.append('imageCover', imageCover[0])
+    formData.append('txID', txID)
     await axios.post("http://47.252.29.19:8000/api/upload", formData, {
     }).then(res => {
       console.log(res.status)
-      if (res.status == 200) {
-        assetID = res.data.assetID;
+      if (res.status === 200) {
+        alert("NFT successfully created");
       }})
       .catch(err => {
         console.log(err)
         alert("Create failed! Server busy, please try again later.");
-      })
-      // await createNFT(creator, assetID);
-      console.log("transferring NFT...")
-      let form = new FormData();
-      form.append('creator', creator);
-      form.append('assetID', assetID);
-      axios.post("http://47.252.29.19:8000/api/nft/transferNFT", form, {})
-      .then(res => {
-        alert("Create success!");
-      })
-      .catch(err => {
-        console.log(err);
-        alert("Create failed! Cannot transfer created asset. Please try again later");
       })
       btn.disabled=false;
   }
@@ -145,9 +134,9 @@ const CreateScreen = () => {
 
     let myAlgoWallet = new MyAlgoConnect();
     let signedTxn = await myAlgoWallet.signTransaction(txn.toByte());
-		console.log(signedTxn);
 		let response = await algodClient.sendRawTransaction(signedTxn.blob).do();
-		console.log(response)
+		console.log(response);
+    return response;
   }
 
   return (

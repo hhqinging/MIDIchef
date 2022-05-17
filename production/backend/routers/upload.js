@@ -45,7 +45,13 @@ router.post("/upload", async (req, res) => {
             let ext_music = req.files.music.name.split('.')[1];
             music.mv("./uploads/music/" + music.md5 + "." + ext_music);
             imageCover.mv("./uploads/imageCover/" + imageCover.md5 + "." + ext_img);
-            let assetID = await createAsset(req.body.title)
+            // let assetID = await createAsset(req.body.title)
+            let txID = req.body.txID;
+            console.log("txID: ", txID);
+            let searchurl = `https://algoindexer.testnet.algoexplorerapi.io/v2/transactions/${txID}`;
+            let transact = await (await fetch(url)).json();
+            let assetID = transact["created-asset-index"];
+            console.log("assetID", assetID);
             let data = {
                 creator: creator,
                 owner: creator,
@@ -58,8 +64,8 @@ router.post("/upload", async (req, res) => {
                 img_src: "http://47.252.29.19:8000/api/tracks/photo_file?photo=" + imageCover.md5 + "." + ext_img
             }
 
-            Create_song(data)
-            res.status(200).json({assetID: assetID});
+            // Create_song(data)
+            res.status(200).send();
         }
     } catch (err) {
         console.log(err)
