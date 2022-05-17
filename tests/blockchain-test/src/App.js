@@ -73,6 +73,9 @@ export default class App extends React.Component {
           myAlgoWallet={this.state.myAlgoWallet}
           algodClient={this.state.algodClient}
         />
+        <MyAlgoCreateNFT 
+          addr={this.state.MyAlgoAddress}
+        />
       </div>
     );
   }
@@ -173,6 +176,7 @@ export class MyAlgoPurchase extends React.Component {
       note: note,
       suggestedParams: params
     });
+
     const signedTxn = await this.props.myAlgoWallet.signTransaction(txn.toByte());
 		console.log(signedTxn);
 		const response = await this.props.algodClient.sendRawTransaction(signedTxn.blob).do();
@@ -193,32 +197,44 @@ export class MyAlgoCreateNFT extends React.Component{
   }
 
   async createNFT() {
-    let from = this.props.from;
+    let midichef_addr = "WBBVOW7LKKTMB2HL4ZLN4W7QFH2DOEYXPZWC6NYNLUJACQP6JL5ZMNS27A";
+    const algodClient = new algosdk.Algodv2('', 
+    'https://node.testnet.algoexplorerapi.io', 
+    '');
+    let params = await algodClient.getTransactionParams().do();
     let defaultFrozen = false;
     let decimals = 0;
-    let totalInssance = this.props.copies;
-    let assetName = "Asset1";
-    let assetMetadataHash = this.props.hash;
-    let manager = this.props.from
+    let totalIssuance = 1;
+    let unitName = "NFT"
+    let note = undefined;
+    let assetName = "FirstNFT"
+    let hash = undefined;
 
-    const params = await this.props.algodClient.getTransactionParams().do();
-    params.fee = algosdk.ALGORAND_MIN_TX_FEE;
-    params.flatFee = true;
+    let manager = midichef_addr;
+    let freeze = midichef_addr;
+    let clawback = midichef_addr;
+    let reserve = midichef_addr;
 
     let txn = algosdk.makeAssetCreateTxnWithSuggestedParamsFromObject({
-      from: from,
-      defaultFrozen: defaultFrozen,
+      from: this.props.addr,
+      note: note,
+      suggestedParams: params,
+      total: totalIssuance,
       decimals: decimals,
-      totalInssance: totalInssance,
-      assetName: assetName,
-      assetMetadataHash: assetMetadataHash,
+      defaultFrozen: defaultFrozen,
       manager: manager,
-      suggestedParams: params
-    })
+      reserve: reserve,
+      freeze: freeze,
+      clawback: clawback,
+      unitName: unitName,
+      assetName: assetName,
+      assetMetadataHash: hash
+  });
 
-    let signedTxn = await this.props.myAlgoWallet.signTransaction(txn.toByte());
+    let myAlgoWallet = new MyAlgoConnect();
+    let signedTxn = await myAlgoWallet.signTransaction(txn.toByte());
 		console.log(signedTxn);
-		let response = await this.props.algodClient.sendRawTransaction(signedTxn.blob).do();
+		let response = await algodClient.sendRawTransaction(signedTxn.blob).do();
 		console.log(response)
   }
 
