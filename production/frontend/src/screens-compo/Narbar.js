@@ -13,10 +13,6 @@ import logo from "../img/logo.jpg";
 import { MyAlgoLogin } from "./MyAlgo";
 import axios from "axios";
 
-import { useDispatch, useSelector } from "react-redux";
-import { isLogin } from "./MyAlgo";
-// import { connectAction } from "../features/walletConnectSlices";
-
 //style of navbar menu "explore", "create", "sign in"
 const useStyles = makeStyles({
   rightToolbar: {
@@ -25,10 +21,10 @@ const useStyles = makeStyles({
   },
   button: {
     // color: "#59DFDD",
-    '&:hover': {
+    "&:hover": {
       color: "#e785e7",
-    }
-  }
+    },
+  },
 });
 
 //color theme for button
@@ -37,25 +33,17 @@ const theme = createTheme({
     blue: {
       // Purple and green play nicely together.
       main: "#59DFDD",
-      '&:hover': {
+      "&:hover": {
         color: "#e785e7",
-      }
+      },
     },
   },
 });
 
 const NarBar = () => {
-  //use the style for menu bar
-
   const user = null;
 
   const classes = useStyles();
-
-  const dispatch = useDispatch();
-
-  const handleFailure = (result) => {
-    alert(result);
-  };
 
   //mui button setup
   const [anchorEl, setAnchorEl] = useState(null);
@@ -69,27 +57,24 @@ const NarBar = () => {
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      console.log("handleKeyPress", event.target.value);
+      // console.log("handleKeyPress", event.target.value);
       axios
         .get(
           `http://47.252.29.19:8000/api/tracks/search?title=${event.target.value}`,
           {}
         )
         .then((res) => {
-          console.log("search feedback:", res.data.Info);
-          console.log("search feedback:", res.data);
+          // console.log("search feedback:", res.data.Info);
+          // console.log("search feedback:", res.data);
           if (res.data.Info) {
+            alert("Search Not Found. Return to Homepage.")
             navigate("/");
           } else {
             navigate("/searchScreen/" + event.target.value);
           }
         });
-
     }
   };
-
-
-
 
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
@@ -120,7 +105,7 @@ const NarBar = () => {
     justifyContent: "center",
   }));
   const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: "inherit",
+    color: "white",
     "& .MuiInputBase-input": {
       padding: theme.spacing(1, 1, 1, 0),
       // vertical padding + font size from searchIcon
@@ -142,18 +127,20 @@ const NarBar = () => {
 
   const userSignIn = () => {
     // dynamic navbar based on user login
-    if (!localStorage.getItem('myalgo-wallet-addresses')) {
-      return <div>
-        <Button
-          color="blue"
-          style={{ fontSize: "18px", fontWeight: "bold" }}
-          onClick={handleClick}
-          aria-describedby="explorePopover"
-        >
-          Explore
-        </Button>
-        <MyAlgoLogin navigate={navigate} />
-      </div>
+    if (!localStorage.getItem("myalgo-wallet-addresses")) {
+      return (
+        <div>
+          <Button
+            color="blue"
+            style={{ fontSize: "18px", fontWeight: "bold" }}
+            onClick={handleClick}
+            aria-describedby="explorePopover"
+          >
+            Explore
+          </Button>
+          <MyAlgoLogin navigate={navigate} />
+        </div>
+      );
     } else {
       return (
         <div>
@@ -208,9 +195,6 @@ const NarBar = () => {
     }
   };
 
-  // const storeDate = useSelector((store) => store);
-  // console.log(storeDate);
-
   return (
     <>
       <AppBar
@@ -255,7 +239,7 @@ const NarBar = () => {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Tracks, artists..."
+              placeholder="Search Tracks..."
               inputProps={{ "aria-label": "search" }}
               onKeyPress={handleKeyPress}
             />

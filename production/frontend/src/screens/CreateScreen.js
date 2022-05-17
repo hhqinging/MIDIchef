@@ -3,24 +3,23 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import "../screens-css/CreateScreen.css";
 import styled from "styled-components";
-import axios from 'axios';
-import React, { useState } from 'react';
+import axios from "axios";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDropzone } from "react-dropzone"
+import { useDropzone } from "react-dropzone";
 import MyAlgoConnect from "@randlabs/myalgo-connect";
 import algosdk from "algosdk";
-import buffer from 'buffer';
-const {Buffer} = buffer;
+import buffer from "buffer";
+import { StyledEngineProvider } from "@mui/styled-engine";
+const { Buffer } = buffer;
 
 const CreateScreen = () => {
-
-
   const initialValues = {
-    title: '',
-    description: '',
+    title: "",
+    description: "",
     price: 0,
     music: null,
-    royalty: 0
+    // royalty: 0,
   };
 
   let [nft, setNft] = useState(initialValues);
@@ -31,61 +30,68 @@ const CreateScreen = () => {
     e.preventDefault();
     setNft({
       ...nft,
-      music: e.target.files[0]
-    })
-  }
+      music: e.target.files[0],
+    });
+  };
   let handleChange = (e) => {
     const value = e.target.value;
     setNft({
       ...nft,
-      [e.target.name]: value
+      [e.target.name]: value,
     });
-  }
+  };
   let onSubmit = async (e) => {
     let btn = document.getElementById("onSubmit");
-    btn.disabled=true;
-    let creator = localStorage.getItem('myalgo-wallet-addresses');
-    let assetID = undefined;
-    if(!creator) {
+    btn.disabled = true;
+    let creator = localStorage.getItem("myalgo-wallet-addresses");
+    if (!creator) {
       alert("Login first to create NFT");
       return;
     }
 
-    e.preventDefault()
+    e.preventDefault();
     // Create NFT
-    const formData = new FormData()
-    formData.append('walletAddr', creator)
-    formData.append('music', nft.music)
-    formData.append('title', nft.title)
-    formData.append('description', nft.description)
-    formData.append('price', nft.price)
-    formData.append('royalty', nft.royalty)
-    formData.append('imageCover', imageCover[0])
-    await axios.post("http://47.252.29.19:8000/api/upload", formData, {
-    }).then(res => {
-      console.log(res.status)
-      if (res.status == 200) {
-        assetID = res.data.assetID;
-      }})
-      .catch(err => {
-        console.log(err)
-        alert("Create failed! Server busy, please try again later.");
+    let txID = await createNFT(creator, nft.title);
+    console.log("txID", txID);
+
+    let waitGoThrough = (ms) => {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    };
+    await waitGoThrough(8000);
+
+    let searchurl = `https://algoindexer.testnet.algoexplorerapi.io/v2/transactions/${txID}`;
+    let transact = await (await fetch(searchurl)).json();
+    console.log("transact", transact);
+
+    let assetID = transact["transaction"]["created-asset-index"];
+    console.log(transact["transaction"]["created-asset-index"]);
+
+    const formData = new FormData();
+    formData.append("walletAddr", creator);
+    formData.append("music", nft.music);
+    formData.append("title", nft.title);
+    formData.append("description", nft.description);
+    formData.append("price", nft.price);
+    // formData.append("royalty", nft.royalty);
+    formData.append("imageCover", imageCover[0]);
+    formData.append("txID", txID);
+    formData.append("assetID", assetID);
+    await axios
+      .post("http://47.252.29.19:8000/api/upload", formData, {})
+      .then((res) => {
+        console.log(res.status);
+        if (res.status === 200) {
+          alert("NFT successfully created");
+
+          navigate("/profile/creation");
+        }
       })
-      await createNFT(creator, assetID);
-      console.log("transferring NFT...")
-      let form = new FormData();
-      form.append('creator', creator);
-      form.append('assetID', assetID);
-      axios.post("http://47.252.29.19:8000/api/nft/transferNFT", form, {})
-      .then(res => {
-        alert("Create success!");
-      })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
-        alert("Create failed! Cannot transfer created asset. Please try again later");
-      })
-      btn.disabled=false;
-  }
+        alert("Create failed! Server busy, please try again later.");
+      });
+    btn.disabled = false;
+  };
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
@@ -96,9 +102,9 @@ const CreateScreen = () => {
             preview: URL.createObjectURL(file),
           })
         )
-      )
-    }
-  })
+      );
+    },
+  });
 
   const images = imageCover.map((file) => (
     <div key={file.name}>
@@ -106,33 +112,51 @@ const CreateScreen = () => {
         <img src={file.preview} style={{ width: "200px" }} alt="preview" />
       </div>
     </div>
-  ))
+  ));
 
-  const createNFT = async (creator, assetID) => {
+  const createNFT = async (creator, assetName) => {
     if (!window.Buffer) window.Buffer = Buffer;
-    let transferAsset = async (sender, recipient, assetID, amount, note=undefined) => {
-      const myAlgoWallet = new MyAlgoConnect();
-      const algodClient = new algosdk.Algodv2("", "https://node.testnet.algoexplorerapi.io", "");
-      const params = await algodClient.getTransactionParams().do();
+    const algodClient = new algosdk.Algodv2(
+      "",
+      "https://node.testnet.algoexplorerapi.io",
+      ""
+    );
+    let params = await algodClient.getTransactionParams().do();
+    let defaultFrozen = false;
+    let decimals = 0;
+    let totalIssuance = 1;
+    let unitName = "NFT";
+    let note = undefined;
+    let hash = undefined;
 
-      const txn = algosdk.makeAssetTransferTxnWithSuggestedParamsFromObject({
-        from: sender,
-        to: recipient,
-        assetIndex: assetID,
-        amount: amount,
-        note: note,
-        suggestedParams: params
-      })
+    let manager = creator;
+    let freeze = creator;
+    let clawback = creator;
+    let reserve = creator;
 
-      const signedTxn = await myAlgoWallet.signTransaction(
-        txn.toByte()
-      );
-      const response = await algodClient
-      .sendRawTransaction(signedTxn.blob)
-      .do();
-      }
-    await transferAsset(creator, creator, assetID, 0); // Opt in to asset transfer
-  }
+    let txn = algosdk.makeAssetCreateTxnWithSuggestedParamsFromObject({
+      from: creator,
+      note: note,
+      suggestedParams: params,
+      total: totalIssuance,
+      decimals: decimals,
+      defaultFrozen: defaultFrozen,
+      manager: manager,
+      reserve: reserve,
+      freeze: freeze,
+      clawback: clawback,
+      unitName: unitName,
+      assetName: assetName,
+      assetMetadataHash: hash,
+    });
+
+    let myAlgoWallet = new MyAlgoConnect();
+    let signedTxn = await myAlgoWallet.signTransaction(txn.toByte());
+    let response = await algodClient.sendRawTransaction(signedTxn.blob).do();
+    console.log(response);
+    console.log("response.txID", response.txId);
+    return response.txId;
+  };
 
   return (
     <div className="create">
@@ -164,7 +188,7 @@ const CreateScreen = () => {
         />
 
         <label>Image cover</label>
-        <div id="image-container" >
+        <div id="image-container">
           <div {...getRootProps()}>
             <input {...getInputProps()} />
             <p style={{ color: "white" }}>Drop files here</p>
@@ -173,26 +197,34 @@ const CreateScreen = () => {
         <div>{images}</div>
 
         <label>Track audio</label>
-        <input type="file"
+        <input
+          type="file"
           placeholder="Track audio"
           name="music"
           // onChange={(e) => setNft({ music: e.target.files[0] })}
           onChange={onFileChange}
         />
-        <label>Royalty</label>
-        <input placeholder="Royalty"
+        {/* <label>Royalty</label>
+        <input
+          placeholder="Royalty"
           value={nft.royalty}
           name="royalty"
-          // onChange={(e) => setNft({ royalty: e.target.value })} 
+          // onChange={(e) => setNft({ royalty: e.target.value })}
           onChange={handleChange}
-        />
-        <button onClick={() => {navigate('/')}}>Cancel</button>
-        <button id="onSubmit" type="submit">Submit</button>
+        /> */}
+        <button
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          Cancel
+        </button>
+        <button id="onSubmit" type="submit">
+          Submit
+        </button>
       </form>
     </div>
   );
 };
-
-
 
 export default CreateScreen;

@@ -21,32 +21,23 @@ function TrackPlayer(props) {
     const formData = new FormData();
     if (!favorite) {
       setFavorite(true);
-      console.log(favorite);
-      console.log("ori :", numFavorite);
       setNumFavorite(track.numFavorite + 1);
       track.numFavorite++;
-      console.log("after:", numFavorite);
-      console.log("after track:", track.numFavorite);
       formData.append('numFavorite', numFavorite + 1)
     } else {
       setFavorite(false);
-      console.log(favorite);
-      console.log("ori :", numFavorite);
       setNumFavorite(track.numFavorite - 1);
       track.numFavorite--;
-      console.log("after:", numFavorite);
-      console.log("after track:", track.numFavorite);
       formData.append('numFavorite', numFavorite - 1)
     }
 
     formData.append('assetID', track.assetID)
-    // console.log(formData.getAll("numFavorite"))
     axios.post("http://47.252.29.19:8000/api/addNumFavorite", formData, {
     }).then(res => {
-      console.log("numFavoriteSend:", res.data.numFavorite)
+      // console.log("numFavoriteSend:", res.data.numFavorite)
     })
       .catch(err => {
-        console.log(err)
+        // console.log(err)
       })
   }
 

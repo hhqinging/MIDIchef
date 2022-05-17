@@ -13,25 +13,15 @@ import { getError } from "../utils/utils";
 import { withStyles } from "@material-ui/core/styles";
 import React, { useState } from "react";
 
-//taking two paras: current state & the action that changed current state and create the new state
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
-      //it happens when sending axios req to backend
-      //...state: return newest state,
-      //keep prev state val and only update when loading: true
-      //loading :true, we can show loading to ui
       return { ...state, loading: true };
     case "FETCH_SUCCESS":
-      //keep prev state val, and only update tracks the data that coming from action, the data in action is in action.payload
-      //action.payload contains all tracks from backend,
-      //and we need to update loading to false since we success fetch data to frontend, no need tp show loading
       return { ...state, track: action.payload, loading: false };
     case "FETCH_FAIL":
-      //return prev state, and set loading to false[not show loading], and fail the error in the action.payload
       return { ...state, loading: false, error: action.payload };
     default:
-      //return current state
       return state;
   }
 };
@@ -62,14 +52,13 @@ function TrackScreen() {
   const params = useParams();
   const { assetID } = params;
 
-  console.log("assetID", assetID);
-
   const [{ loading, error, track }, dispatch] = useReducer(reducer, {
     track: [],
     loading: true,
     error: "",
   });
   const [numFavorite, setNumFavorite] = useState(track.numFavorite);
+
   const [favorite, setFavorite] = useState(false);
 
   let onSubmit = (e) => {
@@ -110,9 +99,6 @@ function TrackScreen() {
   // const [tracks, setTracks] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      // const result = await axios.get("/api/tracks");
-      // setTracks(result.data);
-      //before send the axios, use dispatch to update the state, set loading to true
       dispatch({ type: "FETCH_REQUEST" });
       try {
         const result = await axios.get(
@@ -121,39 +107,36 @@ function TrackScreen() {
         dispatch({ type: "FETCH_SUCCESS", payload: result.data });
       } catch (err) {
         dispatch({ type: "FETCH_FAIL", payload: getError(err) });
-        // dispatch({ type: "FETCH_FAIL", payload: err.message });
       }
     };
     fetchData();
   }, [assetID]);
 
-  console.log("trackinfo", track);
-
-  const currentAddr = localStorage.getItem("myalgo-wallet-addresses");
-  console.log("currentAddr ", currentAddr);
-  console.log("assetID", assetID);
-
   const navigate = useNavigate();
+  
   const handleClick = async () => {
     const walletAddr = localStorage.getItem("myalgo-wallet-addresses");
-    try {
-      axios
-        .post(`http://47.252.29.19:8000/api/tracks/buy_it`, {
-          walletAddr,
-          assetID,
-        })
-        .then((res) => {
-          console.log(res);
-          if (res.status === 200) {
-            alert("Succeed to buy");
-            navigate("/profile/owned");
-          } else {
-            alert("failed to buy");
-          }
-        });
-      console.log("checjhuahfiashfi");
-    } catch (err) {
-      console.log(err);
+    if (!walletAddr) {
+      alert("Please connect your myalgo wallet.");
+    } else {
+      try {
+        axios
+          .post(`http://47.252.29.19:8000/api/tracks/buy_it`, {
+            walletAddr,
+            assetID,
+          })
+          .then((res) => {
+            console.log(res);
+            if (res.status === 200) {
+              alert("Succeed to buy");
+              navigate("/profile/owned");
+            } else {
+              alert("failed to buy");
+            }
+          });
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
@@ -249,7 +232,6 @@ function TrackScreen() {
             <br></br>
             <ThemeProvider theme={theme}>
               <AudioPlayer
-                // volume={false}
                 preload="auto"
                 loop={false}
                 elevation={0}
@@ -335,14 +317,14 @@ function TrackScreen() {
               Detail info in{" "}
               <a
                 href={`https://testnet.algoexplorer.io/asset/${track.assetID}`}
-                style={{ textDecoration: "none" }}
+                style={{ textDecoration: "none",color: "#59DFDD"}}
               >
                 algoexplorer.io
               </a>
             </p>
           </Grid>
           <Grid item xs={7}>
-            <p
+            {/* <p
               style={{
                 color: "white",
                 fontSize: "15px",
@@ -350,7 +332,7 @@ function TrackScreen() {
               }}
             >
               Activity info pending
-            </p>
+            </p> */}
           </Grid>
         </Grid>
       </Grid>

@@ -48,20 +48,19 @@ const reducer = (state, action) => {
 function UserScreen() {
   const params = useParams();
   const { user } = params;
-  console.log("user", user);
 
   const [{ loading, error, userInfo }, dispatch] = useReducer(reducer, {
     userInfo: [],
     loading: true,
     error: "",
   });
-  console.log("userInfo", userInfo);
+
 
   useEffect(() => {
     const fetchData = async () => {
       dispatch({ type: "FETCH_REQUEST" });
       try {
-        console.log("user", user);
+
         const result = await axios.get(`/api/user/get_user?userName=${user}`);
         dispatch({ type: "FETCH_SUCCESS", payload: result.data });
       } catch (err) {
@@ -71,7 +70,7 @@ function UserScreen() {
     fetchData();
   }, [user]);
 
-  console.log("userInfo50", userInfo);
+ 
 
   return loading ? (
     <CircularProgress
@@ -82,9 +81,9 @@ function UserScreen() {
   ) : error ? (
     <MessageBox severity="error">{error}</MessageBox>
   ) : (
-      <div class="row">
-        <div class="column">
-          <div class="pfp">
+      <div className="row">
+        <div className="column">
+          <div className="pfp">
             <img
               src={userInfo.profilePhoto}
               alt={userInfo.userName}
@@ -92,14 +91,14 @@ function UserScreen() {
           </div>
           
           <div>
-            <div class="userName">{userInfo.userName}</div>
-            <div class="description">{userInfo.description}</div>
+            <div className="userName">{userInfo.userName}</div>
+            <div className="description">{userInfo.description}</div>
           </div>
         </div>
         <></>
-        <div class="column">
+        <div className="column">
           <ThemeProvider theme={theme}>
-            <div class="tracks-container">
+            <div className="tracks-container">
               <Link to={`/user/${user}/sales`}>
                 <StyledButton
                   color="blue"

@@ -57,7 +57,6 @@ function UserCreation() {
 
   const params = useParams();
   const { user } = params;
-  console.log("user", user);
 
   const [{ loadingUser, errorUser, userInfo }, dispatchUser] = useReducer(
     reducerforUser,
@@ -67,7 +66,6 @@ function UserCreation() {
       error: "",
     }
   );
-  console.log("userInfo", userInfo);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -83,17 +81,20 @@ function UserCreation() {
     fetchData();
   }, [user]);
 
-  console.log("preFilterTrack", tracks);
-
-  console.log("user", user);
-
   const creationTracks = tracks.filter((track) => track.creator === user);
-
-  console.log("selling tracks", creationTracks);
 
   return (
     <div>
-      <h1 style={{ color: "white" }}> {user} Creation Songs</h1>
+      <h1
+        style={{
+          color: "white",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        {" "}
+        {user} Creation NFT Tracks
+      </h1>
       <div className="tracks">
         <Grid
           container
@@ -123,7 +124,7 @@ function UserCreation() {
                   marginLeft: "0.5%",
                 }}
                 sx={{ maxWidth: 345 }}
-                key={creationTracks.assetID}
+                key={track.assetID}
               >
                 <TrackPlayer track={track}></TrackPlayer>
               </Card>
