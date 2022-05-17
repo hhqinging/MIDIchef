@@ -6,10 +6,11 @@ import MessageBox from "../screens-compo/MessageBox";
 import { getError } from "../utils/utils";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
+import { withStyles } from "@material-ui/core/styles";
+import "./profileScreen.css"
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-let currentUser = localStorage.getItem("myalgo-wallet-addresses");
 
 const theme = createTheme({
   palette: {
@@ -18,6 +19,16 @@ const theme = createTheme({
     },
   },
 });
+
+const StyledButton = withStyles({
+  root: {
+    textDecoration: "none",
+    color: "#59DFDD",
+    '&:hover': {
+      color: "#e785e7",
+    }
+  }
+})(Button);
 
 //taking two paras: current state & the action that changed current state and create the new state
 const reducer = (state, action) => {
@@ -71,73 +82,57 @@ function UserScreen() {
   ) : error ? (
     <MessageBox severity="error">{error}</MessageBox>
   ) : (
-    <div>
-      {/* <br></br>
-      <h1 style={{ color: "white" }}>{userInfo.userName}</h1> */}
-      {/* <div>
-        <img
-          src={userInfo.profilePhoto}
-          alt={userInfo.userName}
-          style={{
-            width: "100%",
-            height: "200px",
-            opacity: "0.4",
-          }}
-        />
-      </div> */}
-      <div>
-        <div>
-          <img
-            src={userInfo.profilePhoto}
-            alt={userInfo.userName}
-            style={{
-              width: "250px",
-              height: "250px",
-              borderRadius: "100%",
-              padding: "3%",
-            }}
-          />
-        </div>
-        <div>
-          <h2 style={{ color: "white" }}>{userInfo.userName}</h2>
-          <h3 style={{ color: "white" }}>{userInfo.description}</h3>
+      <div class="row">
+        <div class="column">
+          <div class="pfp">
+            <img
+              src={userInfo.profilePhoto}
+              alt={userInfo.userName}
+            />
+          </div>
+          
+          <div>
+            <div class="userName">{userInfo.userName}</div>
+            <div class="description">{userInfo.description}</div>
+          </div>
         </div>
         <></>
-        <ThemeProvider theme={theme}>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <Link to={`/user/${user}/sales`}>
-              <Button
-                color="blue"
-                style={{ fontSize: "18px", fontWeight: "bold" }}
-              >
+        <div class="column">
+          <ThemeProvider theme={theme}>
+            <div class="tracks-container">
+              <Link to={`/user/${user}/sales`}>
+                <StyledButton
+                  color="blue"
+                  style={{ fontSize: "18px", fontWeight: "bold" }}
+                >
+                  {" "}
+                  Sales
+                </StyledButton>{" "}
+              </Link>
+              <Link to={`/user/${user}/creation`}>
                 {" "}
-                Sales
-              </Button>{" "}
-            </Link>
-            <Link to={`/user/${user}/creation`}>
-              {" "}
-              <Button
-                color="blue"
-                style={{ fontSize: "18px", fontWeight: "bold" }}
-              >
+                <StyledButton
+                  color="blue"
+                  style={{ fontSize: "18px", fontWeight: "bold" }}
+                >
+                  {" "}
+                  Creations
+                </StyledButton>{" "}
+              </Link>
+              <Link to={`/user/${user}/owned`}>
                 {" "}
-                Creation
-              </Button>{" "}
-            </Link>
-            <Link to={`/user/${user}/owned`}>
-              {" "}
-              <Button
-                color="blue"
-                style={{ fontSize: "18px", fontWeight: "bold" }}
-              >
-                {" "}
-                Owned NFT
-              </Button>{" "}
-            </Link>
-          </div>
-        </ThemeProvider>
+                <StyledButton
+                  color="blue"
+                  style={{ fontSize: "18px", fontWeight: "bold" }}
+                >
+                  {" "}
+                  Owned Tracks
+                </StyledButton>{" "}
+              </Link>
+            </div>
+          </ThemeProvider>
+        </div>
       </div>
-    </div>
   );
 }
 export default UserScreen;

@@ -1,0 +1,38 @@
+.row {
+    display: flex;
+}
+.column {
+    width: 50%;
+    margin: 50px;
+}
+.pfp {
+    text-align: center;
+}
+.pfp img {
+    width: 350px; 
+    height: 350px;
+    border-radius: 100%;
+    padding: 3%; 
+    /* border: 2px solid red; */
+}
+.userName {
+    color: white;
+    text-align: center;
+    font-size: 60px;
+    margin: 20px;
+    /* border: 2px solid red; */
+}
+.description {
+    color: white;
+    margin-bottom: 5%;
+    font-size: 25px;
+    font-weight: normal;
+    padding: 15px 50px;
+    text-align: center;
+    /* border: 2px solid red; */
+}
+.tracks-container {
+    display: flex;
+    justify-content: center; 
+    /* border: 2px solid red; */
+}

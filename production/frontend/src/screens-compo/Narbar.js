@@ -72,7 +72,7 @@ const NarBar = () => {
       console.log("handleKeyPress", event.target.value);
       axios
         .get(
-          `http://localhost:8000/api/tracks/search?title=${event.target.value}`,
+          `http://47.252.29.19:8000/api/tracks/search?title=${event.target.value}`,
           {}
         )
         .then((res) => {
@@ -305,11 +305,11 @@ const NarBar = () => {
                 Tracks
               </Typography>
             </Link>
-            <Link to="/artists" style={{ textDecoration: "none" }}>
+            {/* <Link to="/artists" style={{ textDecoration: "none" }}>
               <Typography sx={{ p: 1, fontWeight: "bold", color: "#292828" }}>
                 Artists
               </Typography>
-            </Link>
+            </Link> */}
             <Link to="/trending" style={{ textDecoration: "none" }}>
               <Typography sx={{ p: 1, fontWeight: "bold", color: "#292828" }}>
                 Trending

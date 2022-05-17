@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useEffect, useReducer } from "react";
 import axios from "axios";
@@ -11,6 +11,7 @@ import AudioPlayer from "material-ui-audio-player";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { getError } from "../utils/utils";
 import { withStyles } from "@material-ui/core/styles";
+import React, { useState } from "react";
 
 //taking two paras: current state & the action that changed current state and create the new state
 const reducer = (state, action) => {
@@ -51,10 +52,10 @@ const theme = createTheme({
 const StyledButton = withStyles({
   root: {
     color: "black",
-    '&:hover': {
+    "&:hover": {
       backgroundColor: "#e785e7",
-    }
-  }
+    },
+  },
 })(Button);
 
 function TrackScreen() {
@@ -68,6 +69,43 @@ function TrackScreen() {
     loading: true,
     error: "",
   });
+  const [numFavorite, setNumFavorite] = useState(track.numFavorite);
+  const [favorite, setFavorite] = useState(false);
+
+  let onSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    if (!favorite) {
+      setFavorite(true);
+      console.log(favorite);
+      console.log("ori :", numFavorite);
+      setNumFavorite(track.numFavorite + 1);
+      track.numFavorite++;
+      console.log("after:", numFavorite);
+      console.log("after track:", track.numFavorite);
+      formData.append("numFavorite", numFavorite + 1);
+    } else {
+      setFavorite(false);
+      console.log(favorite);
+      console.log("ori :", numFavorite);
+      setNumFavorite(track.numFavorite - 1);
+      track.numFavorite--;
+      console.log("after:", numFavorite);
+      console.log("after track:", track.numFavorite);
+      formData.append("numFavorite", numFavorite - 1);
+    }
+
+    formData.append("assetID", track.assetID);
+    // console.log(formData.getAll("numFavorite"))
+    axios
+      .post("http://47.252.29.19:8000/api/addNumFavorite", formData, {})
+      .then((res) => {
+        console.log("numFavoriteSend:", res.data.numFavorite);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   // const [tracks, setTracks] = useState([]);
   useEffect(() => {
@@ -91,6 +129,34 @@ function TrackScreen() {
 
   console.log("trackinfo", track);
 
+  const currentAddr = localStorage.getItem("myalgo-wallet-addresses");
+  console.log("currentAddr ", currentAddr);
+  console.log("assetID", assetID);
+
+  const navigate = useNavigate();
+  const handleClick = async () => {
+    const walletAddr = localStorage.getItem("myalgo-wallet-addresses");
+    try {
+      axios
+        .post(`http://47.252.29.19:8000/api/tracks/buy_it`, {
+          walletAddr,
+          assetID,
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.status === 200) {
+            alert("Succeed to buy");
+            navigate("/profile/owned");
+          } else {
+            alert("failed to buy");
+          }
+        });
+      console.log("checjhuahfiashfi");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return loading ? (
     <CircularProgress
       style={{
@@ -105,7 +171,7 @@ function TrackScreen() {
       <Grid container style={{ paddingLeft: "10%" }}>
         {/* <Grid container sx={{ p: 10, margin: "auto", flexGrow: 1 }}> */}
         <Grid container direction="row" spacing={5}>
-          <Grid item xs={5} style={{ maxWidth: "700px", maxHeight: "700px"}}>
+          <Grid item xs={5} style={{ maxWidth: "700px", maxHeight: "700px" }}>
             <img
               style={{
                 margin: "auto",
@@ -169,7 +235,13 @@ function TrackScreen() {
             >
               <img
                 src={algoicon}
-                style={{ width: "18px", margin: "0px 5px 0px 3px", border: "1px solid white", borderRadius: "100%", padding: "2px" }}
+                style={{
+                  width: "18px",
+                  margin: "0px 5px 0px 3px",
+                  border: "1px solid white",
+                  borderRadius: "100%",
+                  padding: "2px",
+                }}
                 alt={algoicon}
               />
               {track.price} Algo
@@ -188,20 +260,29 @@ function TrackScreen() {
             <br></br>
             <br></br>
             <Stack direction="row" spacing={2}>
-              {track.marketStatus === "onSale" ? (
+              {track.marketStatus === true ? (
                 <ThemeProvider theme={theme}>
-                  <StyledButton variant="contained" color="blue" style={{fontWeight: "bold"}}>
+                  <StyledButton
+                    onClick={handleClick}
+                    variant="contained"
+                    color="blue"
+                    style={{ fontWeight: "bold" }}
+                  >
                     Buy Now
                   </StyledButton>
-                  <StyledButton variant="contained" color="blue" style={{fontWeight: "bold"}}>
-                    Add to Favorites
-                  </StyledButton>
+                  {/* <form onSubmit={onSubmit}>
+                    <StyledButton variant="contained" color="blue" style={{ fontWeight: "bold" }}>
+                      Add to Favorites
+                    </StyledButton>
+                  </form> */}
                 </ThemeProvider>
               ) : (
                 <ThemeProvider theme={theme}>
-                  <StyledButton variant="contained" color="blue" style={{fontWeight: "bold"}}>
-                    Add to Favorites
-                  </StyledButton>
+                  {/* <form onSubmit={onSubmit}>
+                    <StyledButton variant="contained" color="blue" style={{ fontWeight: "bold" }}>
+                      Add to Favorites
+                    </StyledButton>
+                  </form> */}
                 </ThemeProvider>
               )}
             </Stack>
@@ -209,14 +290,15 @@ function TrackScreen() {
         </Grid>
         <Grid container spacing={3}>
           <Grid item xs={5}>
-            <p style={{ color: "white", fontSize: "13px", fontWeight: "bold" }}>
-              Creator by{" "}
+            <p style={{ color: "white", fontSize: "15px", fontWeight: "bold" }}>
+              Created by{" "}
               <Link
                 to={`/user/${track.creator}`}
                 style={{
                   textDecoration: "none",
                   fontWeight: "bold",
                   color: "#59DFDD",
+                  fontSize: "20px",
                 }}
               >
                 {track.creator}
@@ -225,7 +307,7 @@ function TrackScreen() {
             <p
               style={{
                 color: "#e785e7",
-                fontSize: "13px",
+                fontSize: "15px",
                 fontWeight: "bold",
                 margin: "0px 0px 0px 0px",
               }}
@@ -235,7 +317,7 @@ function TrackScreen() {
             <p
               style={{
                 color: "white",
-                fontSize: "13px",
+                fontSize: "15px",
                 fontWeight: "bold",
                 margin: "0px 0px 50px 0px",
               }}
@@ -263,7 +345,7 @@ function TrackScreen() {
             <p
               style={{
                 color: "white",
-                fontSize: "13px",
+                fontSize: "15px",
                 fontWeight: "bold",
               }}
             >

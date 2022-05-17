@@ -73,9 +73,13 @@ export async function Update_user(user) {
         old = test[0].userName
     }
     );
-
+<<<<<<< HEAD
     
      Track.updateMany({"$or":[{ owner: old },{ creator: old }]}, {
+=======
+
+    Track.updateMany({ creator: old }, {
+>>>>>>> 605f6cb2c9b5bb7bb9f7548cf603d716dc111678
         creator: user.username
     }, function (err, docs) {
         if (err) {
@@ -83,9 +87,19 @@ export async function Update_user(user) {
         }
 
     });
-
+<<<<<<< HEAD
     
      users.findOneAndUpdate(filter, update, {
+=======
+    Track.updateMany({ owner: old }, {
+        owner: user.username
+    }, function (err, docs) {
+        if (err) {
+            console.log(err)
+        }
+    });
+    users.findOneAndUpdate(filter, update, {
+>>>>>>> 605f6cb2c9b5bb7bb9f7548cf603d716dc111678
         returnOriginal: false
     }, function (err, doc) {
         console.log(err)

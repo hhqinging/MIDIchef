@@ -41,19 +41,9 @@ const CreateScreen = () => {
       [e.target.name]: value
     });
   }
-  let testSubmit = async (e) => {
-    let form = new FormData();
-    form.append('creator', "addr");
-    form.append('assetID', 123123);
-    axios.post("http://47.252.29.19:8000/api/nft/transferNFT", form, {})
-    .then(res => {
-      alert("Create success!")
-    })
-    .catch(err => {
-      alert("Create failed! Cannot connect to algorand testnet. Please try again later");
-    });
-  }
   let onSubmit = async (e) => {
+    let btn = document.getElementById("onSubmit");
+    btn.disabled=true;
     let creator = localStorage.getItem('myalgo-wallet-addresses');
     let assetID = undefined;
     if(!creator) {
@@ -94,6 +84,7 @@ const CreateScreen = () => {
         console.log(err);
         alert("Create failed! Cannot transfer created asset. Please try again later");
       })
+      btn.disabled=false;
   }
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -196,7 +187,7 @@ const CreateScreen = () => {
           onChange={handleChange}
         />
         <button onClick={() => {navigate('/')}}>Cancel</button>
-        <button type="submit">Submit</button>
+        <button id="onSubmit" type="submit">Submit</button>
       </form>
     </div>
   );

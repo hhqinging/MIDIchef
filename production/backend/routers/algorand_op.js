@@ -10,10 +10,12 @@ router.post("/transferNFT", async (req, res) => {
         let assetID = req.body.assetID;
 	console.log("recipient:", recipient);
 	console.log("assetID:", assetID);
-        transferAsset(sender, recipient, assetID);
-        res.status(200);
+        await transferAsset(recipient, assetID);
+        // console.log(test);
+	res.status(200).send();
     }
     catch(err){
+	console.log();
         res.status(500).send(err);
     }
 })
