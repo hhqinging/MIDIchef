@@ -17,3 +17,8 @@ MIDIchef is a website provide an easy way for users who want to share their own 
 - How to use
   - You can listen the artist's tracks on the homepage. NO SIGN IN NEEDED
   - You create your tracks and trade your tracks once you connect your wallet with our website
+
+## Folder Description
+- archive: draft testing during the building process
+- production: official code including frontend & backend
+- tests: draft testing for Algo blockchain before merging to official code
