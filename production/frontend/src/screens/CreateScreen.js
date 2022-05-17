@@ -10,6 +10,7 @@ import { useDropzone } from "react-dropzone";
 import MyAlgoConnect from "@randlabs/myalgo-connect";
 import algosdk from "algosdk";
 import buffer from "buffer";
+import { StyledEngineProvider } from "@mui/styled-engine";
 const { Buffer } = buffer;
 
 const CreateScreen = () => {
@@ -18,7 +19,7 @@ const CreateScreen = () => {
     description: "",
     price: 0,
     music: null,
-    royalty: 0,
+    // royalty: 0,
   };
 
   let [nft, setNft] = useState(initialValues);
@@ -52,25 +53,37 @@ const CreateScreen = () => {
     // Create NFT
     let txID = await createNFT(creator, nft.title);
     console.log("txID", txID);
+
+    let waitGoThrough = (ms) => {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    };
+    await waitGoThrough(8000);
+
     let searchurl = `https://algoindexer.testnet.algoexplorerapi.io/v2/transactions/${txID}`;
     let transact = await (await fetch(searchurl)).json();
-    console.log(transact);
-    return;
+    console.log("transact", transact);
+
+    let assetID = transact["transaction"]["created-asset-index"];
+    console.log(transact["transaction"]["created-asset-index"]);
+
     const formData = new FormData();
     formData.append("walletAddr", creator);
     formData.append("music", nft.music);
     formData.append("title", nft.title);
     formData.append("description", nft.description);
     formData.append("price", nft.price);
-    formData.append("royalty", nft.royalty);
+    // formData.append("royalty", nft.royalty);
     formData.append("imageCover", imageCover[0]);
     formData.append("txID", txID);
+    formData.append("assetID", assetID);
     await axios
       .post("http://47.252.29.19:8000/api/upload", formData, {})
       .then((res) => {
         console.log(res.status);
         if (res.status === 200) {
           alert("NFT successfully created");
+
+          navigate("/profile/creation");
         }
       })
       .catch((err) => {
@@ -191,14 +204,14 @@ const CreateScreen = () => {
           // onChange={(e) => setNft({ music: e.target.files[0] })}
           onChange={onFileChange}
         />
-        <label>Royalty</label>
+        {/* <label>Royalty</label>
         <input
           placeholder="Royalty"
           value={nft.royalty}
           name="royalty"
           // onChange={(e) => setNft({ royalty: e.target.value })}
           onChange={handleChange}
-        />
+        /> */}
         <button
           onClick={() => {
             navigate("/");
