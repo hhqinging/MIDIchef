@@ -37,17 +37,20 @@ router.post("/upload", async (req, res) => {
     } else {
       let assetID = req.body.assetID;
       let creator;
-      console.log(req.body.walletAddr);
-      Users.find()
+      //console.log(req.body.walletAddr);
+      await Users.findOne()
         .where("walletAddr")
         .equals(req.body.walletAddr)
         .then((result) => {
           if (result.length == 0) {
             res.status(500).json({ Info: "user unexist" });
           } else {
-            creator = result[0].userName;
+            creator = result.userName;
+            console.log(result);
+            
           }
         });
+        console.log(creator);
       let music = req.files.music;
       let imageCover = req.files.imageCover;
       let ext_img = req.files.imageCover.name.split(".")[1];
