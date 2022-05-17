@@ -136,24 +136,28 @@ function TrackScreen() {
   const navigate = useNavigate();
   const handleClick = async () => {
     const walletAddr = localStorage.getItem("myalgo-wallet-addresses");
-    try {
-      axios
-        .post(`http://47.252.29.19:8000/api/tracks/buy_it`, {
-          walletAddr,
-          assetID,
-        })
-        .then((res) => {
-          console.log(res);
-          if (res.status === 200) {
-            alert("Succeed to buy");
-            navigate("/profile/owned");
-          } else {
-            alert("failed to buy");
-          }
-        });
-      console.log("checjhuahfiashfi");
-    } catch (err) {
-      console.log(err);
+    if (!walletAddr) {
+      alert("Please connect your myalgo wallet.");
+    } else {
+      try {
+        axios
+          .post(`http://47.252.29.19:8000/api/tracks/buy_it`, {
+            walletAddr,
+            assetID,
+          })
+          .then((res) => {
+            console.log(res);
+            if (res.status === 200) {
+              alert("Succeed to buy");
+              navigate("/profile/owned");
+            } else {
+              alert("failed to buy");
+            }
+          });
+        console.log("checjhuahfiashfi");
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
