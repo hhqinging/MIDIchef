@@ -29,12 +29,12 @@ router.post("/upload", async (req, res) => {
         if (!req.files.music || !req.files.imageCover || req.body.title == '' || req.body.price == 0 || req.body.royalty == 0) {
             res.status(500).send("No complete info!");
         } else {
-            let txID = req.body.txID;
-            console.log("txID: ", txID);
-            let searchurl = `https://algoindexer.testnet.algoexplorerapi.io/v2/transactions/${txID}`;
-            let transact = await (await fetch(url)).json();
-            let assetID = transact["created-asset-index"];
-            console.log("assetID", assetID);
+            // let txID = req.body.txID;
+            // console.log("txID: ", txID);
+            // let searchurl = `https://algoindexer.testnet.algoexplorerapi.io/v2/transactions/${txID}`;
+            // let transact = await (await fetch(url)).json();
+            // let assetID = transact["created-asset-index"];
+            // console.log("assetID", assetID);
             // let creator;
             // console.log(req.body.walletAddr)
             // Users.find().where('walletAddr').equals(req.body.walletAddr).then(result => {

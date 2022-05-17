@@ -43,7 +43,6 @@ const CreateScreen = () => {
     let btn = document.getElementById("onSubmit");
     btn.disabled = true;
     let creator = localStorage.getItem("myalgo-wallet-addresses");
-    // let assetID = undefined;
     if (!creator) {
       alert("Login first to create NFT");
       return;
@@ -53,6 +52,10 @@ const CreateScreen = () => {
     // Create NFT
     let txID = await createNFT(creator, nft.title);
     console.log("txID", txID);
+    let searchurl = `https://algoindexer.testnet.algoexplorerapi.io/v2/transactions/${txID}`;
+    let transact = await (await fetch(searchurl)).json();
+    console.log(transact);
+    return;
     const formData = new FormData();
     formData.append("walletAddr", creator);
     formData.append("music", nft.music);
