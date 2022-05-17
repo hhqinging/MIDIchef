@@ -45,7 +45,6 @@ const CreateScreen = () => {
     let btn = document.getElementById("onSubmit");
     btn.disabled=true;
     let creator = localStorage.getItem('myalgo-wallet-addresses');
-    let assetID = undefined;
     if(!creator) {
       alert("Login first to create NFT");
       return;

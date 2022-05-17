@@ -29,40 +29,46 @@ router.post("/upload", async (req, res) => {
         if (!req.files.music || !req.files.imageCover || req.body.title == '' || req.body.price == 0 || req.body.royalty == 0) {
             res.status(500).send("No complete info!");
         } else {
-            let creator;
-            console.log(req.body.walletAddr)
-            Users.find().where('walletAddr').equals(req.body.walletAddr).then(result => {
-                if (result.length == 0) {
-                    res.status(500).json({ Info: "user unexist" })
-                }
-                else {
-                    creator = result[0].userName;
-                }
-            })
-            let music = req.files.music;
-            let imageCover = req.files.imageCover;
-            let ext_img = req.files.imageCover.name.split('.')[1];
-            let ext_music = req.files.music.name.split('.')[1];
-            music.mv("./uploads/music/" + music.md5 + "." + ext_music);
-            imageCover.mv("./uploads/imageCover/" + imageCover.md5 + "." + ext_img);
-            // let assetID = await createAsset(req.body.title)
             let txID = req.body.txID;
             console.log("txID: ", txID);
             let searchurl = `https://algoindexer.testnet.algoexplorerapi.io/v2/transactions/${txID}`;
             let transact = await (await fetch(url)).json();
             let assetID = transact["created-asset-index"];
             console.log("assetID", assetID);
-            let data = {
-                creator: creator,
-                owner: creator,
-                assetID: assetID,
-                title: req.body.title,
-                description: req.body.description,
-                price: req.body.price,
-                //royalty: req.body.royalty,
-                src: "http://47.252.29.19:8000/api/tracks/song_file?song=" + music.md5 + "." + ext_music,
-                img_src: "http://47.252.29.19:8000/api/tracks/photo_file?photo=" + imageCover.md5 + "." + ext_img
-            }
+            // let creator;
+            // console.log(req.body.walletAddr)
+            // Users.find().where('walletAddr').equals(req.body.walletAddr).then(result => {
+            //     if (result.length == 0) {
+            //         res.status(500).json({ Info: "user unexist" })
+            //     }
+            //     else {
+            //         creator = result[0].userName;
+            //     }
+            // })
+            // let music = req.files.music;
+            // let imageCover = req.files.imageCover;
+            // let ext_img = req.files.imageCover.name.split('.')[1];
+            // let ext_music = req.files.music.name.split('.')[1];
+            // music.mv("./uploads/music/" + music.md5 + "." + ext_music);
+            // imageCover.mv("./uploads/imageCover/" + imageCover.md5 + "." + ext_img);
+            // // let assetID = await createAsset(req.body.title)
+            // let txID = req.body.txID;
+            // console.log("txID: ", txID);
+            // let searchurl = `https://algoindexer.testnet.algoexplorerapi.io/v2/transactions/${txID}`;
+            // let transact = await (await fetch(url)).json();
+            // let assetID = transact["created-asset-index"];
+            // console.log("assetID", assetID);
+            // let data = {
+            //     creator: creator,
+            //     owner: creator,
+            //     assetID: assetID,
+            //     title: req.body.title,
+            //     description: req.body.description,
+            //     price: req.body.price,
+            //     //royalty: req.body.royalty,
+            //     src: "http://47.252.29.19:8000/api/tracks/song_file?song=" + music.md5 + "." + ext_music,
+            //     img_src: "http://47.252.29.19:8000/api/tracks/photo_file?photo=" + imageCover.md5 + "." + ext_img
+            // }
 
             // Create_song(data)
             res.status(200).send();
